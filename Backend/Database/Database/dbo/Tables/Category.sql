@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Category]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT newid(), 
+    [Name] NVARCHAR(MAX) NOT NULL
+)

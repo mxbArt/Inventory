@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[CategoryItem]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT newid(), 
+    [CategoryId] UNIQUEIDENTIFIER NOT NULL, 
+    [Name] NVARCHAR(MAX) NOT NULL, 
+    CONSTRAINT [FK_CategoryItem_ToCategory] FOREIGN KEY (CategoryId) REFERENCES Category(Id)
+)
