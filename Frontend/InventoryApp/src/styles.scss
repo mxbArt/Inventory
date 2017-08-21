@@ -11,3 +11,12 @@
 
 // Font Awesome
 @import "~font-awesome/css/font-awesome.min.css";
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+
+  .mat-button, .mat-icon-button, .mat-raised-button{
+    font-family: 'Poppins', sans-serif;
+  }
+}
