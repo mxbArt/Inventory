@@ -1,0 +1,10 @@
+$main_color: #1e88e5;
+
+nav {
+  background-color: $main_color;
+  height: 4.5rem;
+
+  .btn-outline-light:hover{
+    color: $main_color;
+  }
+}

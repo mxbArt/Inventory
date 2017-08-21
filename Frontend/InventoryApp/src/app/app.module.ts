@@ -19,24 +19,24 @@ import { MenuComponent } from './home/menu/menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule } from '@angular/material';
 import { MdListModule } from '@angular/material';
-import { MdMenuModule } from '@angular/material';
 
 @NgModule({
   imports: [
     BrowserModule,
 
+    // Custom modules
     CoreModule,
     SharedModule,
     UserModule,
     InventoryModule,
     AdminModule,
 
+    // Routing
     AppRoutingModule,
 
     // Angular materials
     MdButtonModule,
     MdListModule,
-    MdMenuModule,
     BrowserAnimationsModule
   ],
   declarations: [
