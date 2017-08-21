@@ -16,8 +16,10 @@ import { InventoryModule } from './inventory/inventory.module';
 import { MenuComponent } from './home/menu/menu.component';
 
 // Angular materials
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule } from '@angular/material';
 import { MdListModule } from '@angular/material';
+import { MdMenuModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -33,7 +35,9 @@ import { MdListModule } from '@angular/material';
 
     // Angular materials
     MdButtonModule,
-    MdListModule
+    MdListModule,
+    MdMenuModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
