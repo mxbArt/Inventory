@@ -3,17 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 
+// Components
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+import { MenuComponent } from './home/menu/menu.component';
 
+// Modules
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { InventoryModule } from './inventory/inventory.module';
-import { MenuComponent } from './home/menu/menu.component';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 // Angular materials
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +29,7 @@ import { MdListModule } from '@angular/material';
     // Custom modules
     CoreModule,
     SharedModule,
-    UserModule,
+    AuthenticationModule,
     InventoryModule,
     AdminModule,
 
