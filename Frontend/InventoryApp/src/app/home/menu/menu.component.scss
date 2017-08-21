@@ -1,0 +1,32 @@
+.menu {
+  padding: 0;
+  background-color: white;
+  box-shadow: 1px 0px 20px #CCCCCC;
+
+  .card {
+    border: none;
+    background-color: transparent;
+
+    .card-img-top{
+      padding-top: 1.25rem;
+      width:50%;
+      height:50%;
+      margin: auto;
+    }
+  }
+
+  .menu-item-list{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+    }
+
+    a :hover {
+      color: #00BCFF;
+    }
+  }
+}
+

@@ -13,6 +13,11 @@ import { SharedModule } from './shared/shared.module';
 import { UserModule } from './user/user.module';
 import { AdminModule } from './admin/admin.module';
 import { InventoryModule } from './inventory/inventory.module';
+import { MenuComponent } from './home/menu/menu.component';
+
+// Angular materials
+import { MdButtonModule } from '@angular/material';
+import { MdListModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -24,13 +29,18 @@ import { InventoryModule } from './inventory/inventory.module';
     InventoryModule,
     AdminModule,
 
-    AppRoutingModule
+    AppRoutingModule,
+
+    // Angular materials
+    MdButtonModule,
+    MdListModule
   ],
   declarations: [
     AppComponent,
     AboutComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    MenuComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
