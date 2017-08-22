@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-9 background-image">
+    </div>
+    <!-- Login -->
+    <div class="col-3 login-wrapper">
+      <div class="fake-logo">
+        <h1>Inventory</h1>
+        <h5>Добро пожаловать! Авторизуйтесь и продолжайте работу с комфортом!</h5>
+      </div>
+
+      <form>
+        <!-- Inputs -->
+        <table class="form-table">
+          <tr><td>
+              <md-input-container>
+                <input mdInput placeholder="E-mail" type="email" >
+                <!-- <md-hint align="end"> {{ e.value.length }} / 50</md-hint> -->
+              </md-input-container>
+          </td></tr>
+          <tr><td>
+              <md-input-container>
+                <input mdInput placeholder="Пароль" type="password">
+                <!-- <md-hint align="end"> {{ e.value.length }} / 50</md-hint> -->
+              </md-input-container>
+          </td></tr>
+        </table>
+
+        <!-- // Inputs -->
+        <button md-button class="auth-btn" type="button" (click)="submit()">Войти</button>
+        <h5>Нету аккаунта?   <a routerLink="/register">Зарегистрируйтесь</a></h5>
+      </form>
+    </div>
+    <!-- // Login -->
+  </div>
+</div>
+

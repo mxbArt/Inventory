@@ -1,0 +1,50 @@
+$main_color: #1e88e5;
+
+.background-image {
+  height: 100vh;
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5) ), url("http://robinaron.com/wp-content/uploads/2016/10/T2015_0281.jpg");
+  background-size: cover;
+}
+
+.login-wrapper {
+
+  background-color: white;
+  height: 100vh;
+
+  .fake-logo {
+    text-align: center;
+    padding-top: 5em;
+
+    h1 {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  form {
+    padding: 8em 1em 0em;
+
+    .form-table {
+      width: 100%;
+      md-input-container{
+        width: 100%;
+
+        input {
+          width: 100%;
+          font-size: 18px;
+          color: gray;
+        }
+      }
+    }
+  }
+
+  .auth-btn {
+    width: 100%;
+    padding: .7em;
+    margin: 2rem 0;
+    font-size: 20px;
+    background-color: $main_color;
+    border-radius: 0;
+    border: none;
+    color: white;
+  }
+}
