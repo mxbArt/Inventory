@@ -8,6 +8,11 @@ import fakeUsers from '../fake-data/fake-auth-data';
 
 // Models
 import { ILoginData } from '../core/models/authentication/ILoginData.model';
+import { IRegistrationData } from '../core/models/authentication/IRegistrationData.model';
+import { IUser } from '../core/models/IUser.model';
+
+// Enums
+import { Roles } from '../core/enums/roles.enum';
 
 // TODO: add logic to auth service!
 
@@ -17,7 +22,9 @@ export class AuthService {
 
   constructor() {}
 
+  // Works with fake users
   authenticate(loginData: ILoginData): boolean {
+    console.log(fakeUsers);
     // Fake auth
     const user = fakeUsers.find(u => u.email === loginData.email && u.password === loginData.password);
     if (user) {
@@ -29,6 +36,18 @@ export class AuthService {
       return true;
     }
     return false;
+  }
+
+  // Works with fake users
+  register(registerData: IRegistrationData): boolean {
+    const user: IUser = {
+      id: Math.random().toString(),
+      email: registerData.email,
+      password: registerData.password,
+      role: Roles.driver
+    };
+    fakeUsers.push(user);
+    return true;
   }
 
 }

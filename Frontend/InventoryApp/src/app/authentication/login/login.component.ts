@@ -11,6 +11,9 @@ import { MdSnackBar } from '@angular/material';
 // Services
 import { AuthService } from '../auth.service';
 
+// Helpers
+import RegexPasswordPattern from '../authentication.helper';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,7 +22,8 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService, private router: Router, public errorSnackBar: MdSnackBar) { }
+  constructor(private authService: AuthService, private router: Router,
+              public errorSnackBar: MdSnackBar) { }
 
   ngOnInit() {
     this.initForm();
@@ -50,7 +54,7 @@ export class LoginComponent implements OnInit {
       'email': new FormControl(email, [Validators.required, Validators.email]),
       'password': new FormControl(password, [
         Validators.required,
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/)
+        Validators.pattern(RegexPasswordPattern)
       ])
     });
   }
