@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Custom modules
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../dashboard/shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 // Services
 import { ProfileService } from './common/profile/profile.service';
