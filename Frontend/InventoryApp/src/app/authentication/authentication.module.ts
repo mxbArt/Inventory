@@ -7,13 +7,13 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 
 // Components
 import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 // Services
 import { AuthService } from './auth.service';
 
 // Angular material
 import { MdButtonModule, MdInputModule, MdSnackBarModule } from '@angular/material';
-import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   imports: [
