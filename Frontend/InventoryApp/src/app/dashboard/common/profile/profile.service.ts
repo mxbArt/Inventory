@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 // Fake data
-import fakeUsers from '../../fake-data/fake-auth-data';
+import fakeUsers from '../../../fake-data/fake-auth-data';
 // Services
-import { AuthService } from '../../authentication/auth.service';
+import { AuthService } from '../../../authentication/auth.service';
 
 @Injectable()
 export class ProfileService {

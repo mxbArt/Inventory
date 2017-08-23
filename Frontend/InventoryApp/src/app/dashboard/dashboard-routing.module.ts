@@ -4,14 +4,16 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../shared/guards/auth-guard.service';
 // Components
 import { DashboardComponent } from './dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './common/profile/profile.component';
+import { StoragesComponent } from './common/storages/storages.component';
 
 const routes: Routes = [
   {
     path: '', canActivate: [AuthGuard], children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent, children: [
-        { path: 'profile', component: ProfileComponent }
+        { path: 'profile', component: ProfileComponent },
+        { path: 'storages', component: StoragesComponent }
       ]},
     ]
   }

@@ -5,14 +5,16 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 // Services
-import { ProfileService } from './profile/profile.service';
+import { ProfileService } from './common/profile/profile.service';
 // Components
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard.component';
 
 // Angular materials
 import { MdListModule, MdButtonModule } from '@angular/material';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './common/profile/profile.component';
+import { StoragesComponent } from './common/storages/storages.component';
+import { StorageItemComponent } from './common/storages/storage-item/storage-item.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,9 @@ import { ProfileComponent } from './profile/profile.component';
   declarations: [
     DashboardComponent,
     MenuComponent,
-    ProfileComponent
+    ProfileComponent,
+    StoragesComponent,
+    StorageItemComponent
   ],
   providers: [
     ProfileService
