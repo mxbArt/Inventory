@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 // Services
-import { ProfileService } from './profile.service';
+import { ProfileService } from './profile/profile.service';
 // Components
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard.component';
