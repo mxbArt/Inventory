@@ -1,13 +1,15 @@
 <div>
   <div class="col-12 menu">
       <!-- Profile card -->
-      <div class="card">
+      <a routerLink="profile">
+        <div class="card">
           <img class="card-img-top rounded-circle"
               src="\assets\images\users\profile-icon.png" alt="Card image cap">
           <div class="card-body text-center">
-            <h4 class="card-title">Александер Анисимов</h4>
+            <h4 class="card-title">{{ username }}</h4>
           </div>
-      </div>
+        </div>
+      </a>
       <!-- // Profile card -->
 
       <!-- Menu list -->

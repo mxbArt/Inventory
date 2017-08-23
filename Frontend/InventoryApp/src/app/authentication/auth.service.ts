@@ -14,8 +14,6 @@ import { IUser } from '../core/models/IUser.model';
 // Enums
 import { Roles } from '../core/enums/roles.enum';
 
-// TODO: add logic to auth service!
-
 @Injectable()
 export class AuthService {
   authData: IAuthData;
