@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+// Interdaces
+import { IStorage } from '../../../core/models/IStorage.model';
+// Services
+import { StorageService } from './storage.service';
 
 @Component({
   selector: 'app-storages',
@@ -6,10 +10,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./storages.component.scss']
 })
 export class StoragesComponent implements OnInit {
+  storages: Array<IStorage>;
 
-  constructor() { }
+  constructor(private storageSevice: StorageService) { }
 
   ngOnInit() {
+    this.storages = this.storageSevice.getStorages();
   }
 
 }

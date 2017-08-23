@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+// Interfaces
+import { IStorage } from '../../../../core/models/IStorage.model';
 
 @Component({
   selector: 'app-storage-item',
@@ -6,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./storage-item.component.scss']
 })
 export class StorageItemComponent implements OnInit {
+  @Input() storage: IStorage;
 
   constructor() { }
 

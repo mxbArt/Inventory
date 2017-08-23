@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './common/profile/profile.component';
 import { StoragesComponent } from './common/storages/storages.component';
 
+
 const routes: Routes = [
   {
     path: '', canActivate: [AuthGuard], children: [
