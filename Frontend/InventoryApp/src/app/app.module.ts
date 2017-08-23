@@ -13,7 +13,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 // Modules
 import { CoreModule } from './core/core.module';
-import { InventoryModule } from './inventory/inventory.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
@@ -29,7 +28,6 @@ import { AuthService } from './authentication/auth.service';
     // Custom modules
     CoreModule,
     AuthenticationModule,
-    InventoryModule,
     DashboardModule,
 
     // Routing
