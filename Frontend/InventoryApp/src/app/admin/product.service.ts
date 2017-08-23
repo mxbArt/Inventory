@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IProduct } from '../core/models/IProduct';
+import { IProduct } from '../core/models/IProduct.model';
 
 // TODO: add code to service to work with products
 

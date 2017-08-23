@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IStore } from '../core/models/IStore';
+import { IStore } from '../core/models/IStore.model';
 
 // TODO: add code for servie to work with stores
 

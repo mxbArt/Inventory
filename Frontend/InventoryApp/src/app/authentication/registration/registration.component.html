@@ -9,30 +9,52 @@
           <h5>Регистрируйте, получайте свой аккаунт и начинайте работать!</h5>
         </div>
 
-        <form>
+        <form [formGroup]="registerForm" (ngSubmit)="submit()">
           <!-- Inputs -->
           <table class="form-table">
             <tr><td>
                 <md-input-container>
-                  <input mdInput placeholder="E-mail" type="email" >
+                  <input mdInput placeholder="E-mail" type="email" formControlName="email">
+                  <md-error *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].errors['required']">
+                    Заполните поле
+                  </md-error>
+                  <md-error *ngIf="registerForm.controls['email'].errors && !registerForm.controls['email'].errors['required']">
+                    Введите корректный адрес
+                  </md-error>
                   <!-- <md-hint align="end"> {{ e.value.length }} / 50</md-hint> -->
                 </md-input-container>
             </td></tr>
             <tr><td>
                 <md-input-container>
-                  <input mdInput placeholder="Пароль" type="password">
+                  <input mdInput placeholder="Пароль" type="password" formControlName="password">
+                  <md-error *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].errors['required']">
+                    Заполните поле
+                  </md-error>
+                  <md-error *ngIf="registerForm.controls['password'].errors && !registerForm.controls['password'].errors['required']">
+                    Пароль должен состоять минимум из 8 символов и содержать как минимум 1 цифру, 1 букву верхнего и нижнего регистра
+                  </md-error>
                   <!-- <md-hint align="end"> {{ e.value.length }} / 50</md-hint> -->
                 </md-input-container>
             </td></tr>
             <tr><td>
                 <md-input-container>
-                  <input mdInput placeholder="Повторите пароль" type="password">
+                  <input mdInput placeholder="Повторите пароль" type="password" formControlName="confirmPassword">
+                  <md-error *ngIf="registerForm.controls['confirmPassword'].errors &&
+                              registerForm.controls['confirmPassword'].errors['required']">
+                    Заполните поле
+                  </md-error>
+                  <md-error *ngIf="registerForm.controls['confirmPassword'].errors &&
+                              registerForm.controls['confirmPassword'].errors['passwordsNotEquals']">
+                    Пароли не совпадают
+                  </md-error>
                 </md-input-container>
             </td></tr>
           </table>
 
           <!-- // Inputs -->
-          <button md-button class="auth-btn" type="button" (click)="submit()">Зарегистрироваться</button>
+          <button md-button class="auth-btn" type="button" (click)="submit()" [disabled]="!registerForm.valid" [ngClass]="{'btn-disabled': !registerForm.valid}">
+            Зарегистрироваться
+          </button>
           <h5>Уже есть аккаунт?   <a routerLink="/login">Войдите</a></h5>
         </form>
       </div>

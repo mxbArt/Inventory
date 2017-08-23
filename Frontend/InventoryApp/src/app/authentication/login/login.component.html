@@ -9,25 +9,40 @@
         <h5>Добро пожаловать! Авторизуйтесь и продолжайте работу с комфортом!</h5>
       </div>
 
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
         <!-- Inputs -->
         <table class="form-table">
           <tr><td>
               <md-input-container>
-                <input mdInput placeholder="E-mail" type="email" >
+                <input mdInput placeholder="E-mail" type="email" formControlName="email">
+                  <md-error *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors['required']">
+                    Заполните поле
+                  </md-error>
+                  <md-error *ngIf="loginForm.controls['email'].errors && !loginForm.controls['email'].errors['required']">
+                    Введите корректный адрес
+                  </md-error>
                 <!-- <md-hint align="end"> {{ e.value.length }} / 50</md-hint> -->
               </md-input-container>
           </td></tr>
           <tr><td>
               <md-input-container>
-                <input mdInput placeholder="Пароль" type="password">
+                <input mdInput placeholder="Пароль" type="password" formControlName="password">
+                <md-error *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].errors['required']">
+                  Заполните поле
+                </md-error>
+                <md-error *ngIf="loginForm.controls['password'].errors && !loginForm.controls['password'].errors['required']">
+                  Пароль должен состоять минимум из 8 символов и содержать как минимум 1 цифру, 1 букву верхнего и нижнего регистра
+                </md-error>
                 <!-- <md-hint align="end"> {{ e.value.length }} / 50</md-hint> -->
               </md-input-container>
           </td></tr>
         </table>
 
         <!-- // Inputs -->
-        <button md-button class="auth-btn" type="button" (click)="submit()">Войти</button>
+        <button md-button class="auth-btn" type="submit"
+                [disabled]="!loginForm.valid" [ngClass]="{'btn-disabled': !loginForm.valid}">
+          Войти
+        </button>
         <h5>Нету аккаунта?   <a routerLink="/register">Зарегистрируйтесь</a></h5>
       </form>
     </div>
