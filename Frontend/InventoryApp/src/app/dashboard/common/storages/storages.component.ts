@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IStorage } from '../../../core/models/IStorage.model';
 // Services
 import { StorageService } from './storage.service';
+import { AutocompleteService } from '../../shared/autocomplete/autocomplete.service';
 
 @Component({
   selector: 'app-storages',
@@ -11,11 +12,13 @@ import { StorageService } from './storage.service';
 })
 export class StoragesComponent implements OnInit {
   storages: Array<IStorage>;
+  storagesAdresses: Array<string>;
 
-  constructor(private storageSevice: StorageService) { }
+  constructor(private storageSevice: StorageService, private autoService: AutocompleteService) { }
 
   ngOnInit() {
     this.storages = this.storageSevice.getStorages();
+    this.storagesAdresses = this.storageSevice.getStoragesAdress();
   }
 
 }

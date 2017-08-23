@@ -1,5 +1,8 @@
 <div class="col-12">
-    <div class="col-xl-3 col-lg-4 col-md-6" style="float:left;" *ngFor="let s of storages">
+    <app-autocomplete [value]="storagesAdresses" [placeholder]="'Aдрес склада'"></app-autocomplete>
+
+    <div class="col-xl-3 col-lg-4 col-md-6" style="float:left;"
+         *ngFor="let s of storages | filter:autoService.selectedValue:'adress'">
         <app-storage-item [storage]="s"></app-storage-item>
     </div>
 </div>

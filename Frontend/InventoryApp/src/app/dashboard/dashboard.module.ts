@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Pipes
+import { FilterPipe } from '../infrastructure/pipes/filter.pipe';
 // Custom modules
 import { SharedModule } from '../dashboard/shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
@@ -36,11 +38,13 @@ import { MdListModule, MdButtonModule } from '@angular/material';
     MenuComponent,
     ProfileComponent,
     StoragesComponent,
-    StorageItemComponent
+    StorageItemComponent,
+
+    FilterPipe
   ],
   providers: [
     ProfileService,
-    StorageService
+    StorageService,
   ]
 })
 export class DashboardModule { }

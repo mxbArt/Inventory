@@ -39,7 +39,7 @@ import { AuthService } from './authentication/auth.service';
   declarations: [
     AppComponent,
     AboutComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   providers: [
     AuthService,

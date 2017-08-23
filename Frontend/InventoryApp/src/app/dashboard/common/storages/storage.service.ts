@@ -11,4 +11,16 @@ export class StorageService {
   getStorages(): Array<IStorage> {
     return fakeStorages;
   }
+
+  getStoragesAdress(): Array<string> {
+    let adresses = new Array<string>();
+    fakeStorages.forEach((s) => {
+      if (adresses.indexOf(s.adress) === -1) {
+        adresses.push(s.adress);
+      }
+    });
+    adresses.sort();
+
+    return adresses;
+  }
 }
