@@ -32,7 +32,7 @@ import { RegistrationComponent } from './registration/registration.component';
     RegistrationComponent
   ],
   providers: [
-    AuthService
+    //AuthService
   ]
 })
 export class AuthenticationModule { }
