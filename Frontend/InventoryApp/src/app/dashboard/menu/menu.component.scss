@@ -1,0 +1,24 @@
+.menu {
+  padding: 0;
+  background-color: white;
+  box-shadow: 1px 0px 20px #CCCCCC;
+
+  .card {
+    border: none;
+    background-color: transparent;
+
+    .card-img-top{
+      padding-top: 1.25rem;
+      width:50%;
+      height:50%;
+      margin: auto;
+    }
+  }
+}
+
+a {
+  color: black;
+}
+
+
+

@@ -1,0 +1,155 @@
+<div>
+  <div class="col-12 menu">
+      <!-- Profile card -->
+      <a routerLink="profile">
+        <div class="card">
+          <img class="card-img-top rounded-circle"
+              src="\assets\images\users\profile-icon.png" alt="Card image cap">
+          <div class="card-body text-center">
+            <h4 class="card-title">{{ username }}</h4>
+          </div>
+        </div>
+      </a>
+      <!-- // Profile card -->
+
+      <!-- Menu list -->
+      <md-list>
+          <!-- Driver or higher -->
+          <!-- <h3 md-subheader>Склады</h3>
+          <md-list-item>
+            <h4 md-line>
+              <button md-button routerLink="storages">Просмотр</button>
+            </h4>
+          </md-list-item> -->
+
+          <h3 md-subheader>Просмотр товара</h3>
+          <md-list-item>
+            <h4 md-line>
+              <button md-button routerLink=".">По наименованию</button>
+            </h4>
+          </md-list-item>
+          <md-list-item>
+            <h4 md-line>
+              <button md-button routerLink="storages">По складам</button>
+            </h4>
+          </md-list-item>
+
+          <md-divider></md-divider>
+          <!-- // Driver or higher -->
+
+          <!-- Storekeeper only -->
+          <div *ngIf="role === 1">
+            <!-- Store management -->
+            <h3 md-subheader>Управление складом</h3>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Оформление поставки</button>
+              </h4>
+            </md-list-item>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Оформление отправки</button>
+              </h4>
+            </md-list-item>
+
+            <md-divider></md-divider>
+            <!-- // Store management -->
+          </div>
+          <!-- // Storekeeper only -->
+
+          <!-- Admin only -->
+          <div *ngIf="role === 2">
+            <!-- Reference data management -->
+            <h3 md-subheader>Управление данными</h3>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Добавление данных</button>
+              </h4>
+            </md-list-item>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Удаление данных</button>
+              </h4>
+            </md-list-item>
+
+            <md-divider></md-divider>
+            <!-- // Reference data management -->
+
+            <!-- Employee managment -->
+            <h3 md-subheader>Управление персоналом</h3>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Редактирование ролей</button>
+              </h4>
+            </md-list-item>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Удаление пользователей</button>
+              </h4>
+            </md-list-item>
+
+            <md-divider></md-divider>
+            <!-- // Employee managment -->
+
+            <!-- Store management -->
+            <h3 md-subheader>Управление складами</h3>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Оформление поставки</button>
+              </h4>
+            </md-list-item>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">Оформление отправки</button>
+              </h4>
+            </md-list-item>
+
+            <md-divider></md-divider>
+            <!-- // Store management -->
+
+            <!-- View activity -->
+            <h3 md-subheader>Просмотр активности</h3>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">По складам</button>
+              </h4>
+            </md-list-item>
+            <md-list-item>
+              <h4 md-line>
+                <button md-button routerLink=".">По сотрудникам</button>
+              </h4>
+            </md-list-item>
+
+            <md-divider></md-divider>
+            <!-- // View activity -->
+          </div>
+          <!-- // Admin only -->
+
+          <h3 md-subheader>Статистика</h3>
+          <!-- Driver functionality only -->
+          <md-list-item *ngIf="role === 0">
+              <h4 md-line>
+                <button md-button routerLink=".">Просмотр истории</button>
+              </h4>
+          </md-list-item>
+          <!-- // Driver functionality only -->
+
+          <!-- Storekeeper functionality only -->
+          <md-list-item *ngIf="role === 1">
+              <h4 md-line>
+                <button md-button routerLink=".">Просмотр стататистики</button>
+              </h4>
+          </md-list-item>
+          <!-- // Storekeeper functionality only -->
+
+          <!-- Admin functionality only -->
+          <md-list-item *ngIf="role === 2">
+              <h4 md-line>
+                <button md-button routerLink=".">Просмотр стататистики</button>
+              </h4>
+          </md-list-item>
+          <!-- // Admin functionality only -->
+        </md-list>
+        <!-- // Menu list -->
+  </div>
+</div>

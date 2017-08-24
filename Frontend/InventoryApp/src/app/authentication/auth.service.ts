@@ -14,8 +14,6 @@ import { IUser } from '../core/models/IUser.model';
 // Enums
 import { Roles } from '../core/enums/roles.enum';
 
-// TODO: add logic to auth service!
-
 @Injectable()
 export class AuthService {
   authData: IAuthData;
@@ -24,7 +22,6 @@ export class AuthService {
 
   // Works with fake users
   authenticate(loginData: ILoginData): boolean {
-    console.log(fakeUsers);
     // Fake auth
     const user = fakeUsers.find(u => u.email === loginData.email && u.password === loginData.password);
     if (user) {
@@ -44,7 +41,8 @@ export class AuthService {
       id: Math.random().toString(),
       email: registerData.email,
       password: registerData.password,
-      role: Roles.driver
+      role: Roles.driver,
+      name: '(Не указано)'
     };
     fakeUsers.push(user);
     return true;
