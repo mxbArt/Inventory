@@ -14,7 +14,7 @@ export class StoragesComponent implements OnInit {
   storages: Array<IStorage>;
   storagesAdresses: Array<string>;
 
-  constructor(private storageSevice: StorageService, private autoService: AutocompleteService) { }
+  constructor(public storageSevice: StorageService, public autoService: AutocompleteService) { }
 
   ngOnInit() {
     this.storages = this.storageSevice.getStorages();
