@@ -6,6 +6,7 @@ import { AuthGuard } from '../infrastructure/guards/auth-guard.service';
 import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './common/profile/profile.component';
 import { StoragesComponent } from './common/storages/storages.component';
+import { ProductsComponent } from './common/products/products.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
       { path: 'dashboard', component: DashboardComponent, children: [
         { path: 'profile', component: ProfileComponent },
-        { path: 'storages', component: StoragesComponent }
+        { path: 'storages', component: StoragesComponent },
+        { path: 'products', component: ProductsComponent }
       ]},
     ]
   }

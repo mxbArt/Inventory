@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Pipes
 import { FilterPipe } from '../infrastructure/pipes/filter.pipe';
@@ -15,13 +16,15 @@ import { DashboardComponent } from './dashboard.component';
 import { StoragesComponent } from './common/storages/storages.component';
 import { StorageItemComponent } from './common/storages/storage-item/storage-item.component';
 import { ProfileComponent } from './common/profile/profile.component';
+import { ProductsComponent } from './common/products/products.component';
 
 // Angular materials
-import { MdListModule, MdButtonModule } from '@angular/material';
+import { MdListModule, MdButtonModule, MdAutocompleteModule, MdInputModule } from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
 
     // Routing
     DashboardRoutingModule,
@@ -32,6 +35,8 @@ import { MdListModule, MdButtonModule } from '@angular/material';
     // Angular materials
     MdListModule,
     MdButtonModule,
+    MdAutocompleteModule,
+    MdInputModule
   ],
   declarations: [
     DashboardComponent,
@@ -40,7 +45,9 @@ import { MdListModule, MdButtonModule } from '@angular/material';
     StoragesComponent,
     StorageItemComponent,
 
-    FilterPipe
+    FilterPipe,
+
+    ProductsComponent
   ],
   providers: [
     ProfileService,
