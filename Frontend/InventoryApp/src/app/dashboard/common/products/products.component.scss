@@ -1,14 +1,30 @@
+$main_color: #1e88e5;
+
 .autocompleate-wrapper{
   background-color: white;
   margin: 1rem;
   margin-bottom: 0;
-  padding: 1rem;
+  padding: 1rem  5% 0 5%;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
 }
 
 .mat-input-container{
   width: 90%;
-  margin-left: 5%;
   font-size: 18px;
+}
+
+.auth-btn {
+  width: 100%;
+  padding: .7em;
+  margin: 2rem 0;
+  font-size: 20px;
+  background-color: $main_color;
+  border-radius: 0;
+  border: none;
+  color: white;
+}
+
+.btn-disabled {
+  background-color: gray;
 }

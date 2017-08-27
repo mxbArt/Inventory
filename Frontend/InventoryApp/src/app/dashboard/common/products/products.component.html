@@ -1,19 +1,43 @@
-<div class="row autocompleate-wrapper">
-  <div class="col-10">
-    <md-input-container>
-      <input mdInput placeholder="Название товара" [mdAutocomplete]="auto" [formControl]="stateCtrl">
-    </md-input-container>
+<div class="container-fluid">
+  <div class="autocompleate-wrapper">
+    <form [formGroup]="searchForm" (ngSubmit)="submit()">
+      <div formArrayName="searchParams">
+        <div class="row"
+              *ngFor="let iCtrl of searchForm.get('searchParams').controls; let i = index"
+              [formGroupName]="i">
+          <div class="col-10">
+            <md-input-container>
+              <input mdInput placeholder="Название товара" [mdAutocomplete]="auto" type="text"
+                     formControlName="name">
+            </md-input-container>
 
-    <md-autocomplete #auto="mdAutocomplete">
-      <md-option *ngFor="let value of filteredValue | async" [value]="value">
-        {{ value }}
-      </md-option>
-    </md-autocomplete>
-  </div>
+            <md-autocomplete #auto="mdAutocomplete">
+              <md-option *ngFor="let value of filteredValue | async" [value]="value">
+                {{ value }}
+              </md-option>
+            </md-autocomplete>
+          </div>
 
-  <div class="col-2">
-    <md-input-container>
-      <input mdInput type="number" placeholder="Кол-во">
-    </md-input-container>
+          <div class="col-2">
+            <md-input-container>
+              <input mdInput type="number" placeholder="Кол-во" formControlName="amount">
+            </md-input-container>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-6">
+          <button md-button class="auth-btn" type="submit" [disabled]="!searchForm.valid" [ngClass]="{ 'btn-disabled': !searchForm.valid }">
+            Поиск
+          </button>
+        </div>
+        <div class="col-3">
+          <button md-button class="auth-btn" type="button" (click)="addParam()"
+                  [disabled]="!searchForm.valid" [ngClass]="{ 'btn-disabled': !searchForm.valid }">Добавить фильтр</button>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
