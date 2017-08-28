@@ -12,6 +12,10 @@ export class StorageService {
     return fakeStorages;
   }
 
+  getStorage(id: string): IStorage {
+    return fakeStorages.find(s => s.id === id);
+  }
+
   getStoragesAdress(): Array<string> {
     let adresses = new Array<string>();
     fakeStorages.forEach((s) => {

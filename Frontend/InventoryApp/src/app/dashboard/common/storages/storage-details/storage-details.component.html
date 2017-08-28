@@ -1,0 +1,49 @@
+<div class="col-12 row">
+  <!-- Storage info -->
+  <div class="col-xl-3 col-lg-4 col-md-6">
+    <div class="card text-center">
+      <img class="card-img-top" [src]="storage.imagePath" alt="Storage image">
+      <div class="card-body">
+        <h5>{{ storage.adress }}</h5>
+      </div>
+    </div>
+  </div>
+  <!-- // Storage info -->
+  <!-- Description -->
+  <div class="col-xl-9 col-lg-8 col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Товары на складе</h5>
+        <hr>
+        <!-- Table -->
+        <div class="example-container mat-elevation-z8">
+          <div class="example-header">
+            <md-input-container floatPlaceholder="never">
+              <input mdInput #filter placeholder="Название продукта" value="">
+            </md-input-container>
+          </div>
+
+          <md-table #table [dataSource]="dataSource">
+            <!-- Name column -->
+            <ng-container cdkColumnDef="name">
+              <md-header-cell *cdkHeaderCellDef> Название </md-header-cell>
+              <md-cell *cdkCellDef="let row"> {{row.name}} </md-cell>
+            </ng-container>
+            <!-- // Name column -->
+
+            <!-- Count column -->
+            <ng-container cdkColumnDef="count">
+              <md-header-cell *cdkHeaderCellDef> Количество </md-header-cell>
+              <md-cell *cdkCellDef="let row"> {{row.count}} </md-cell>
+            </ng-container>
+            <!-- // Count column -->
+            <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+            <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+          </md-table>
+        </div>
+        <!-- // Table -->
+      </div>
+    </div>
+  </div>
+  <!-- // Description -->
+</div>
