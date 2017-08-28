@@ -3,7 +3,7 @@
     <form [formGroup]="searchForm" (ngSubmit)="submit()">
       <div formArrayName="searchParams">
         <div class="row"
-              *ngFor="let iCtrl of searchForm.get('searchParams').controls; let i = index"
+              *ngFor="let iCtrl of searchForm.controls['searchParams'].controls; let i = index"
               [formGroupName]="i">
           <div class="col-10">
             <md-input-container>
