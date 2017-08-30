@@ -17,8 +17,9 @@ import { AuthenticationModule } from './authentication/authentication.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 
 // Angular materials
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Services
 import { AuthService } from './authentication/auth.service';
 
 @NgModule({
@@ -34,7 +35,7 @@ import { AuthService } from './authentication/auth.service';
     AppRoutingModule,
 
     // Angular materials
-    BrowserAnimationsModule
+    // BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,

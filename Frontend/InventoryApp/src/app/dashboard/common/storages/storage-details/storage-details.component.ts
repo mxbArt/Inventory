@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { DataSource } from '@angular/cdk';
+import { DataSource } from '@angular/cdk/table';
+// rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/startWith';
@@ -69,12 +70,12 @@ export class ExampleDataSource extends DataSource<any> {
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<IProduct[]> {
-    // const displayDataChanges = [
-    //   this._data.dataChange,
-    //   this._filterChange,
-    // ];
+    const displayDataChanges = [
+      // this._data.dataChange,
+      this._filterChange,
+    ];
 
-    return Observable.merge(this._filterChange).map(() => {
+    return Observable.merge(...displayDataChanges).map(() => {
       return this._data.slice().filter((item: IProduct) => {
         let searchStr = (item.name).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CdkTableModule } from '@angular/cdk';
+import { CdkTableModule } from '@angular/cdk/table';
 
 // Pipes
 import { FilterPipe } from '../infrastructure/pipes/filter.pipe';
@@ -21,6 +21,7 @@ import { StorageItemComponent } from './common/storages/storage-item/storage-ite
 import { ProfileComponent } from './common/profile/profile.component';
 import { ProductsComponent } from './common/products/products.component';
 import { StorageDetailsComponent } from './common/storages/storage-details/storage-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { StorageDetailsComponent } from './common/storages/storage-details/stora
     MdButtonModule,
     MdAutocompleteModule,
     MdInputModule,
-    MdTableModule
+    MdTableModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     DashboardComponent,
