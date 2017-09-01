@@ -24,7 +24,7 @@ import { MdListModule } from '@angular/material';
 
 import { AuthService } from './authentication/auth.service';
 import { CategoriesComponent } from './home/categories/categories.component';
-import { StatisticComponent } from './home/statistic/statistic.component';
+import { StatisticsComponent } from './home/statistics/statistics.component';
 
 @NgModule({
   imports: [
@@ -49,7 +49,7 @@ import { StatisticComponent } from './home/statistic/statistic.component';
     PageNotFoundComponent,
     HomeComponent,
     CategoriesComponent,
-    StatisticComponent,
+    StatisticsComponent,
   ],
   providers: [
     AuthService,

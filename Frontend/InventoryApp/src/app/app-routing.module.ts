@@ -7,7 +7,7 @@ import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './home/categories/categories.component';
-import { StatisticComponent } from './home/statistic/statistic.component';
+import { StatisticsComponent } from './home/statistics/statistics.component';
 
 const routes: Routes = [
   {
@@ -16,7 +16,7 @@ const routes: Routes = [
       {
         path: 'categories', component: HomeComponent, children: [
           { path: '', component: CategoriesComponent },
-          { path: 'statictics', component: StatisticComponent },
+          { path: 'statictics', component: StatisticsComponent },
         ]
       },
       { path: 'about', component: AboutComponent },
