@@ -14,15 +14,13 @@ import 'rxjs/add/operator/map';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
-export class CategoriesComponent implements OnInit, OnDestroy {
+export class CategoriesComponent implements OnInit {
   categories: ICategory[];
 
   // Autocomplete params
   values: string[] = [];
   stateCtrl: FormControl;
   filteredValue: any;
-
-  subscription: Subscription;
 
   constructor(private storageService: StorageService) {
     this.stateCtrl = new FormControl();
@@ -41,10 +39,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   filterValue(val: string) {
     return val ? this.values.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
                : this.values;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
 }
