@@ -16,8 +16,6 @@ import { MenuComponent } from './home/menu/menu.component';
 // Modules
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { AdminModule } from './admin/admin.module';
-import { InventoryModule } from './inventory/inventory.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 
 // Angular materials
@@ -35,8 +33,6 @@ import { AuthService } from './authentication/auth.service';
     CoreModule,
     SharedModule,
     AuthenticationModule,
-    InventoryModule,
-    AdminModule,
 
     // Routing
     AppRoutingModule,
