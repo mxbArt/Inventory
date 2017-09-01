@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
 // Guards
 import { AuthGuard } from './shared/guards/auth-guard.service';
 // Modules
@@ -9,7 +10,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 // Angular materials
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule } from '@angular/material';
+import { MdButtonModule, MdInputModule, MdAutocompleteModule } from '@angular/material';
 // Services
 import { AuthService } from './authentication/auth.service';
 import { StorageService } from './core/storage.service';
@@ -22,11 +23,15 @@ import { CategoriesComponent } from './home/categories/categories.component';
 import { StatisticsComponent } from './home/statistics/statistics.component';
 import { CategoryItemComponent } from './home/categories/category-item/category-item.component';
 import { CategoriesModule } from './home/categories/categories.module';
+import { DeliveryComponent } from './home/delivery/delivery.component';
+import { DeliveryFormComponent } from './home/delivery/delivery-form/delivery-form.component';
+import { DispatchFormComponent } from './home/delivery/dispatch-form/dispatch-form.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
 
     // Custom modules
     CoreModule,
@@ -39,6 +44,8 @@ import { CategoriesModule } from './home/categories/categories.module';
 
     // Angular materials
     MdButtonModule,
+    MdInputModule,
+    MdAutocompleteModule
   ],
   declarations: [
     AppComponent,
@@ -46,6 +53,9 @@ import { CategoriesModule } from './home/categories/categories.module';
     PageNotFoundComponent,
     HomeComponent,
     StatisticsComponent,
+    DeliveryComponent,
+    DeliveryFormComponent,
+    DispatchFormComponent,
   ],
   providers: [
     AuthService,

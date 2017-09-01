@@ -31,9 +31,7 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.categories = this.storageService.categories;
-    this.categories.forEach(i => {
-      this.values.push(i.name);
-    });
+    this.values = this.storageService.categoryNames;
   }
 
   filterValue(val: string) {
