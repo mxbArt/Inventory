@@ -4,13 +4,15 @@ import { ICategory } from './models/ICategory.model';
 
 @Injectable()
 export class StorageService implements OnInit {
-  categories: ICategory[];
+  private _categories: ICategory[];
 
-  constructor() { }
+  get categories(): ICategory[] {
+   return this._categories.sort( (c1, c2) => c1.name.localeCompare(c2.name));
+  }
 
-  ngOnInit() {
+  constructor() {
     // TODO: Retrieve data from backend
-    this.categories = [
+    this._categories = [
       {
         id: '52db8234-5fc3-4f91-b93a-a89e067a396a',
         name: 'Ноутбуки'
@@ -64,5 +66,8 @@ export class StorageService implements OnInit {
         name: 'Мультимедиа'
       },
     ];
+  }
+
+  ngOnInit() {
   }
 }
