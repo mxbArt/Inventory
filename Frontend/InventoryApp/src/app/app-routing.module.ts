@@ -1,17 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+// Guards
+import { AuthGuard } from './shared/guards/auth-guard.service';
 // Components
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-// Guards
-import { AuthGuard } from './shared/guards/auth-guard.service';
+import { CategoriesComponent } from './home/categories/categories.component';
+import { StatisticComponent } from './home/statistic/statistic.component';
 
 const routes: Routes = [
   {
     path: '', canActivate: [AuthGuard], children: [
-      { path: '', pathMatch: 'full', redirectTo: 'home' },
-      { path: 'home', component: HomeComponent },
+      { path: '', pathMatch: 'full', redirectTo: 'categories' },
+      {
+        path: 'categories', component: HomeComponent, children: [
+          { path: '', component: CategoriesComponent },
+          { path: 'statictics', component: StatisticComponent },
+        ]
+      },
       { path: 'about', component: AboutComponent },
       { path: '**', component: PageNotFoundComponent }
     ]

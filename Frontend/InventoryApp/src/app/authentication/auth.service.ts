@@ -24,7 +24,6 @@ export class AuthService {
 
   // Works with fake users
   authenticate(loginData: ILoginData): boolean {
-    console.log(fakeUsers);
     // Fake auth
     const user = fakeUsers.find(u => u.email === loginData.email && u.password === loginData.password);
     if (user) {

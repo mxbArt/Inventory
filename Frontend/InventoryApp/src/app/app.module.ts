@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
-import { MenuComponent } from './home/menu/menu.component';
 
 // Modules
 import { CoreModule } from './core/core.module';
@@ -24,6 +23,8 @@ import { MdButtonModule } from '@angular/material';
 import { MdListModule } from '@angular/material';
 
 import { AuthService } from './authentication/auth.service';
+import { CategoriesComponent } from './home/categories/categories.component';
+import { StatisticComponent } from './home/statistic/statistic.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { AuthService } from './authentication/auth.service';
     AboutComponent,
     PageNotFoundComponent,
     HomeComponent,
-    MenuComponent,
+    CategoriesComponent,
+    StatisticComponent,
   ],
   providers: [
     AuthService,
