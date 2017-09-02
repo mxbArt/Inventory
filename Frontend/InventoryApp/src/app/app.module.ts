@@ -23,9 +23,6 @@ import { CategoriesComponent } from './home/categories/categories.component';
 import { StatisticsComponent } from './home/statistics/statistics.component';
 import { CategoryItemComponent } from './home/categories/category-item/category-item.component';
 import { CategoriesModule } from './home/categories/categories.module';
-import { DeliveryComponent } from './home/delivery/delivery.component';
-import { DeliveryFormComponent } from './home/delivery/delivery-form/delivery-form.component';
-import { DispatchFormComponent } from './home/delivery/dispatch-form/dispatch-form.component';
 
 @NgModule({
   imports: [
@@ -53,9 +50,6 @@ import { DispatchFormComponent } from './home/delivery/dispatch-form/dispatch-fo
     PageNotFoundComponent,
     HomeComponent,
     StatisticsComponent,
-    DeliveryComponent,
-    DeliveryFormComponent,
-    DispatchFormComponent,
   ],
   providers: [
     AuthService,

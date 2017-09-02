@@ -8,6 +8,7 @@ import { MdInputModule, MdAutocompleteModule } from '@angular/material';
 // Components
 import { CategoryItemComponent } from './category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
+import { TransportationComponent } from './transportation/transportation.component';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { CategoriesComponent } from './categories.component';
   declarations: [
     CategoryItemComponent,
     CategoriesComponent,
+    TransportationComponent,
     // Pipes
     FilterPipe
   ]

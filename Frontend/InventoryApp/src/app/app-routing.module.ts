@@ -8,7 +8,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './home/categories/categories.component';
 import { StatisticsComponent } from './home/statistics/statistics.component';
-import { DeliveryComponent } from './home/delivery/delivery.component';
 
 const routes: Routes = [
   {
@@ -18,7 +17,6 @@ const routes: Routes = [
         path: '', component: HomeComponent, children: [
           { path: 'categories', component: CategoriesComponent },
           { path: 'statictics', component: StatisticsComponent },
-          { path: 'delivery', component: DeliveryComponent },
         ]
       },
       { path: 'about', component: AboutComponent },

@@ -8,14 +8,13 @@ $main_color: #1e88e5;
   border-radius: 0;
   border: none;
   color: white;
+  background-color: $main_color;
+  cursor: pointer;
 }
 
 .btn-disabled {
   background-color: gray;
-}
-
-.btn-default {
-  background-color: $main_color;
+  cursor: default;
 }
 
 .btn-red {
@@ -29,6 +28,21 @@ button:focus {
   outline: none;
 }
 
+.item-delete {
+  display: table;
+  height: 5.5rem;
+  padding-left: 5px !important;
+  i {
+    display: table-cell;
+    vertical-align: middle;
+    color: red;
+  }
+  i:hover {
+    color: black;
+    cursor: pointer;
+  }
+}
+
 .autocompleate-wrapper{
   background-color: white;
   padding: 1rem  5% 0 5%;
@@ -38,5 +52,5 @@ button:focus {
 
 .mat-input-container{
   width: 90%;
-  font-size: 18px;
+  font-size: 1.5rem;
 }
