@@ -48,12 +48,14 @@ export class CategoriesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      const category: ICategory = {
-        id: '',
-        name: result.name,
-        imgPath: result.imgPath
-      };
-      this.storageService.addCategory(category);
+      if (result) {
+        const category: ICategory = {
+          id: '',
+          name: result.name,
+          imgPath: result.imgPath
+        };
+        this.storageService.addCategory(category);
+      }
     });
   }
 
