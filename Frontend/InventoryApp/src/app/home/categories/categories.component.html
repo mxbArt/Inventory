@@ -1,13 +1,16 @@
 <div class="col-12">
   <div class="row">
+    <!-- Waybill -->
     <div class="col-xl-5 col-lg-12 col-12 order-xl-8">
       <app-transportation></app-transportation>
     </div>
+    <!-- // Waybill -->
 
     <div class="col-xl-7 col-lg-12 col-12">
+      <!-- Autocomplete -->
       <div class="autocompleate-wrapper">
         <md-input-container>
-          <input mdInput placeholder="Назание товара" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
+          <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
         </md-input-container>
 
         <md-autocomplete #auto="mdAutocomplete">
@@ -16,14 +19,17 @@
           </md-option>
         </md-autocomplete>
       </div>
+      <!-- // Autocomplete -->
+      <button md-fab color="primary" class="category-add" (click)="openDialog()"><i class="fa fa-plus fa-2x"></i></button>
 
-      <div class="row">
+      <!-- Category cards -->
+      <div class="row category-cards">
         <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
           <app-category-item [item]="item"></app-category-item>
         </div>
       </div>
+      <!-- // Category cards -->
     </div>
-
 
   </div>
 </div>
