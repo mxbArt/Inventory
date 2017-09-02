@@ -37,9 +37,8 @@ export class LoginComponent implements OnInit {
       };
 
       if (this.authService.authenticate(loginData)) {
-        this.router.navigate(['/home']);
-      }
-      else {
+        this.router.navigate(['/']);
+      } else {
         this.openSnackBar('Имя пользователя или пароль указан не правильно!', 'Закрыть');
       }
     }
@@ -47,8 +46,8 @@ export class LoginComponent implements OnInit {
   }
 
   private initForm() {
-    const email = '';
-    const password = '';
+    const email = 'driver@gmail.com';
+    const password = 'Driver123';
 
     this.loginForm = new FormGroup({
       'email': new FormControl(email, [Validators.required, Validators.email]),

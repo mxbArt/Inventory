@@ -16,8 +16,7 @@ import { StorageService } from './storage.service';
     Ng2Webstorage.forRoot({ prefix: 'inventoryapp', separator: '.' }),
   ],
   providers: [
-    NotificationService,
-    StorageService
+    NotificationService
   ],
   declarations: []
 })
