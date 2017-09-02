@@ -48,9 +48,12 @@ export class CategoriesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      //this.imgPath = result;
+      const category: ICategory = {
+        id: '',
+        name: result.name,
+        imgPath: result.imgPath
+      };
+      this.storageService.addCategory(category);
     });
   }
 

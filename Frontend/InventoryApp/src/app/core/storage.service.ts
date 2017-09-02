@@ -97,4 +97,9 @@ export class StorageService implements OnInit {
       this._categoryNames.push(i.name);
     });
   }
+
+  addCategory(category: ICategory) {
+    category.id = Math.random().toString();
+    this._categories.push(category);
+  }
 }
