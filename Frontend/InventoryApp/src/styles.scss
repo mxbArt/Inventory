@@ -1,8 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
 // angular material theme
-// @import "~@angular/material/prebuilt-themes/indigo-pink";
-@import "~@angular/material/prebuilt-themes/deeppurple-amber";
+@import "~@angular/material/prebuilt-themes/indigo-pink";
+// @import "~@angular/material/prebuilt-themes/deeppurple-amber";
 // @import "~@angular/material/prebuilt-themes/pink-bluegrey";
 // @import "~@angular/material/prebuilt-themes/purple-green";
 
@@ -13,7 +13,7 @@
 @import "~font-awesome/css/font-awesome.min.css";
 
 body {
-  font-family: 'Poppins', sans-serif !important;
+  // font-family: 'Poppins', sans-serif !important;
   //background-color: ghostwhite;
   background-color: rgba(241, 241, 241, 0.98);
 }

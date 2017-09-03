@@ -1,0 +1,51 @@
+<div class="autocompleate-wrapper">
+  <h5 class="component-header">Накладная</h5>
+  <md-table #table [dataSource]="dataSource">
+
+    <!-- Product name column -->
+    <ng-container mdColumnDef="actions">
+      <md-header-cell *mdHeaderCellDef> <i class="fa fa-hashtag"></i> </md-header-cell>
+      <md-cell *mdCellDef="let row"> <i class="fa fa-minus item-delete" (click)="deleteItem(row)"></i> </md-cell>
+    </ng-container>
+    <!-- // Product name column -->
+
+    <!-- Product name column -->
+    <ng-container mdColumnDef="productName">
+      <md-header-cell *mdHeaderCellDef> Продукт </md-header-cell>
+      <md-cell *mdCellDef="let row"> {{ row.productName }} </md-cell>
+    </ng-container>
+    <!-- // Product name column -->
+
+    <!-- Category name column -->
+    <ng-container mdColumnDef="categoryName">
+      <md-header-cell *mdHeaderCellDef> Категория </md-header-cell>
+      <md-cell *mdCellDef="let row"> {{ row.categoryName }} </md-cell>
+    </ng-container>
+    <!-- // Category name column -->
+
+
+    <!-- Count column -->
+    <ng-container mdColumnDef="count">
+      <md-header-cell *mdHeaderCellDef> Количество </md-header-cell>
+      <md-cell *mdCellDef="let row" [style.color]="row.count > 0 ? 'green' : 'red'"> {{ row.count }} </md-cell>
+    </ng-container>
+    <!-- // Count column -->
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+
+  <md-paginator #paginator
+                [length]="waybills.length"
+                [pageIndex]="0"
+                [pageSize]="15"
+                [pageSizeOptions]="[5, 10, 15, 20]">
+  </md-paginator>
+
+  <div class="col-6 justify-content-end ml-auto">
+    <div class="row justify-content-end">
+      <button md-raised-button color="primary" class="waybill-btn">Подтвердить</button>
+      <button md-raised-button color="warn" class="waybill-btn">Отменить</button>
+    </div>
+  </div>
+</div>

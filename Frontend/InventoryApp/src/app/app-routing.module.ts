@@ -11,7 +11,7 @@ import { StatisticsComponent } from './home/statistics/statistics.component';
 
 const routes: Routes = [
   {
-    path: '', canActivate: [AuthGuard], children: [
+    path: '', /*canActivate: [AuthGuard],*/ children: [
       { path: '', pathMatch: 'full', redirectTo: 'categories' },
       {
         path: '', component: HomeComponent, children: [
