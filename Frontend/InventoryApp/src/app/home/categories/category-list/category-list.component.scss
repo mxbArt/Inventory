@@ -9,6 +9,11 @@ $main_color: #1e88e5;
   border-radius: .25rem;
   margin-bottom: 1rem;
 }
+.btn-add {
+  float: right;
+  position: relative;
+  top: -55px;
+}
 .list-group-item{
   border: none;
   cursor: pointer;
@@ -18,4 +23,10 @@ $main_color: #1e88e5;
 }
 .component-header:hover {
   color: $main_color;
+  cursor: pointer;
+}
+
+.category-add {
+  max-width: 2rem;
+  max-height: 2rem;
 }

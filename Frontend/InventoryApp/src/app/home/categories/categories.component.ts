@@ -38,7 +38,7 @@ export class CategoriesComponent implements OnInit {
           console.log(params['id']);
         }
       }
-    )
+    );
   }
 
   ngOnInit() {
