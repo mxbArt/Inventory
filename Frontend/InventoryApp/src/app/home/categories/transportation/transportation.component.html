@@ -1,7 +1,7 @@
 <div class="autocompleate-wrapper">
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div formArrayName="data">
-      <div class="row" *ngFor="let iCtrl of form.controls['data'].controls; let i = index" [formGroupName]="i">
+      <div class="row" *ngFor="let iCtrl of formData; let i = index" [formGroupName]="i">
         <div class="col-8">
           <md-input-container>
             <input mdInput placeholder="Название товара" [mdAutocomplete]="auto" type="text" formControlName="category">

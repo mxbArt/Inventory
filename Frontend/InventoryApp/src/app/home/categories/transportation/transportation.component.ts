@@ -14,6 +14,8 @@ export class TransportationComponent implements OnInit {
   autocompleteValues = [];
   filteredValue: any;
 
+  get formData() { return (<FormArray>this.form.get('data')).controls; }
+
   constructor(private storageService: StorageService) { }
 
   ngOnInit() {
