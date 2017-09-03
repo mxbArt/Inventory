@@ -1,6 +1,12 @@
 <div class="card">
   <img class="card-img-top" [src]="product.imgPath" alt="Card image cap">
-  <div class="card-body text-center" style="display:block;">
+  <div class="card-body text-center">
     <h5 class="card-title">{{ product.name }} - {{ product.count }}</h5>
+    <button md-icon-button color="primary" (click)="openDialog()">
+      <i class="fa fa-plus-circle fa-2x"></i>
+    </button>
+    <button md-icon-button color="warn" [disabled]="product.count === 0" (click)="openDialog()">
+      <i class="fa fa-minus-circle fa-2x"></i>
+    </button>
   </div>
 </div>

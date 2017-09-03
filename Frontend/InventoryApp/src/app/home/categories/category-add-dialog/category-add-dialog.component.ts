@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -8,8 +8,8 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 })
 export class CategoryAddDialogComponent implements OnInit {
 
-  name: string;
-  imgPath: string;
+  //data: string;
+  //imgPath: string;
 
   constructor(
     public dialogRef: MdDialogRef<CategoryAddDialogComponent>,

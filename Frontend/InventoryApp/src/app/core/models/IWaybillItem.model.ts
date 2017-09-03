@@ -1,5 +1,5 @@
 export interface IWaybillItem {
-  categoryName: string;
+  categoryId: string;
   productName: string;
   count: number;
 }

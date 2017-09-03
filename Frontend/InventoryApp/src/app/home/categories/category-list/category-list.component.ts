@@ -22,13 +22,17 @@ export class CategoryListComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
       width: '300px',
+      data: {
+        name: 'Новая категория',
+        placeholder: 'Название'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const category: ICategory = {
           id: Math.random().toString(),
-          name: result.name,
+          name: result.value,
           products: []
         };
         this.storageService.addCategory(category);
