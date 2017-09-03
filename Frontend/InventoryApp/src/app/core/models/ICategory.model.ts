@@ -1,5 +1,5 @@
 export interface ICategory {
   id: string;
   name: string;
-  count: number;
+  imgPath: string;
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
-import { StorageService } from '../../../core/storage.service';
+import { StorageService } from './../../../core/storage.service';
 
 @Component({
-  selector: 'app-dispatch-form',
-  templateUrl: './dispatch-form.component.html',
-  styleUrls: ['./dispatch-form.component.scss', '../delivery.component.scss']
+  selector: 'app-transportation',
+  templateUrl: './transportation.component.html',
+  styleUrls: ['./transportation.component.scss']
 })
-export class DispatchFormComponent implements OnInit {
+export class TransportationComponent implements OnInit {
+
   form: FormGroup;
 
   autocompleteValues = [];
@@ -21,16 +22,36 @@ export class DispatchFormComponent implements OnInit {
   }
 
   private _initForm() {
+    const data = new FormArray([]);
+    data.push(new FormGroup({
+      'category': new FormControl('', Validators.required),
+      'amount': new FormControl('', Validators.required)
+    }));
     this.form = new FormGroup({
-      'data': new FormArray([
-        new FormGroup({
-          'category': new FormControl(null, Validators.required),
-          'amount': new FormControl(null, Validators.required)
-        })
-      ])
+      'data': data
     });
 
     this.subscribeToValueChanges();
+  }
+
+  addParam() {
+    // creates new FormArray element.
+    (<FormArray>this.form.controls['data']).push(
+      new FormGroup({
+        'category': new FormControl('', Validators.required),
+        'amount': new FormControl('', Validators.required)
+      })
+    );
+
+    this.subscribeToValueChanges();
+  }
+
+  resetForm() {
+    this._initForm();
+  }
+
+  deleteFormArrayItem(index: number) {
+    (<FormArray>this.form.get('data')).removeAt(index);
   }
 
   subscribeToValueChanges() {
@@ -46,20 +67,8 @@ export class DispatchFormComponent implements OnInit {
       : this.autocompleteValues;
   }
 
-  addParam() {
-    // creates new FormArray element.
-    (<FormArray>this.form.controls['data']).controls.push(
-      new FormGroup({
-        'category': new FormControl(null, Validators.required),
-        'amount': new FormControl(null, Validators.required)
-      })
-    );
-
-    this.subscribeToValueChanges();
-  }
 
   submit() {
     console.log(this.form);
   }
-
 }

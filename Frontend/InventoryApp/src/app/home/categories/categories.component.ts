@@ -8,6 +8,9 @@ import { ICategory } from '../../core/models/ICategory.model';
 // rxjs
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
+// Angular material
+import { MdDialog } from '@angular/material';
+import { CategoryAddDialogComponent } from './category-add-dialog/category-add-dialog.component';
 
 @Component({
   selector: 'app-categories',
@@ -22,7 +25,7 @@ export class CategoriesComponent implements OnInit {
   stateCtrl: FormControl;
   filteredValue: any;
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService, public dialog: MdDialog) {
     this.stateCtrl = new FormControl();
     this.filteredValue = this.stateCtrl.valueChanges
       .startWith(null)
@@ -37,6 +40,23 @@ export class CategoriesComponent implements OnInit {
   filterValue(val: string) {
     return val ? this.values.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
                : this.values;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
+      width: '300px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const category: ICategory = {
+          id: '',
+          name: result.name,
+          imgPath: result.imgPath
+        };
+        this.storageService.addCategory(category);
+      }
+    });
   }
 
 }
