@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 // Services
 import { StorageService } from '../../core/storage.service';
 // Models
@@ -11,7 +11,6 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 // Angular material
 import { MdDialog } from '@angular/material';
-import { CategoryAddDialogComponent } from './category-add-dialog/category-add-dialog.component';
 
 @Component({
   selector: 'app-categories',
@@ -20,6 +19,8 @@ import { CategoryAddDialogComponent } from './category-add-dialog/category-add-d
 })
 export class CategoriesComponent implements OnInit {
   categories: ICategory[];
+
+  selectedCategory: ICategory;
 
   // Autocomplete params
   values: string[] = [];
@@ -33,9 +34,12 @@ export class CategoriesComponent implements OnInit {
       .startWith(null)
       .map(name => this.filterValue(name));
     this.route.params.subscribe(
-      (params) => {
+      (params: Params) => {
         if (params['id']) {
-          console.log(params['id']);
+          this.selectedCategory = this.storageService.getCategory(params['id']);
+          console.log(this.selectedCategory);
+        } else {
+          this.selectedCategory = null;
         }
       }
     );
@@ -50,22 +54,4 @@ export class CategoriesComponent implements OnInit {
     return val ? this.values.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
                : this.values;
   }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
-      width: '300px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const category: ICategory = {
-          id: '',
-          name: result.name,
-          products: []
-        };
-        this.storageService.addCategory(category);
-      }
-    });
-  }
-
 }

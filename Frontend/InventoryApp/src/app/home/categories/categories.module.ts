@@ -15,6 +15,7 @@ import { WaybillComponent } from './waybill/waybill.component';
 import { CategoryAddDialogComponent } from './category-add-dialog/category-add-dialog.component';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { RouterModule } from '@angular/router';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { RouterModule } from '@angular/router';
     // Pipes
     FilterPipe,
     CategoryAddDialogComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    ProductsComponent
   ],
   entryComponents: [
     CategoryAddDialogComponent

@@ -11,28 +11,32 @@
     </div>
 
     <div class="col-xl-6 col-lg-9 col-sm-8 col-6">
-      <!-- Autocomplete -->
-      <div class="autocompleate-wrapper">
-        <md-input-container>
-          <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
-        </md-input-container>
+      <div *ngIf="!selectedCategory">
+        <!-- Autocomplete -->
+        <div class="autocompleate-wrapper">
+          <md-input-container>
+            <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
+          </md-input-container>
 
-        <md-autocomplete #auto="mdAutocomplete">
-          <md-option *ngFor="let value of filteredValue | async" [value]="value">
-            {{ value }}
-          </md-option>
-        </md-autocomplete>
-      </div>
-      <!-- // Autocomplete -->
-      <!-- <button md-fab color="primary" class="category-add" (click)="openDialog()"><i class="fa fa-plus fa-2x"></i></button> -->
-
-      <!-- Category cards -->
-      <div class="row category-cards">
-        <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
-          <app-category-item [item]="item"></app-category-item>
+          <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let value of filteredValue | async" [value]="value">
+              {{ value }}
+            </md-option>
+          </md-autocomplete>
         </div>
+        <!-- // Autocomplete -->
+
+        <!-- Category cards -->
+        <div class="row category-cards">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
+            <app-category-item [item]="item"></app-category-item>
+          </div>
+        </div>
+        <!-- // Category cards -->
       </div>
-      <!-- // Category cards -->
+      <div *ngIf="selectedCategory">
+        <app-products></app-products>
+      </div>
     </div>
 
   </div>
