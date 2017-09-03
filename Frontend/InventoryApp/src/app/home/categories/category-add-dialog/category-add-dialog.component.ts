@@ -10,6 +10,7 @@ export class CategoryAddDialogComponent implements OnInit {
 
   //data: string;
   //imgPath: string;
+  value;
 
   constructor(
     public dialogRef: MdDialogRef<CategoryAddDialogComponent>,
