@@ -52,7 +52,7 @@ export class CategoriesComponent implements OnInit {
         const category: ICategory = {
           id: '',
           name: result.name,
-          imgPath: result.imgPath
+          products: []
         };
         this.storageService.addCategory(category);
       }
