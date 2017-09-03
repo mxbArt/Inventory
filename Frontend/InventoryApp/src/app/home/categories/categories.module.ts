@@ -13,6 +13,8 @@ import { CategoryItemComponent } from './category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
 import { WaybillComponent } from './waybill/waybill.component';
 import { CategoryAddDialogComponent } from './category-add-dialog/category-add-dialog.component';
+import { CategoryListComponent } from './category-list/category-list.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -20,6 +22,7 @@ import { CategoryAddDialogComponent } from './category-add-dialog/category-add-d
     FormsModule,
     ReactiveFormsModule,
     CdkTableModule,
+    RouterModule,
     // Angular materials
     MdInputModule,
     MdAutocompleteModule,
@@ -34,7 +37,8 @@ import { CategoryAddDialogComponent } from './category-add-dialog/category-add-d
     WaybillComponent,
     // Pipes
     FilterPipe,
-    CategoryAddDialogComponent
+    CategoryAddDialogComponent,
+    CategoryListComponent
   ],
   entryComponents: [
     CategoryAddDialogComponent

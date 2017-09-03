@@ -16,6 +16,7 @@ const routes: Routes = [
       {
         path: '', component: HomeComponent, children: [
           { path: 'categories', component: CategoriesComponent },
+          { path: 'categories/:id', component: CategoriesComponent },
           { path: 'statictics', component: StatisticsComponent },
         ]
       },

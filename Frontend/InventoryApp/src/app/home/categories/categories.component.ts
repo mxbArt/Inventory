@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
 // Services
 import { StorageService } from '../../core/storage.service';
 // Models
@@ -25,11 +26,19 @@ export class CategoriesComponent implements OnInit {
   stateCtrl: FormControl;
   filteredValue: any;
 
-  constructor(private storageService: StorageService, public dialog: MdDialog) {
+  constructor(private storageService: StorageService, private route: ActivatedRoute,
+              public dialog: MdDialog) {
     this.stateCtrl = new FormControl();
     this.filteredValue = this.stateCtrl.valueChanges
       .startWith(null)
       .map(name => this.filterValue(name));
+    this.route.params.subscribe(
+      (params) => {
+        if (params['id']) {
+          console.log(params['id']);
+        }
+      }
+    )
   }
 
   ngOnInit() {

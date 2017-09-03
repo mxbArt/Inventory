@@ -1,0 +1,14 @@
+$font-size: 1rem;
+$padding_vertical: 1rem;
+
+.wrapper{
+  background-color: white;
+  padding: $padding_vertical 0;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-bottom: 1rem;
+}
+.list-group-item{
+  border: none;
+  cursor: pointer;
+}
