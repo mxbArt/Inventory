@@ -3,6 +3,7 @@ import { OnInit, Injectable } from '@angular/core';
 import { ICategory } from './models/ICategory.model';
 import { IWaybillItem } from './models/IWaybillItem.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { IProduct } from './models/IProduct.model';
 
 @Injectable()
 export class StorageService implements OnInit {
@@ -335,5 +336,9 @@ export class StorageService implements OnInit {
 
   getCategory(id: string): ICategory {
     return this._categories.find(c => c.id === id);
+  }
+
+  getProducts(categoryId: string): IProduct[] {
+    return this.getCategory(categoryId).products;
   }
 }

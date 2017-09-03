@@ -16,6 +16,7 @@ import { CategoryAddDialogComponent } from './category-add-dialog/category-add-d
 import { CategoryListComponent } from './category-list/category-list.component';
 import { RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
+import { ProductItemComponent } from './products/product-item/product-item.component';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { ProductsComponent } from './products/products.component';
     FilterPipe,
     CategoryAddDialogComponent,
     CategoryListComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductItemComponent
   ],
   entryComponents: [
     CategoryAddDialogComponent

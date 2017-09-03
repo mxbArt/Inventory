@@ -6,9 +6,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { StorageService } from '../../core/storage.service';
 // Models
 import { ICategory } from '../../core/models/ICategory.model';
-// rxjs
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/map';
 // Angular material
 import { MdDialog } from '@angular/material';
 
@@ -37,7 +34,6 @@ export class CategoriesComponent implements OnInit {
       (params: Params) => {
         if (params['id']) {
           this.selectedCategory = this.storageService.getCategory(params['id']);
-          console.log(this.selectedCategory);
         } else {
           this.selectedCategory = null;
         }
