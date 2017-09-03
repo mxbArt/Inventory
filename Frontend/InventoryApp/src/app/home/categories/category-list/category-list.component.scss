@@ -1,5 +1,6 @@
 $font-size: 1rem;
 $padding_vertical: 1rem;
+$main_color: #1e88e5;
 
 .wrapper{
   background-color: white;
@@ -11,4 +12,10 @@ $padding_vertical: 1rem;
 .list-group-item{
   border: none;
   cursor: pointer;
+}
+.component-header {
+  outline: none;
+}
+.component-header:hover {
+  color: $main_color;
 }
