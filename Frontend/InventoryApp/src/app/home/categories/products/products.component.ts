@@ -3,6 +3,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { IProduct } from '../../../core/models/IProduct.model';
 import { StorageService } from '../../../core/storage.service';
 import { FormControl } from '@angular/forms';
+import { CategoryAddDialogComponent } from '../category-add-dialog/category-add-dialog.component';
+import { MdDialog } from '@angular/material';
 
 @Component({
   selector: 'app-products',
@@ -19,7 +21,8 @@ export class ProductsComponent implements OnInit {
   stateCtrl: FormControl;
   filteredValue: any;
 
-  constructor(private route: ActivatedRoute, private storageService: StorageService) {
+  constructor(private route: ActivatedRoute, private storageService: StorageService,
+              public dialog: MdDialog) {
     // autocomplete
     this.stateCtrl = new FormControl();
     this.filteredValue = this.stateCtrl.valueChanges
@@ -50,4 +53,25 @@ export class ProductsComponent implements OnInit {
                : this.values;
   }
 
+
+  openDialog() {
+    const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
+      width: '300px',
+      data: {
+        name: 'Новый продукт'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const product: IProduct = {
+          id: Math.random().toString(),
+          name: result.name,
+          imgPath: result.imgPath,
+          count: 0
+        };
+        this.storageService.addProductToCategory(product, this.currentCategoryId);
+      }
+    });
+  }
 }

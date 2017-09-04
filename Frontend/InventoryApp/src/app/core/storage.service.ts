@@ -352,4 +352,8 @@ export class StorageService implements OnInit {
           .products.find(p => p.name === w.productName).count += w.count;
     });
   }
+
+  addProductToCategory(product: IProduct, categoryId: string) {
+    this._categories.find(c => c.id === categoryId).products.push(product);
+  }
 }
