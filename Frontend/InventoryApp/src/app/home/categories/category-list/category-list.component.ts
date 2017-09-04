@@ -23,8 +23,7 @@ export class CategoryListComponent implements OnInit {
     const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
       width: '300px',
       data: {
-        name: 'Новая категория',
-        placeholder: 'Название'
+        name: 'Новая категория'
       }
     });
 
@@ -32,7 +31,8 @@ export class CategoryListComponent implements OnInit {
       if (result) {
         const category: ICategory = {
           id: Math.random().toString(),
-          name: result.value,
+          name: result.name,
+          imgPath: result.imgPath,
           products: []
         };
         this.storageService.addCategory(category);

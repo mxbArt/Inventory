@@ -27,9 +27,17 @@ export class CategoriesComponent implements OnInit {
   constructor(private storageService: StorageService, private route: ActivatedRoute,
               public dialog: MdDialog) {
     this.stateCtrl = new FormControl();
+    // storage service subscription
+    this.storageService.categoryChanged.subscribe(
+      (data) => {
+        this.values = data;
+      }
+    );
+    // autocomplete subscription
     this.filteredValue = this.stateCtrl.valueChanges
       .startWith(null)
       .map(name => this.filterValue(name));
+    // route subscription
     this.route.params.subscribe(
       (params: Params) => {
         if (params['id']) {

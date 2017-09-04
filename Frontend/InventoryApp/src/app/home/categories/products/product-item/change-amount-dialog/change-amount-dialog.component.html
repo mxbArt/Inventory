@@ -1,8 +1,8 @@
 <h1 md-dialog-title>{{data.name}}</h1>
 <div md-dialog-content>
 
-  <form class="example-form">
-    <md-form-field class="example-full-width">
+  <form>
+    <md-form-field>
       <input mdInput type="number" [placeholder]="data.placeholder" [formControl]="countFormControl">
       <md-error *ngIf="countFormControl.hasError('min')">
         Значение должно быть больше 0
