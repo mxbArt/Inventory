@@ -17,10 +17,10 @@
     <!-- // Product name column -->
 
     <!-- Category name column -->
-    <ng-container mdColumnDef="categoryName">
+    <!-- <ng-container mdColumnDef="categoryName">
       <md-header-cell *mdHeaderCellDef> Категория </md-header-cell>
       <md-cell *mdCellDef="let row"> {{ row.categoryName }} </md-cell>
-    </ng-container>
+    </ng-container> -->
     <!-- // Category name column -->
 
 
@@ -36,7 +36,7 @@
   </md-table>
 
   <md-paginator #paginator
-                [length]="waybills.length"
+                [length]="waybillService.waybills.length"
                 [pageIndex]="0"
                 [pageSize]="15"
                 [pageSizeOptions]="[5, 10, 15, 20]">
@@ -44,8 +44,8 @@
 
   <div class="col-10 justify-content-end ml-auto">
     <div class="row justify-content-end">
-      <button md-raised-button color="primary" class="waybill-btn">Подтвердить</button>
-      <button md-raised-button color="warn" class="waybill-btn">Отменить</button>
+      <button md-raised-button color="primary" class="waybill-btn" [disabled]="waybillService.waybills.length === 0" (click)="submitWaybill()">Подтвердить</button>
+      <button md-raised-button color="warn" class="waybill-btn" [disabled]="waybillService.waybills.length === 0" (click)="clearWaybils()">Отменить</button>
     </div>
   </div>
 </div>

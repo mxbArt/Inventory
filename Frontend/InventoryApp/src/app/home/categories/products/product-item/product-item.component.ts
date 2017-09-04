@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MdDialog } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 // Components
 import { CategoryAddDialogComponent } from '../../category-add-dialog/category-add-dialog.component';
 // Models
@@ -8,7 +9,8 @@ import { IProduct } from '../../../../core/models/IProduct.model';
 import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
 // Services
 import { WaybillService } from '../../waybill/waybill.service';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeAmountDialogComponent } from './change-amount-dialog/change-amount-dialog.component';
+import { ProductsActions } from './product-actions.enum';
 
 @Component({
   selector: 'app-product-item',
@@ -19,17 +21,31 @@ export class ProductItemComponent implements OnInit {
   @Input() product: IProduct;
   @Input() categoryId: string;
 
+  ADD = ProductsActions.Add;
+  REMOVE = ProductsActions.Remove;
+
   constructor(private waybillService: WaybillService, public dialog: MdDialog) { }
 
   ngOnInit() {
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
+  openDialog(action: ProductsActions) {
+    let dialogName: string;
+    let availableCount;
+    if (action === ProductsActions.Add) {
+      dialogName = 'Добавление';
+    } else {
+      dialogName = 'Удаление';
+      availableCount = this.product.count;
+    }
+
+    const dialogRef = this.dialog.open(ChangeAmountDialogComponent, {
       width: '300px',
       data: {
-        name: 'Изменить Количество',
-        placeholder: 'Количество'
+        name: dialogName,
+        placeholder: 'Количество',
+        availableCount: availableCount,
+        operation: action
       }
     });
 
@@ -38,7 +54,7 @@ export class ProductItemComponent implements OnInit {
         const waybill: IWaybillItem = {
           categoryId: this.categoryId,
           productName: this.product.name,
-          count: +result.value
+          count: result.value
         };
         this.waybillService.addItem(waybill);
       }

@@ -2,13 +2,15 @@ import { OnInit, Injectable } from '@angular/core';
 // Models
 import { ICategory } from './models/ICategory.model';
 import { IWaybillItem } from './models/IWaybillItem.model';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { IProduct } from './models/IProduct.model';
+// rxjs
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class StorageService implements OnInit {
   private _categories: ICategory[];
   private _categoryNames: string[];
+  categoryChanged: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
 
   get categories(): ICategory[] {
     return this._categories.sort((c1, c2) => c1.name.localeCompare(c2.name));
@@ -332,6 +334,8 @@ export class StorageService implements OnInit {
   addCategory(category: ICategory) {
     category.id = Math.random().toString();
     this._categories.push(category);
+    this._createCategoryNamesList();
+    this.categoryChanged.next(this._categoryNames);
   }
 
   getCategory(id: string): ICategory {
@@ -340,5 +344,16 @@ export class StorageService implements OnInit {
 
   getProducts(categoryId: string): IProduct[] {
     return this.getCategory(categoryId).products;
+  }
+
+  processWaybill(waybills: IWaybillItem[]) {
+    waybills.forEach(w => {
+      this._categories.find(c => c.id === w.categoryId)
+          .products.find(p => p.name === w.productName).count += w.count;
+    });
+  }
+
+  addProductToCategory(product: IProduct, categoryId: string) {
+    this._categories.find(c => c.id === categoryId).products.push(product);
   }
 }

@@ -17,6 +17,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { RouterModule } from '@angular/router';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
+import { ChangeAmountDialogComponent } from './products/product-item/change-amount-dialog/change-amount-dialog.component';
 
 @NgModule({
   imports: [
@@ -42,10 +43,12 @@ import { ProductItemComponent } from './products/product-item/product-item.compo
     CategoryAddDialogComponent,
     CategoryListComponent,
     ProductsComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ChangeAmountDialogComponent
   ],
   entryComponents: [
-    CategoryAddDialogComponent
+    CategoryAddDialogComponent,
+    ChangeAmountDialogComponent
   ],
   providers: [
     WaybillService
