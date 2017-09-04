@@ -1,0 +1,26 @@
+<h1 md-dialog-title>{{data.name}}</h1>
+<div md-dialog-content>
+
+  <form class="example-form">
+    <md-form-field class="example-full-width">
+      <input mdInput type="number" [placeholder]="data.placeholder" [formControl]="countFormControl">
+      <md-error *ngIf="countFormControl.hasError('min')">
+        Значение должно быть больше 0
+      </md-error>
+      <md-error *ngIf="countFormControl.hasError('max')">
+        Доступно только {{availableCount}}
+      </md-error>
+      <md-error *ngIf="countFormControl.hasError('required')">
+        Это <strong>обязательное</strong> поле
+      </md-error>
+    </md-form-field>
+  </form>
+
+  <!-- <md-form-field>
+    <input mdInput tabindex="1" [placeholder]="data.placeholder" [(ngModel)]="value">
+  </md-form-field> -->
+</div>
+<div md-dialog-actions>
+  <button md-button [md-dialog-close]="onClose()" tabindex="2" [disabled]="!countFormControl.valid">Подтвердить</button>
+  <button md-button (click)="onNoClick()" tabindex="-1">Отмена</button>
+</div>
