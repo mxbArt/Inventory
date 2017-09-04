@@ -9,17 +9,17 @@ export class WaybillService {
 
   private _waybills: IWaybillItem[] = [
     {
-      categoryName: 'Фрукты',
+      categoryId: '52db8234-5fc3-4f91-b93a-a89e067a396a',
       productName: 'Апельсин',
       count: 40
     },
     {
-      categoryName: 'Фрукты',
+      categoryId: '52db8234-5fc3-4f91-b93a-a89e067a396a',
       productName: 'Банан',
       count: -10
     },
     {
-      categoryName: 'Фрукты',
+      categoryId: '52db8234-5fc3-4f91-b93a-a89e067a396a',
       productName: 'Яблоко',
       count: 10
     },
@@ -35,6 +35,11 @@ export class WaybillService {
 
   removeItem(item: IWaybillItem) {
     this._waybills.splice(this._waybills.indexOf(item), 1);
+    this.waybilsChange.next(this.waybills);
+  }
+
+  addItem(item: IWaybillItem) {
+    this._waybills.push(item);
     this.waybilsChange.next(this.waybills);
   }
 }

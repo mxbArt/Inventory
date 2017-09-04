@@ -3,6 +3,7 @@ import { OnInit, Injectable } from '@angular/core';
 import { ICategory } from './models/ICategory.model';
 import { IWaybillItem } from './models/IWaybillItem.model';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { IProduct } from './models/IProduct.model';
 
 @Injectable()
 export class StorageService implements OnInit {
@@ -54,8 +55,8 @@ export class StorageService implements OnInit {
             count: 10,
             imgPath: 'https://www.greenplanet.pro/upload/iblock/3b8/3b8721909e08592341b47c6b31bfdbed.jpg'
           },
-        ]
-        //imgPath: 'http://sashabrownfitness.com/wp-content/uploads/2015/01/27141301.jpg'
+        ],
+        imgPath: 'http://sashabrownfitness.com/wp-content/uploads/2015/01/27141301.jpg'
       },
       {
         id: 'a22ff738-c748-43a2-88e5-b838f43f5445',
@@ -91,8 +92,8 @@ export class StorageService implements OnInit {
             count: 10,
             imgPath: 'http://megaogorod.com/files/styles/imginarticlebig/public/field/image/u2169/111_19.jpg?itok=39JIhwPW'
           },
-        ]
-        //imgPath: 'http://www.molbulak.ru/upload/iblock/b47/b47f74e863b00255ab9c63d24acc553b.jpg'
+        ],
+        imgPath: 'http://www.molbulak.ru/upload/iblock/b47/b47f74e863b00255ab9c63d24acc553b.jpg'
       },
       {
         id: '96b5d872-e0c4-4548-8f2e-aea090c33ac3',
@@ -128,8 +129,8 @@ export class StorageService implements OnInit {
             count: 8,
             imgPath: 'http://polza-vred.su/wp-content/uploads/2016/09/maski-smetana-foto-02.jpg'
           },
-        ]
-        //imgPath: 'https://fizcult.by/uploads/images/articles/615/original/as8lG2MS8ohCJ87d.jpg'
+        ],
+        imgPath: 'https://fizcult.by/uploads/images/articles/615/original/as8lG2MS8ohCJ87d.jpg'
       },
       {
         id: '7767a797-4e3e-4637-a2f4-bb855daf77db',
@@ -159,8 +160,8 @@ export class StorageService implements OnInit {
             count: 50,
             imgPath: 'https://i2.rozetka.ua/goods/1547521/vitek-vt-1403-w_images_1547521025.jpg'
           },
-        ]
-        //imgPath: 'https://tehnika-sech.ru/ssl/u/pic/58/0d5d3eb17911e6992fab3167067513/-/57b37c238fa07.jpg'
+        ],
+        imgPath: 'https://tehnika-sech.ru/ssl/u/pic/58/0d5d3eb17911e6992fab3167067513/-/57b37c238fa07.jpg'
       },
       {
         id: '19639189-7fb6-4ab1-98f4-6b8ee6c1c3d6',
@@ -190,8 +191,8 @@ export class StorageService implements OnInit {
             count: 2,
             imgPath: 'http://моторов.рф/_upload/images/fara2,_motorov.jpg'
           },
-        ]
-        //imgPath: 'http://ua-vestnik.com/wp-content/uploads/2017/08/25cfaf66ee16408e7c66b5c2f49a7d45.jpg'
+        ],
+        imgPath: 'http://ua-vestnik.com/wp-content/uploads/2017/08/25cfaf66ee16408e7c66b5c2f49a7d45.jpg'
       },
       {
         id: '2205508b-2d35-4dc9-8b9a-5078d92e26de',
@@ -209,8 +210,8 @@ export class StorageService implements OnInit {
             count: 9,
             imgPath: 'http://it-m.by/images/kak_vybrat/kak-vybrat-kolonki-1.jpg',
           },
-        ]
-        //imgPath: 'http://files.tovaroved.info/muzykalnyj-centr.jpg'
+        ],
+        imgPath: 'http://files.tovaroved.info/muzykalnyj-centr.jpg'
       },
       {
         id: 'd406f9ec-ff70-40d3-a3f9-18bc30a912df',
@@ -222,8 +223,8 @@ export class StorageService implements OnInit {
             count: 5,
             imgPath: 'https://cdn.4glaza.ru/images/products/large/0/binoculars-levenhuk-atom-10-30x50.jpg'
           }
-        ]
-        //imgPath: 'http://www.podarkoff.com.ua/resources/images/cats_pics/optics.jpg'
+        ],
+        imgPath: 'http://www.podarkoff.com.ua/resources/images/cats_pics/optics.jpg'
       },
       {
         id: '92fe75bc-525a-414a-8e5f-e5a1d0cb4f21',
@@ -247,8 +248,8 @@ export class StorageService implements OnInit {
             count: 15,
             imgPath: 'http://vse-sekrety.ru/uploads/posts/2014-07/1406824553_mouse-01.jpg'
           },
-        ]
-        //imgPath: 'https://www.syl.ru/misc/i/ai/166363/614568.jpg'
+        ],
+        imgPath: 'https://www.syl.ru/misc/i/ai/166363/614568.jpg'
       },
       {
         id: 'be2b77c6-0fb5-4ff4-b185-cfafc5cc04c5',
@@ -266,8 +267,8 @@ export class StorageService implements OnInit {
             count: 59,
             imgPath: 'http://www.emomi.com/gaechnyj-kljuch-kombinirovannyj-nabor-1.jpeg'
           }
-        ]
-        //imgPath: 'http://автоград21.рф/images/ruchnoj-instrument1.jpg'
+        ],
+        imgPath: 'http://автоград21.рф/images/ruchnoj-instrument1.jpg'
       },
       {
         id: '651e56b5-e61c-4ee1-a8e4-1c22f470c6a7',
@@ -285,8 +286,8 @@ export class StorageService implements OnInit {
             count: 0,
             imgPath: 'http://gidroguru.com/wp-content/uploads/segodnya-naibolee-rasprostraneny-odnorychazhnye-modeli.jpg'
           }
-        ]
-        //imgPath: 'http://www.fainaidea.com/wp-content/uploads/2015/10/Block2.png'
+        ],
+        imgPath: 'http://liding-c.com/wp-content/uploads/2013/08/santehnika-na-liding-c.com_.jpg'
       },
       {
         id: 'bc3e6718-47f0-4d3c-a5d7-fa90759b6f1e',
@@ -310,8 +311,8 @@ export class StorageService implements OnInit {
             count: 511,
             imgPath: 'http://pol-master.com/wp-content/uploads/2013/05/Gotovim_doski_dlya_pola1-400x315.jpg'
           }
-        ]
-        //imgPath: 'http://moodle.ask-bru.by/pluginfile.php/16/course/summary/sm.jpg'
+        ],
+        imgPath: 'http://moodle.ask-bru.by/pluginfile.php/16/course/summary/sm.jpg'
       },
     ];
 
@@ -331,5 +332,13 @@ export class StorageService implements OnInit {
   addCategory(category: ICategory) {
     category.id = Math.random().toString();
     this._categories.push(category);
+  }
+
+  getCategory(id: string): ICategory {
+    return this._categories.find(c => c.id === id);
+  }
+
+  getProducts(categoryId: string): IProduct[] {
+    return this.getCategory(categoryId).products;
   }
 }

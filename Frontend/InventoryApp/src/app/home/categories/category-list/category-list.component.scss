@@ -1,0 +1,34 @@
+$font-size: 1rem;
+$padding_vertical: 1rem;
+$main_color: #1e88e5;
+
+.wrapper{
+  background-color: white;
+  padding: $padding_vertical 0;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-bottom: 1rem;
+}
+.btn-add {
+  float: right;
+  position: relative;
+  top: -55px;
+}
+.list-group-item{
+  border: none;
+  cursor: pointer;
+}
+.component-header {
+  outline: none;
+}
+.component-header:hover {
+  color: $main_color;
+  cursor: pointer;
+}
+
+.active {
+  a {
+    color: #ffffff;
+    background-color: #3f51b5;
+  }
+}

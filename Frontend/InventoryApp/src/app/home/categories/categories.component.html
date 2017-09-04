@@ -1,34 +1,42 @@
 <div class="col-12">
   <div class="row">
     <!-- Waybill -->
-    <div class="col-xl-5 col-lg-12 col-12 order-xl-8">
+    <div class="col-xl-4 col-lg-12 col-12 order-xl-8">
       <app-waybill></app-waybill>
     </div>
     <!-- // Waybill -->
 
-    <div class="col-xl-7 col-lg-12 col-12">
-      <!-- Autocomplete -->
-      <div class="autocompleate-wrapper">
-        <md-input-container>
-          <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
-        </md-input-container>
+    <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
+      <app-category-list></app-category-list>
+    </div>
 
-        <md-autocomplete #auto="mdAutocomplete">
-          <md-option *ngFor="let value of filteredValue | async" [value]="value">
-            {{ value }}
-          </md-option>
-        </md-autocomplete>
-      </div>
-      <!-- // Autocomplete -->
-      <button md-fab color="primary" class="category-add" (click)="openDialog()"><i class="fa fa-plus fa-2x"></i></button>
+    <div class="col-xl-6 col-lg-9 col-sm-8 col-6">
+      <div *ngIf="!selectedCategory">
+        <!-- Autocomplete -->
+        <div class="autocompleate-wrapper">
+          <md-input-container>
+            <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
+          </md-input-container>
 
-      <!-- Category cards -->
-      <div class="row category-cards">
-        <div class="col-lg-4 col-md-4 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
-          <app-category-item [item]="item"></app-category-item>
+          <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let value of filteredValue | async" [value]="value">
+              {{ value }}
+            </md-option>
+          </md-autocomplete>
         </div>
+        <!-- // Autocomplete -->
+
+        <!-- Category cards -->
+        <div class="row category-cards">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
+            <app-category-item [item]="item"></app-category-item>
+          </div>
+        </div>
+        <!-- // Category cards -->
       </div>
-      <!-- // Category cards -->
+      <div *ngIf="selectedCategory">
+        <app-products></app-products>
+      </div>
     </div>
 
   </div>
