@@ -20,10 +20,7 @@ import { IWaybillItem } from '../../../core/models/IWaybillItem.model';
 })
 export class WaybillComponent implements OnInit {
 
-  waybills: IWaybillItem[];
-
-
-  displayedColumns = ['actions', 'productName', 'categoryName', 'count'];
+  displayedColumns = ['actions', 'productName', 'count'];
   dataSource: ExampleDataSource | null;
 
   @ViewChild(MdPaginator) paginator: MdPaginator;
@@ -31,12 +28,19 @@ export class WaybillComponent implements OnInit {
   constructor(private waybillService: WaybillService) { }
 
   ngOnInit() {
-    this.waybills = this.waybillService.waybills;
     this.dataSource = new ExampleDataSource(this.waybillService, this.paginator);
   }
 
   deleteItem(item: IWaybillItem) {
     this.waybillService.removeItem(item);
+  }
+
+  clearWaybils() {
+    this.waybillService.clearWaybills();
+  }
+
+  submitWaybill() {
+    this.waybillService.submit();
   }
 }
 

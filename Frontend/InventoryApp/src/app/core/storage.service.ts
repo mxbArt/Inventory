@@ -345,4 +345,11 @@ export class StorageService implements OnInit {
   getProducts(categoryId: string): IProduct[] {
     return this.getCategory(categoryId).products;
   }
+
+  processWaybill(waybills: IWaybillItem[]) {
+    waybills.forEach(w => {
+      this._categories.find(c => c.id === w.categoryId)
+          .products.find(p => p.name === w.productName).count += w.count;
+    });
+  }
 }
