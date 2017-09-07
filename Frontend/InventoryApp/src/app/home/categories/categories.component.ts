@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
 import { ActivatedRoute, Params } from '@angular/router';
+// rxjs
+import { Subscription } from 'rxjs/Subscription';
 // Services
 import { StorageService } from '../../core/storage.service';
 // Models
@@ -15,28 +16,34 @@ import { MdDialog } from '@angular/material';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  categories: ICategory[];
+  categories: ICategory[] = [];
 
   selectedCategory: ICategory;
 
   // Autocomplete params
   values: string[] = [];
-  stateCtrl: FormControl;
+  stateCtrl: FormControl = new FormControl();
   filteredValue: any;
 
   constructor(private storageService: StorageService, private route: ActivatedRoute,
-              public dialog: MdDialog) {
-    this.stateCtrl = new FormControl();
+              public dialog: MdDialog) { }
+
+  ngOnInit() {
+
+
     // storage service subscription
     this.storageService.categoryChanged.subscribe(
-      (data) => {
-        this.values = data;
+      (categories) => {
+        this.categories = categories;
+        this.values = this.storageService.categoryNames;
       }
     );
+
     // autocomplete subscription
     this.filteredValue = this.stateCtrl.valueChanges
       .startWith(null)
       .map(name => this.filterValue(name));
+
     // route subscription
     this.route.params.subscribe(
       (params: Params) => {
@@ -47,11 +54,6 @@ export class CategoriesComponent implements OnInit {
         }
       }
     );
-  }
-
-  ngOnInit() {
-    this.categories = this.storageService.categories;
-    this.values = this.storageService.categoryNames;
   }
 
   filterValue(val: string) {
