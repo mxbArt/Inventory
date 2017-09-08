@@ -8,11 +8,15 @@ import { DataRequestService } from './data-request.service';
 // rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
+import { ILogItem } from './models/ILogItem';
+// fake data
+import fakeLogs from '../fake-data/fake-logs-data';
 
 @Injectable()
 export class StorageService implements OnInit {
   private _categories: ICategory[] = [];
   private _categoryNames: string[]  = [];
+  private _logs: ILogItem[] = [];
 
   get categories(): ICategory[] {
     return this._categories;
@@ -20,6 +24,10 @@ export class StorageService implements OnInit {
 
   get categoryNames(): string[] {
     return this._categoryNames;
+  }
+
+  get logs(): ILogItem[] {
+    return this._logs;
   }
 
   // Events
@@ -36,6 +44,9 @@ export class StorageService implements OnInit {
         this.productsChanged.next();
       }
     );
+
+    // temp
+    this._logs = fakeLogs;
   }
 
   ngOnInit() {
