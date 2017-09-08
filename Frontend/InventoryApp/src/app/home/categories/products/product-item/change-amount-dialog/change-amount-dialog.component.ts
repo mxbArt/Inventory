@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
-import { ProductsActions } from '../product-actions.enum';
 import { FormControl, Validators } from '@angular/forms';
+import { ProductsActions } from '../../../../../core/enums/product-actions.enum';
 
 @Component({
   selector: 'app-change-amount-dialog',

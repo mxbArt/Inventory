@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 // Dialog
 import { ChangeAmountDialogComponent } from './change-amount-dialog/change-amount-dialog.component';
 // Enums
-import { ProductsActions } from './product-actions.enum';
+import { ProductsActions } from '../../../../core/enums/product-actions.enum';
 // Models
 import { IProduct } from '../../../../core/models/IProduct.model';
 import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
