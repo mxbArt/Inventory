@@ -33,6 +33,7 @@ export class StorageService implements OnInit {
   // Events
   categoryChanged: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
   productsChanged: Subject<IProduct[]> = new Subject<IProduct[]>();
+  logsChanged: BehaviorSubject<ILogItem[]> = new BehaviorSubject<ILogItem[]>([]);
 
   constructor(private dataRequestService: DataRequestService) {
     // DataRequest Service subscriptions
@@ -42,11 +43,14 @@ export class StorageService implements OnInit {
         this._createCategoryNamesList();
         this.categoryChanged.next(this.categories);
         this.productsChanged.next();
+
+        // temp
+        this._logs = fakeLogs;
+        this._setFieldsToLogItems();
+        this.logsChanged.next(this._logs);
       }
     );
 
-    // temp
-    this._logs = fakeLogs;
   }
 
   ngOnInit() {
@@ -57,6 +61,13 @@ export class StorageService implements OnInit {
     this.categories.forEach(i => {
       this._categoryNames.push(i.name);
     });
+  }
+
+  private _setFieldsToLogItems() {
+    for (var i = 0; i < this._logs.length; i++) {
+      let item = this._logs[i];
+      item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
+    }
   }
 
   // TODO: request to the backend

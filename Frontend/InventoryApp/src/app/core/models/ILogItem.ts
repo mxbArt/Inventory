@@ -8,4 +8,5 @@ export interface ILogItem {
   count: number;
   categoryId: string;
   productId: string;
+  productName?: string;
 }
