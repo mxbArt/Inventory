@@ -9,7 +9,7 @@ import { AuthGuard } from './shared/guards/auth-guard.service';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { CategoriesModule } from './home/categories/categories.module';
+import { HomeModule } from './home/home.module';
 // Angular materials
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdInputModule, MdAutocompleteModule } from '@angular/material';
@@ -21,9 +21,6 @@ import { DataRequestService } from './core/data-request.service';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
-import { CategoriesComponent } from './home/categories/categories.component';
-import { StatisticsComponent } from './home/statistics/statistics.component';
 
 @NgModule({
   imports: [
@@ -36,7 +33,7 @@ import { StatisticsComponent } from './home/statistics/statistics.component';
     CoreModule,
     SharedModule,
     AuthenticationModule,
-    CategoriesModule,
+    HomeModule,
 
     // Routing
     AppRoutingModule,
@@ -50,8 +47,6 @@ import { StatisticsComponent } from './home/statistics/statistics.component';
     AppComponent,
     AboutComponent,
     PageNotFoundComponent,
-    HomeComponent,
-    StatisticsComponent,
   ],
   providers: [
     AuthService,

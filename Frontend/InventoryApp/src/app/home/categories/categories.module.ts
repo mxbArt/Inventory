@@ -27,6 +27,7 @@ import { CategoriesHomeComponent } from './categories-home/categories-home.compo
     ReactiveFormsModule,
     CdkTableModule,
     RouterModule,
+
     // Angular materials
     MdInputModule,
     MdAutocompleteModule,
