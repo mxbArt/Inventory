@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { CategoryAddDialogComponent } from '../category-add-dialog/category-add-dialog.component';
+import { ItemAddDialogComponent } from '../item-add-dialog/item-add-dialog.component';
 // Angular material
 import { MdDialog } from '@angular/material';
 // Models
@@ -18,7 +18,7 @@ import { StorageService } from '../../../core/storage.service';
 export class ProductsComponent implements OnInit {
 
   currentCategoryId: string;
-  pruducts: IProduct[];
+  pruducts: IProduct[] = [];
 
   // Autocomplete params
   values: string[] = [];
@@ -35,33 +35,36 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // route params
-    this.route.params.subscribe(
-      (params: Params) => {
-        if (params['id']) {
-          this.currentCategoryId = params['id'];
-          this.pruducts = this.storageService.getProducts(this.currentCategoryId);
-          this.values = [];
-          this.stateCtrl.reset();
-          this.pruducts.forEach((p) => {
-            this.values.push(p.name);
-          });
-          //this.pruducts.sort((p1, p2) => p1.name.localeCompare(p2.name));
-        }
+    // Storage service subscription
+    this.storageService.productsChanged.subscribe(
+      () => {
+        this._receiveProducts(this.route.snapshot.params['id']);
       }
     );
 
-    // storage service subscriptions
-    // recreate autocomplete values
-    this.storageService.productsChanged.subscribe(
-      (products) => {
+    // route params subscription
+    this.route.params.subscribe(
+      (params: Params) => {
+        this._receiveProducts(params['id']);
+      }
+    );
+  }
+
+  private _receiveProducts(categoryId) {
+    if (categoryId) {
+      this.currentCategoryId = categoryId;
+      this.pruducts = this.storageService.getProducts(this.currentCategoryId);
+      // Check for receiving values
+      if (this.pruducts) {
+        // autocomplete
         this.values = [];
         this.stateCtrl.reset();
         this.pruducts.forEach((p) => {
           this.values.push(p.name);
         });
+        // this.pruducts.sort((p1, p2) => p1.name.localeCompare(p2.name));
       }
-    );
+    }
   }
 
   filterValue(val: string) {
@@ -71,7 +74,7 @@ export class ProductsComponent implements OnInit {
 
 
   openDialog() {
-    const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
+    const dialogRef = this.dialog.open(ItemAddDialogComponent, {
       width: '300px',
       data: {
         name: 'Новый продукт'

@@ -33,6 +33,7 @@ export class StorageService implements OnInit {
         this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
         this._createCategoryNamesList();
         this.categoryChanged.next(this.categories);
+        this.productsChanged.next();
       }
     );
   }
@@ -62,7 +63,11 @@ export class StorageService implements OnInit {
   }
 
   getProducts(categoryId: string): IProduct[] {
-    return this.getCategory(categoryId).products;
+    if (this._categories.length !== 0) {
+      return this.getCategory(categoryId).products;
+    } else {
+      return [];
+    }
   }
 
   // TODO: request to the backend
@@ -76,6 +81,6 @@ export class StorageService implements OnInit {
   // TODO: request to the backend
   addProductToCategory(product: IProduct, categoryId: string) {
     this._categories.find(c => c.id === categoryId).products.push(product);
-    this.productsChanged.next(this._categories.find(c => c.id === categoryId).products);
+    this.productsChanged.next();
   }
 }

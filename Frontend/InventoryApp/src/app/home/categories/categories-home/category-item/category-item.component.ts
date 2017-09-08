@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 // Models
-import { ICategory } from '../../../core/models/ICategory.model';
+import { ICategory } from '../../../../core/models/ICategory.model';
 
 @Component({
   selector: 'app-category-item',

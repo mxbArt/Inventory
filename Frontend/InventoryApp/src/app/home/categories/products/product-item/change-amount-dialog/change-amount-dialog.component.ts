@@ -9,9 +9,6 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./change-amount-dialog.component.scss']
 })
 export class ChangeAmountDialogComponent implements OnInit {
-
-  //value: number;
-
   countFormControl: FormControl;
 
   operation: ProductsActions;

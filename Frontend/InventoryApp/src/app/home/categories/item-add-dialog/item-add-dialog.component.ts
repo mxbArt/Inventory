@@ -3,16 +3,16 @@ import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-category-add-dialog',
-  templateUrl: './category-add-dialog.component.html',
-  styleUrls: ['./category-add-dialog.component.scss', '../categories.component.scss']
+  selector: 'app-item-add-dialog',
+  templateUrl: './item-add-dialog.component.html',
+  styleUrls: ['./item-add-dialog.component.scss']
 })
-export class CategoryAddDialogComponent implements OnInit {
+export class ItemAddDialogComponent implements OnInit {
 
   form: FormGroup;
 
   constructor(
-    public dialogRef: MdDialogRef<CategoryAddDialogComponent>,
+    public dialogRef: MdDialogRef<ItemAddDialogComponent>,
     @Inject(MD_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
