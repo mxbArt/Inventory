@@ -1,8 +1,10 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { StorageService } from '../../../core/storage.service';
-import { ICategory } from '../../../core/models/ICategory.model';
 import { MdDialog } from '@angular/material';
 import { CategoryAddDialogComponent } from '../category-add-dialog/category-add-dialog.component';
+// Services
+import { StorageService } from '../../../core/storage.service';
+// Models
+import { ICategory } from '../../../core/models/ICategory.model';
 
 @Component({
   selector: 'app-category-list',
@@ -16,7 +18,11 @@ export class CategoryListComponent implements OnInit {
   constructor(private storageService: StorageService, public dialog: MdDialog) { }
 
   ngOnInit() {
-    this.categories = this.storageService.categories;
+    this.storageService.categoryChanged.subscribe(
+      (categories) => {
+        this.categories = this.storageService.categories;
+      }
+    );
   }
 
   openDialog(): void {

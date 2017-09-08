@@ -17,7 +17,7 @@
 <!-- // Autocomplete -->
 
 <!-- Product cards -->
-<div class="row category-cards">
+<div class="row">
   <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of pruducts | filter:stateCtrl.value:'name'">
     <app-product-item [categoryId]="currentCategoryId" [product]="item"></app-product-item>
   </div>

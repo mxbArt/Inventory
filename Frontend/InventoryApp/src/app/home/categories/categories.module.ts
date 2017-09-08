@@ -35,11 +35,12 @@ import { ChangeAmountDialogComponent } from './products/product-item/change-amou
     MdPaginatorModule,
   ],
   declarations: [
+    // Pipes
+    FilterPipe,
+    // Components
     CategoryItemComponent,
     CategoriesComponent,
     WaybillComponent,
-    // Pipes
-    FilterPipe,
     CategoryAddDialogComponent,
     CategoryListComponent,
     ProductsComponent,

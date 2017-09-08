@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
-import { IProduct } from '../../../core/models/IProduct.model';
-import { StorageService } from '../../../core/storage.service';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
+
 import { CategoryAddDialogComponent } from '../category-add-dialog/category-add-dialog.component';
+// Angular material
 import { MdDialog } from '@angular/material';
+// Models
+import { IProduct } from '../../../core/models/IProduct.model';
+// Services
+import { StorageService } from '../../../core/storage.service';
 
 @Component({
   selector: 'app-products',
@@ -42,8 +46,20 @@ export class ProductsComponent implements OnInit {
           this.pruducts.forEach((p) => {
             this.values.push(p.name);
           });
-          this.pruducts.sort();
+          //this.pruducts.sort((p1, p2) => p1.name.localeCompare(p2.name));
         }
+      }
+    );
+
+    // storage service subscriptions
+    // recreate autocomplete values
+    this.storageService.productsChanged.subscribe(
+      (products) => {
+        this.values = [];
+        this.stateCtrl.reset();
+        this.pruducts.forEach((p) => {
+          this.values.push(p.name);
+        });
       }
     );
   }

@@ -11,7 +11,7 @@
     </div>
 
     <div class="col-xl-6 col-lg-9 col-sm-8 col-6">
-      <div *ngIf="!selectedCategory">
+      <div *ngIf="!selectedCategory; else products">
         <!-- Autocomplete -->
         <div class="autocompleate-wrapper">
           <md-input-container>
@@ -27,16 +27,20 @@
         <!-- // Autocomplete -->
 
         <!-- Category cards -->
-        <div class="row category-cards">
+        <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
             <app-category-item [item]="item"></app-category-item>
           </div>
         </div>
         <!-- // Category cards -->
       </div>
-      <div *ngIf="selectedCategory">
+
+      <ng-template #products>
         <app-products></app-products>
-      </div>
+      </ng-template>
+      <!-- <div *ngIf="selectedCategory">
+        <app-products></app-products>
+      </div> -->
     </div>
 
   </div>
