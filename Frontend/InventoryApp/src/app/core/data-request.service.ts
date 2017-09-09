@@ -21,7 +21,7 @@ export class DataRequestService {
   }
 
   getCategoryList(): Observable<ICategory[]> {
-    return this.http.get(this.serverUrl, this.options)
+    return this.http.get(this.serverUrl + 'categories', this.options)
       .map(
         (response: Response) => {
           let categories: ICategory[] = [];

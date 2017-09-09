@@ -51,6 +51,16 @@ $padding_vertical: 1rem;
   // }
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: $font-size;
+}
+
+.datepicker {
+  padding: 16px 0;
+}
 
 
 
