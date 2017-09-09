@@ -1,0 +1,56 @@
+$font-size: 1rem;
+$padding_vertical: 1rem;
+
+.wrapper{
+  background-color: white;
+  padding: $padding_vertical 0;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  margin-bottom: 1rem;
+
+  // table
+  .mat-table {
+    padding: 0 2%;
+  }
+  .mat-header-cell {
+    font-size: $font-size;
+  }
+  .mat-cell {
+    font-size: $font-size;
+  }
+  .mat-column-date {
+    max-width: 25%;
+  }
+
+  .mat-column-productName {
+    text-align: left;
+    max-width: 25%;
+  }
+  // table
+
+  .row-add {
+    background-color: rgba(0, 128, 0, 0.2);
+  }
+  .row-delete {
+    background-color: rgba(255, 0, 0, 0.2);
+  }
+
+  // .waybill-btn {
+  //   margin: 0.5rem 1rem 0 0;
+  //   font-size: $font-size;
+  // }
+
+  // .item-delete {
+  //   display: table-cell;
+  //   vertical-align: middle;
+  //   color: red;
+  // }
+  // .item-delete:hover {
+  //   color: black;
+  //   cursor: pointer;
+  // }
+}
+
+
+
+

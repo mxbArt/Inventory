@@ -2,15 +2,15 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MdDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-// Components
-import { CategoryAddDialogComponent } from '../../category-add-dialog/category-add-dialog.component';
+// Dialog
+import { ChangeAmountDialogComponent } from './change-amount-dialog/change-amount-dialog.component';
+// Enums
+import { ProductsActions } from '../../../../core/enums/product-actions.enum';
 // Models
 import { IProduct } from '../../../../core/models/IProduct.model';
 import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
 // Services
 import { WaybillService } from '../../waybill/waybill.service';
-import { ChangeAmountDialogComponent } from './change-amount-dialog/change-amount-dialog.component';
-import { ProductsActions } from './product-actions.enum';
 
 @Component({
   selector: 'app-product-item',

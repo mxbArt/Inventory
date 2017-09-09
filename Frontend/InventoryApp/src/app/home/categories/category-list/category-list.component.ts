@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { CategoryAddDialogComponent } from '../category-add-dialog/category-add-dialog.component';
+import { ItemAddDialogComponent } from './../item-add-dialog/item-add-dialog.component';
 // Services
 import { StorageService } from '../../../core/storage.service';
 // Models
@@ -26,7 +26,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CategoryAddDialogComponent, {
+    const dialogRef = this.dialog.open(ItemAddDialogComponent, {
       width: '300px',
       data: {
         name: 'Новая категория'

@@ -6,41 +6,14 @@
     </div>
     <!-- // Waybill -->
 
+    <!-- Category list -->
     <div class="col-xl-2 col-lg-3 col-sm-4 col-6">
       <app-category-list></app-category-list>
     </div>
+    <!-- // Category list -->
 
     <div class="col-xl-6 col-lg-9 col-sm-8 col-6">
-      <div *ngIf="!selectedCategory; else products">
-        <!-- Autocomplete -->
-        <div class="autocompleate-wrapper">
-          <md-input-container>
-            <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
-          </md-input-container>
-
-          <md-autocomplete #auto="mdAutocomplete">
-            <md-option *ngFor="let value of filteredValue | async" [value]="value">
-              {{ value }}
-            </md-option>
-          </md-autocomplete>
-        </div>
-        <!-- // Autocomplete -->
-
-        <!-- Category cards -->
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
-            <app-category-item [item]="item"></app-category-item>
-          </div>
-        </div>
-        <!-- // Category cards -->
-      </div>
-
-      <ng-template #products>
-        <app-products></app-products>
-      </ng-template>
-      <!-- <div *ngIf="selectedCategory">
-        <app-products></app-products>
-      </div> -->
+      <router-outlet></router-outlet>
     </div>
 
   </div>

@@ -8,11 +8,15 @@ import { DataRequestService } from './data-request.service';
 // rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
+import { ILogItem } from './models/ILogItem';
+// fake data
+import fakeLogs from '../fake-data/fake-logs-data';
 
 @Injectable()
 export class StorageService implements OnInit {
   private _categories: ICategory[] = [];
   private _categoryNames: string[]  = [];
+  private _logs: ILogItem[] = [];
 
   get categories(): ICategory[] {
     return this._categories;
@@ -22,9 +26,14 @@ export class StorageService implements OnInit {
     return this._categoryNames;
   }
 
+  get logs(): ILogItem[] {
+    return this._logs;
+  }
+
   // Events
   categoryChanged: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
   productsChanged: Subject<IProduct[]> = new Subject<IProduct[]>();
+  logsChanged: BehaviorSubject<ILogItem[]> = new BehaviorSubject<ILogItem[]>([]);
 
   constructor(private dataRequestService: DataRequestService) {
     // DataRequest Service subscriptions
@@ -33,8 +42,15 @@ export class StorageService implements OnInit {
         this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
         this._createCategoryNamesList();
         this.categoryChanged.next(this.categories);
+        this.productsChanged.next();
+
+        // temp
+        this._logs = fakeLogs;
+        this._setFieldsToLogItems();
+        this.logsChanged.next(this._logs);
       }
     );
+
   }
 
   ngOnInit() {
@@ -45,6 +61,13 @@ export class StorageService implements OnInit {
     this.categories.forEach(i => {
       this._categoryNames.push(i.name);
     });
+  }
+
+  private _setFieldsToLogItems() {
+    for (var i = 0; i < this._logs.length; i++) {
+      let item = this._logs[i];
+      item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
+    }
   }
 
   // TODO: request to the backend
@@ -62,7 +85,11 @@ export class StorageService implements OnInit {
   }
 
   getProducts(categoryId: string): IProduct[] {
-    return this.getCategory(categoryId).products;
+    if (this._categories.length !== 0) {
+      return this.getCategory(categoryId).products;
+    } else {
+      return [];
+    }
   }
 
   // TODO: request to the backend
@@ -76,6 +103,6 @@ export class StorageService implements OnInit {
   // TODO: request to the backend
   addProductToCategory(product: IProduct, categoryId: string) {
     this._categories.find(c => c.id === categoryId).products.push(product);
-    this.productsChanged.next(this._categories.find(c => c.id === categoryId).products);
+    this.productsChanged.next();
   }
 }

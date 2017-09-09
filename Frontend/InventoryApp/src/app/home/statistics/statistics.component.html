@@ -1,3 +1,58 @@
-<p>
-  statistic works!
-</p>
+<div class="col-12">
+  <div class="row">
+    <div class="col-xl-2 col-lg-3 col-md-12">
+      <div class="wrapper" style="height: 100%">
+        <h5 class="component-header">Параметры</h5>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-9 col-md-12">
+      <div class="wrapper">
+        <h5 class="component-header">Статистика изменений</h5>
+        <md-table #table [dataSource]="dataSource" mdSort>
+
+          <!-- Date Column -->
+          <ng-container mdColumnDef="date">
+            <md-header-cell *mdHeaderCellDef md-sort-header> Дата </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.date.toLocaleDateString()}} </md-cell>
+          </ng-container>
+          <!-- // Date Column -->
+
+          <!-- Action Column -->
+          <ng-container mdColumnDef="action">
+            <md-header-cell *mdHeaderCellDef md-sort-header> Событие </md-header-cell>
+            <md-cell *mdCellDef="let row">
+              {{row.action === 0 ? 'Удалено ' : 'Добавлено ' }}  {{row.count}} ед.
+            </md-cell>
+          </ng-container>
+          <!-- // Action Column -->
+
+          <!-- Product name Column -->
+          <ng-container mdColumnDef="productName">
+            <md-header-cell *mdHeaderCellDef md-sort-header> Продукт </md-header-cell>
+            <md-cell *mdCellDef="let row"> {{row.productName}} </md-cell>
+          </ng-container>
+          <!-- // Product name Column -->
+
+          <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+          <md-row *mdRowDef="let row; columns: displayedColumns;" [ngClass]="row.action === 0 ? 'row-delete' : 'row-add'"></md-row>
+        </md-table>
+
+        <md-paginator #paginator
+                      [length]="storageService.logs.length"
+                      [pageIndex]="0"
+                      [pageSize]="10"
+                      [pageSizeOptions]="[5, 10, 15, 25]">
+        </md-paginator>
+      </div>
+    </div>
+
+    <!-- Diagrams -->
+    <div class="col-xl-4">
+      <div class="wrapper" style="height:100%;">
+        <h5 class="component-header">Диаграммы</h5>
+      </div>
+    </div>
+    <!-- // Diagrams -->
+
+  </div>
+</div>
