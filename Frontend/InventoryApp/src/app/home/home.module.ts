@@ -20,6 +20,8 @@ import {
 } from '@angular/material';
 // Custom datepicker
 import { MyDateRangePickerModule } from 'mydaterangepicker';
+// Services
+import { StatisticsService } from './statistics/statistics.service';
 // Components
 import { HomeComponent } from './home.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -50,6 +52,9 @@ import { HeaderComponent } from '../shared/header/header.component';
   declarations: [
     HomeComponent,
     StatisticsComponent,
+  ],
+  providers: [
+    StatisticsService
   ]
 })
 export class HomeModule { }

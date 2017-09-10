@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef, Injectable } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 // Angular material
@@ -14,6 +14,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 // Services
 import { StorageService } from '../../core/storage.service';
+import { StatisticsService } from './statistics.service';
 // Models
 import { ILogItem } from '../../core/models/ILogItem';
 // Custom date picker
@@ -31,10 +32,10 @@ export class StatisticsComponent implements OnInit {
   // material table
   displayedColumns = ['date', 'productName', 'action'];
   dataSource: ExampleDataSource | null;
-
   @ViewChild(MdSort) sort: MdSort;
   @ViewChild(MdPaginator) paginator: MdPaginator;
   @ViewChild('Productfilter') filter: ElementRef;
+
   // date picker
   private myDateRangePickerOptions: IMyDrpOptions = {
     dateFormat: 'dd.mm.yyyy',
@@ -49,15 +50,14 @@ export class StatisticsComponent implements OnInit {
       1: 'Янв', 2: 'Фев', 3: 'Март', 4: 'Апр', 5: 'Май', 6: 'Июнь', 7: 'Июль', 8: 'Авг', 9: 'Сен', 10: 'Окт', 11: 'Ноя', 12: 'Дек'
     },
     indicateInvalidDateRange: true,
-    //height: '34px',
     width: '250px'
   };
   private myForm: FormGroup;
 
-  constructor(private storageService: StorageService, private formBuilder: FormBuilder) { }
+  constructor(private storageService: StorageService, private statisticsService: StatisticsService) { }
 
   ngOnInit() {
-    this.dataSource = new ExampleDataSource(this.storageService, this.paginator, this.sort);
+    this.dataSource = new ExampleDataSource(this.storageService, this.statisticsService, this.paginator, this.sort);
     Observable.fromEvent(this.filter.nativeElement, 'keyup')
       .debounceTime(150)
       .distinctUntilChanged()
@@ -74,20 +74,20 @@ export class StatisticsComponent implements OnInit {
   }
 
   onDateRangeChanged(event: IMyDateRangeModel) {
-    // event properties are: event.beginDate, event.endDate, event.formatted,
-    // event.beginEpoc and event.endEpoc
-    console.log(event);
+    // event properties are: event.beginDate, event.endDate, event.formatted, event.beginEpoc and event.endEpoc
+    // console.log(event);
+    this.statisticsService.dateRangeChanged.next(event);
   }
 
 }
-
 
 export class ExampleDataSource extends DataSource<any> {
   _filterChange = new BehaviorSubject('');
   get filter(): string { return this._filterChange.value; }
   set filter(filter: string) { this._filterChange.next(filter); }
 
-  constructor(private storageService: StorageService, private _paginator: MdPaginator, private _sort: MdSort) {
+  constructor(private storageService: StorageService, private statisticsService: StatisticsService,
+              private _paginator: MdPaginator, private _sort: MdSort) {
     super();
   }
 
@@ -99,13 +99,23 @@ export class ExampleDataSource extends DataSource<any> {
       this._sort.mdSortChange,
 
       this._filterChange,
+
+      this.statisticsService.dateRangeChanged,
     ];
 
     return Observable.merge(...displayDataChanges).map(() => {
-      const data = this.getSortedData().filter((item: ILogItem) => {
+      let data = this.getSortedData().filter((item: ILogItem) => {
         let searchStr = item.productName.toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) != -1;
       });
+
+      // filters data by providen range of dates
+      if (this.statisticsService.dateRangeChanged.value &&
+          this.statisticsService.dateRangeChanged.value.beginJsDate) {
+        const fromDate: Date = this.statisticsService.dateRangeChanged.value.beginJsDate;
+        const toDate: Date = this.statisticsService.dateRangeChanged.value.endJsDate;
+        data = data.filter((item) => item.date >= fromDate && item.date <= toDate);
+      }
 
       // Grab the page's slice of data.
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
