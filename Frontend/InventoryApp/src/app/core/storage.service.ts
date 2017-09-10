@@ -37,32 +37,32 @@ export class StorageService implements OnInit {
   logsChanged: BehaviorSubject<ILogItem[]> = new BehaviorSubject<ILogItem[]>([]);
 
   constructor(private dataRequestService: DataRequestService) {
-    // DataRequest Service subscriptions
-    // this.dataRequestService.getCategoryList().subscribe(
-      // (categoryList) => {
-        // this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
+    //DataRequest Service subscriptions
+    this.dataRequestService.getCategoryList().subscribe(
+      (categoryList) => {
+        this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
+        this._createCategoryNamesList();
+        this.categoryChanged.next(this.categories);
+        this.productsChanged.next();
+
+        // temp
+        this._logs = fakeLogs;
+        this._setFieldsToLogItems();
+        this.logsChanged.next(this._logs);
+      }
+    );
+
+        // this._categories = fakeCategories.sort((c1, c2) => c1.name.localeCompare(c2.name));
         // this._createCategoryNamesList();
         // this.categoryChanged.next(this.categories);
         // this.productsChanged.next();
 
+        // this._categories.forEach((c) => {
+        //   for (let i = 0; i < c.products.length; i++) {
+        //     c.products[i].id = i.toString();
+        //   }
+        // });
 
-        this._categories = fakeCategories.sort((c1, c2) => c1.name.localeCompare(c2.name));
-        this._createCategoryNamesList();
-        this.categoryChanged.next(this.categories);
-        this.productsChanged.next();
-        // temp
-
-        this._categories.forEach((c) => {
-          for (let i = 0; i < c.products.length; i++) {
-            c.products[i].id = i.toString();
-          }
-        });
-
-        this._logs = fakeLogs;
-        this._setFieldsToLogItems();
-        this.logsChanged.next(this._logs);
-      // }
-    // );
 
   }
 
