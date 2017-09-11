@@ -36,7 +36,7 @@ export class CategoryListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         const category: ICategory = {
-          id: Math.random().toString(),
+          id: '',
           name: result.name,
           imgPath: result.imgPath,
           products: []

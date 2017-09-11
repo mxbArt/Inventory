@@ -71,6 +71,7 @@ export class StorageService implements OnInit {
   ngOnInit() {
   }
 
+  // Creates list of category names.
   private _createCategoryNamesList() {
     this._categoryNames = [];
     this.categories.forEach(i => {
@@ -78,6 +79,7 @@ export class StorageService implements OnInit {
     });
   }
 
+  // Sets data to the productName field in ILogItem model
   private _setFieldsToLogItems() {
     for (let i = 0; i < this._logs.length; i++) {
       let item = this._logs[i];
@@ -87,12 +89,15 @@ export class StorageService implements OnInit {
 
   // TODO: request to the backend
   addCategory(category: ICategory) {
-    category.id = Math.random().toString();
-    this._categories.push(category);
-    this._categories.sort((c1, c2) => c1.name.localeCompare(c2.name));
+    console.log(category);
+    this.dataRequestService.createCategory(category);
+    console.log('finished!!');
+    // category.id = Math.random().toString();
+    // this._categories.push(category);
+    // this._categories.sort((c1, c2) => c1.name.localeCompare(c2.name));
 
-    this._createCategoryNamesList();
-    this.categoryChanged.next(this.categories);
+    // this._createCategoryNamesList();
+    // this.categoryChanged.next(this.categories);
   }
 
   getCategory(id: string): ICategory {
