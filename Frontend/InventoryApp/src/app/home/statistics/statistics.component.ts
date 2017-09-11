@@ -114,6 +114,7 @@ export class ExampleDataSource extends DataSource<any> {
           this.statisticsService.dateRangeChanged.value.beginJsDate) {
         const fromDate: Date = this.statisticsService.dateRangeChanged.value.beginJsDate;
         const toDate: Date = this.statisticsService.dateRangeChanged.value.endJsDate;
+        toDate.setHours(24);
         data = data.filter((item) => item.date >= fromDate && item.date <= toDate);
       }
 

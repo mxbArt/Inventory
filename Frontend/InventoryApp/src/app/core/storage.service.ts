@@ -12,6 +12,7 @@ import { ILogItem } from './models/ILogItem';
 // fake data
 import fakeLogs from '../fake-data/fake-logs-data';
 import fakeCategories from '../fake-data/fake-data';
+import { ProductsActions } from './enums/product-actions.enum';
 
 @Injectable()
 export class StorageService implements OnInit {
@@ -28,6 +29,7 @@ export class StorageService implements OnInit {
   }
 
   get logs(): ILogItem[] {
+    this._setFieldsToLogItems();
     return this._logs;
   }
 
@@ -47,8 +49,8 @@ export class StorageService implements OnInit {
 
         // temp
         this._logs = fakeLogs;
-        this._setFieldsToLogItems();
-        this.logsChanged.next(this._logs);
+        //this._setFieldsToLogItems();
+        this.logsChanged.next(this.logs);
       }
     );
 
@@ -110,7 +112,17 @@ export class StorageService implements OnInit {
     waybillItems.forEach(item => {
       this._categories.find(c => c.id === item.categoryId)
         .products.find(p => p.name === item.productName).count += item.count;
+
+      fakeLogs.push({
+        id: Math.random().toString(),
+        date: new Date(),
+        action: item.count > 0 ? ProductsActions.Add : ProductsActions.Remove,
+        count: Math.abs(item.count),
+        categoryId: item.categoryId,
+        productId: item.productId
+      });
     });
+    this.logsChanged.next(this.logs);
   }
 
   // TODO: request to the backend

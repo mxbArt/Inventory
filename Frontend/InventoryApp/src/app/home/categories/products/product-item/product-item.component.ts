@@ -53,6 +53,7 @@ export class ProductItemComponent implements OnInit {
       if (result) {
         const waybill: IWaybillItem = {
           categoryId: this.categoryId,
+          productId: this.product.id,
           productName: this.product.name,
           count: result.value
         };
