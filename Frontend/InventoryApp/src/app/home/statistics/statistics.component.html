@@ -1,13 +1,35 @@
 <div class="col-12">
   <div class="row">
-    <div class="col-xl-2 col-lg-3 col-md-12">
+    <!-- <div class="col-xl-2 col-lg-3 col-md-12">
       <div class="wrapper" style="height: 100%">
         <h5 class="component-header">Параметры</h5>
       </div>
-    </div>
-    <div class="col-xl-6 col-lg-9 col-md-12">
+    </div> -->
+    <div class="col-xl-8 col-lg-6 col-md-12">
       <div class="wrapper">
         <h5 class="component-header">Статистика изменений</h5>
+
+        <div class="col-12">
+          <div class="row">
+            <div class="col-4 filter">
+              <md-form-field floatPlaceholder="never">
+                <input mdInput #Productfilter placeholder="Продукт">
+              </md-form-field>
+            </div>
+            <!-- Date picker -->
+            <div class="col-4">
+              <div class="datepicker">
+                <form [formGroup]="myForm" novalidate>
+                  <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions"
+                  formControlName="myDateRange" [placeholder]="'Период времени'"
+                  (dateRangeChanged)="onDateRangeChanged($event)"></my-date-range-picker>
+                </form>
+              </div>
+            </div>
+            <!-- // Date picker -->
+          </div>
+        </div>
+
         <md-table #table [dataSource]="dataSource" mdSort>
 
           <!-- Date Column -->
@@ -21,7 +43,7 @@
           <ng-container mdColumnDef="action">
             <md-header-cell *mdHeaderCellDef md-sort-header> Событие </md-header-cell>
             <md-cell *mdCellDef="let row">
-              {{row.action === 0 ? 'Удалено ' : 'Добавлено ' }}  {{row.count}} ед.
+              {{row.action === 0 ? 'Удалено ' : 'Добавлено ' }} {{row.count}} ед.
             </md-cell>
           </ng-container>
           <!-- // Action Column -->
@@ -47,7 +69,7 @@
     </div>
 
     <!-- Diagrams -->
-    <div class="col-xl-4">
+    <div class="col-xl-4 col-lg-6">
       <div class="wrapper" style="height:100%;">
         <h5 class="component-header">Диаграммы</h5>
       </div>

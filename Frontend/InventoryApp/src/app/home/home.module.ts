@@ -2,11 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
+import { ReactiveFormsModule } from '@angular/forms';
 // Modules
 import { CategoriesModule } from './categories/categories.module';
 import { SharedModule } from '../shared/shared.module';
 // Angular materials
-import { MdInputModule, MdAutocompleteModule, MdButtonModule, MdDialogModule, MdTableModule, MdPaginatorModule, MdSortModule } from '@angular/material';
+import {
+  MdInputModule,
+  MdAutocompleteModule,
+  MdButtonModule,
+  MdDialogModule,
+  MdTableModule,
+  MdPaginatorModule,
+  MdSortModule,
+  MdDatepickerModule,
+  MdNativeDateModule
+} from '@angular/material';
+// Custom datepicker
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+// Services
+import { StatisticsService } from './statistics/statistics.service';
 // Components
 import { HomeComponent } from './home.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -18,8 +33,12 @@ import { HeaderComponent } from '../shared/header/header.component';
     CategoriesModule,
     CdkTableModule,
     RouterModule,
+    MdNativeDateModule,
+    ReactiveFormsModule,
 
     SharedModule,
+    // Custom datepicker
+    MyDateRangePickerModule,
     // Angular materials
     MdInputModule,
     MdAutocompleteModule,
@@ -27,11 +46,15 @@ import { HeaderComponent } from '../shared/header/header.component';
     MdDialogModule,
     MdTableModule,
     MdPaginatorModule,
-    MdSortModule
+    MdSortModule,
+    MdDatepickerModule
   ],
   declarations: [
     HomeComponent,
     StatisticsComponent,
+  ],
+  providers: [
+    StatisticsService
   ]
 })
 export class HomeModule { }

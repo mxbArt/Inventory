@@ -35,22 +35,19 @@ $padding_vertical: 1rem;
     background-color: rgba(255, 0, 0, 0.2);
   }
 
-  // .waybill-btn {
-  //   margin: 0.5rem 1rem 0 0;
-  //   font-size: $font-size;
-  // }
-
-  // .item-delete {
-  //   display: table-cell;
-  //   vertical-align: middle;
-  //   color: red;
-  // }
-  // .item-delete:hover {
-  //   color: black;
-  //   cursor: pointer;
-  // }
 }
 
+.filter {
+  display: flex;
+  align-items: center;
+  padding-left: 24px;
+  font-size: $font-size;
+  width: 100%;
+}
+
+.datepicker {
+  padding: 16px 0;
+}
 
 
 

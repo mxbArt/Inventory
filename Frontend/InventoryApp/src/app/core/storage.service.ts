@@ -11,6 +11,8 @@ import { Subject } from 'rxjs/Subject';
 import { ILogItem } from './models/ILogItem';
 // fake data
 import fakeLogs from '../fake-data/fake-logs-data';
+import fakeCategories from '../fake-data/fake-data';
+import { ProductsActions } from './enums/product-actions.enum';
 
 @Injectable()
 export class StorageService implements OnInit {
@@ -27,6 +29,7 @@ export class StorageService implements OnInit {
   }
 
   get logs(): ILogItem[] {
+    this._setFieldsToLogItems();
     return this._logs;
   }
 
@@ -36,7 +39,7 @@ export class StorageService implements OnInit {
   logsChanged: BehaviorSubject<ILogItem[]> = new BehaviorSubject<ILogItem[]>([]);
 
   constructor(private dataRequestService: DataRequestService) {
-    // DataRequest Service subscriptions
+    //DataRequest Service subscriptions
     this.dataRequestService.getCategoryList().subscribe(
       (categoryList) => {
         this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
@@ -46,16 +49,29 @@ export class StorageService implements OnInit {
 
         // temp
         this._logs = fakeLogs;
-        this._setFieldsToLogItems();
-        this.logsChanged.next(this._logs);
+        //this._setFieldsToLogItems();
+        this.logsChanged.next(this.logs);
       }
     );
+
+        // this._categories = fakeCategories.sort((c1, c2) => c1.name.localeCompare(c2.name));
+        // this._createCategoryNamesList();
+        // this.categoryChanged.next(this.categories);
+        // this.productsChanged.next();
+
+        // this._categories.forEach((c) => {
+        //   for (let i = 0; i < c.products.length; i++) {
+        //     c.products[i].id = i.toString();
+        //   }
+        // });
+
 
   }
 
   ngOnInit() {
   }
 
+  // Creates list of category names.
   private _createCategoryNamesList() {
     this._categoryNames = [];
     this.categories.forEach(i => {
@@ -63,8 +79,9 @@ export class StorageService implements OnInit {
     });
   }
 
+  // Sets data to the productName field in ILogItem model
   private _setFieldsToLogItems() {
-    for (var i = 0; i < this._logs.length; i++) {
+    for (let i = 0; i < this._logs.length; i++) {
       let item = this._logs[i];
       item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
     }
@@ -72,12 +89,15 @@ export class StorageService implements OnInit {
 
   // TODO: request to the backend
   addCategory(category: ICategory) {
-    category.id = Math.random().toString();
-    this._categories.push(category);
-    this._categories.sort((c1, c2) => c1.name.localeCompare(c2.name));
+    console.log(category);
+    this.dataRequestService.createCategory(category);
+    console.log('finished!!');
+    // category.id = Math.random().toString();
+    // this._categories.push(category);
+    // this._categories.sort((c1, c2) => c1.name.localeCompare(c2.name));
 
-    this._createCategoryNamesList();
-    this.categoryChanged.next(this.categories);
+    // this._createCategoryNamesList();
+    // this.categoryChanged.next(this.categories);
   }
 
   getCategory(id: string): ICategory {
@@ -97,7 +117,17 @@ export class StorageService implements OnInit {
     waybillItems.forEach(item => {
       this._categories.find(c => c.id === item.categoryId)
         .products.find(p => p.name === item.productName).count += item.count;
+
+      fakeLogs.push({
+        id: Math.random().toString(),
+        date: new Date(),
+        action: item.count > 0 ? ProductsActions.Add : ProductsActions.Remove,
+        count: Math.abs(item.count),
+        categoryId: item.categoryId,
+        productId: item.productId
+      });
     });
+    this.logsChanged.next(this.logs);
   }
 
   // TODO: request to the backend
