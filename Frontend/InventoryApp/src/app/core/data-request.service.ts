@@ -62,11 +62,6 @@ export class DataRequestService {
   }
 
   deleteCategory(categoryId: string) {
-    return this.http.delete(this.serverUrl + `categories/${categoryId}`, this.options)
-      .map(
-      (response: Response) => {
-        return (response.json());
-      }
-      );
+    return this.http.delete(this.serverUrl + `categories/${categoryId}`, this.options);
   }
 }
