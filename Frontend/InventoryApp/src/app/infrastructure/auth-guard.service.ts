@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
 // Services
-import { AuthService } from '../../authentication/auth.service';
+import { AuthService } from '../authentication/auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,8 +13,7 @@ export class AuthGuard implements CanActivate {
                 boolean | Observable<boolean> | Promise<boolean> {
     if (this.authService.authData && this.authService.authData.isAuthenticated) {
       return true;
-    }
-    else {
+    } else {
       this.router.navigate(['/login']);
     }
   }
