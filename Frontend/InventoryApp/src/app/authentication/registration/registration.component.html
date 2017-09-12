@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-9 col-lg-9 col-md-7 col-1 background-image">
+      <div class="background-image">
       </div>
       <!-- Registration -->
-      <div class="col-xs-3 col-lg-3 col-md-5 col-11 login-wrapper">
+      <div class="login-wrapper">
         <div class="fake-logo">
           <h1>Inventory</h1>
-          <h5>Регистрируйте, получайте свой аккаунт и начинайте работать!</h5>
+          <h5>Регистрируйтесь, получайте свой аккаунт и начинайте работать!</h5>
         </div>
 
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
@@ -52,10 +52,10 @@
           </table>
 
           <!-- // Inputs -->
-          <button md-button class="auth-btn" type="button" (click)="submit()" [disabled]="!registerForm.valid" [ngClass]="{'btn-disabled': !registerForm.valid}">
-            Зарегистрироваться
-          </button>
-          <h5>Уже есть аккаунт?   <a routerLink="/login">Войдите</a></h5>
+          <button md-raised-button color="primary" class="big-btn" type="submit" [disabled]="!registerForm.valid">Зарегистрироваться</button>
+          <div class="to-registration">
+            <h5>Уже есть аккаунт?   <a routerLink="/login">Войдите</a></h5>
+          </div>
         </form>
       </div>
       <!-- // Registration -->
