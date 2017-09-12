@@ -10,7 +10,7 @@ import { MdInputModule, MdAutocompleteModule, MdButtonModule, MdDialogModule, Md
 // Services
 import { WaybillService } from './waybill/waybill.service';
 // Components
-import { CategoryItemComponent } from './categories-home/category-item/category-item.component';
+import { CategoryItemComponent } from './category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
 import { WaybillComponent } from './waybill/waybill.component';
 import { ItemAddDialogComponent } from './item-add-dialog/item-add-dialog.component';
@@ -18,7 +18,6 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ChangeAmountDialogComponent } from './products/product-item/change-amount-dialog/change-amount-dialog.component';
-import { CategoriesHomeComponent } from './categories-home/categories-home.component';
 
 @NgModule({
   imports: [
@@ -48,7 +47,6 @@ import { CategoriesHomeComponent } from './categories-home/categories-home.compo
     ProductsComponent,
     ProductItemComponent,
     ChangeAmountDialogComponent,
-    CategoriesHomeComponent
   ],
   entryComponents: [
     ItemAddDialogComponent,
