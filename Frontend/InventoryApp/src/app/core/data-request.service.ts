@@ -54,26 +54,18 @@ export class DataRequestService {
 
   createCategory(category: ICategory) {
     const body = JSON.stringify(category);
-    // const requestoptions = new RequestOptions({
-    //   method: RequestMethod.Post,
-    //   url: this.serverUrl + 'categories',
-    //   headers: new Headers({ 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' }),
-    //   body: JSON.stringify(category)
-    // });
-    console.log(body);
-    return this.http.post(this.serverUrl + 'categories', this.options)
+    return this.http.post(this.serverUrl + 'categories', body, this.options)
       .map(
       (response: Response) => {
-        console.log(response.json());
-      }
-    );
+        return response.json();
+      });
   }
 
   deleteCategory(categoryId: string) {
     return this.http.delete(this.serverUrl + `categories/${categoryId}`, this.options)
       .map(
       (response: Response) => {
-        console.log(response.json());
+        return (response.json());
       }
       );
   }
