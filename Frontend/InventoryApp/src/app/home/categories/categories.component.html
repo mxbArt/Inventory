@@ -1,6 +1,6 @@
 <div>
   <!-- Autocomplete -->
-  <div class="autocompleate-wrapper">
+  <!-- <div class="autocompleate-wrapper">
     <md-input-container>
       <input mdInput placeholder="Назание категории" [mdAutocomplete]="auto" [formControl]="stateCtrl" value="">
     </md-input-container>
@@ -10,15 +10,15 @@
         {{ value }}
       </md-option>
     </md-autocomplete>
-  </div>
+  </div> -->
   <!-- // Autocomplete -->
 
   <!-- Category cards -->
   <div class="row">
-    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
+    <div class="col-lg-3 col-md-4 col-sm-4 col-sm-6 col-12" *ngFor="let item of categories | filter:stateCtrl.value:'name'">
       <app-category-item [item]="item"></app-category-item>
     </div>
   </div>
   <!-- // Category cards -->
-</div>
+<!-- </div> -->
 <div>
