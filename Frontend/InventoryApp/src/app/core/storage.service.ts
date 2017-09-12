@@ -42,7 +42,7 @@ export class StorageService implements OnInit {
     //DataRequest Service subscriptions
     this.dataRequestService.getCategoryList().subscribe(
       (categoryList) => {
-        this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
+        this._categories = categoryList;//.sort((c1, c2) => c1.name.localeCompare(c2.name));
         this._createCategoryNamesList();
         this.categoryChanged.next(this.categories);
         this.productsChanged.next();
@@ -81,17 +81,22 @@ export class StorageService implements OnInit {
 
   // Sets data to the productName field in ILogItem model
   private _setFieldsToLogItems() {
-    for (let i = 0; i < this._logs.length; i++) {
-      let item = this._logs[i];
-      item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
-    }
+    //for (let i = 0; i < this._logs.length; i++) {
+    //  let item = this._logs[i];
+    //  item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
+    //}
   }
 
   // TODO: request to the backend
   addCategory(category: ICategory) {
     console.log(category);
-    this.dataRequestService.createCategory(category);
-    console.log('finished!!');
+    this.dataRequestService.createCategory(category).subscribe(
+      (data) => {
+        console.log(data);
+        console.log('finished!!');
+        console.log(category);
+      }
+    );
     // category.id = Math.random().toString();
     // this._categories.push(category);
     // this._categories.sort((c1, c2) => c1.name.localeCompare(c2.name));
@@ -106,7 +111,8 @@ export class StorageService implements OnInit {
 
   getProducts(categoryId: string): IProduct[] {
     if (this._categories.length !== 0) {
-      return this.getCategory(categoryId).products;
+      const category = this.getCategory(categoryId);
+      return category ? category.products : [];
     } else {
       return [];
     }

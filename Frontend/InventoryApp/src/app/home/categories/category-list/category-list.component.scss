@@ -31,4 +31,19 @@ $main_color: #1e88e5;
     color: #ffffff;
     background-color: #3f51b5;
   }
+
+}
+.item-delete {
+  position: relative;
+  //top: -1.8rem;
+  float: right;
+  //right: 1rem;
+  //right: 0;
+  //display: table-cell;
+  //vertical-align: middle;
+  color: red;
+}
+.item-delete:hover {
+  color: black;
+  cursor: pointer;
 }
