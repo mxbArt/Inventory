@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { ItemAddDialogComponent } from '../item-add-dialog/item-add-dialog.component';
 // Angular material
 import { MdDialog } from '@angular/material';
 // Models
