@@ -24,7 +24,7 @@ export class DataRequestService {
     return this.http.get(this.serverUrl + 'categories', this.options)
       .map(
       (response: Response) => {
-        console.log(response.json())
+        console.log(response.json());
         let categories: ICategory[] = [];
         response.json().forEach(item => {
           let products: IProduct[] = [];
@@ -34,7 +34,10 @@ export class DataRequestService {
               id: p._id,
               name: p.name,
               imgPath: p.imgPath,
-              count: p.count
+              count: p.count,
+              measurement: p.measurement,
+              lastUpdate: p.lastUpdate,
+              description: p.description
             });
           });
 

@@ -11,7 +11,6 @@ import { Subject } from 'rxjs/Subject';
 import { ILogItem } from './models/ILogItem';
 // fake data
 import fakeLogs from '../fake-data/fake-logs-data';
-import fakeCategories from '../fake-data/fake-data';
 import { ProductsActions } from './enums/product-actions.enum';
 
 @Injectable()
@@ -42,8 +41,8 @@ export class StorageService implements OnInit {
     //DataRequest Service subscriptions
     this.dataRequestService.getCategoryList().subscribe(
       (categoryList) => {
-        this._categories = categoryList;//.sort((c1, c2) => c1.name.localeCompare(c2.name));
-        this._createCategoryNamesList();
+        this._categories = categoryList.sort((c1, c2) => c1.name.localeCompare(c2.name));
+        this._fillFilelds();
         this.categoryChanged.next(this.categories);
         this.productsChanged.next();
 
@@ -71,8 +70,8 @@ export class StorageService implements OnInit {
   ngOnInit() {
   }
 
-  // Creates list of category names.
-  private _createCategoryNamesList() {
+  // Sets data to storage service properties
+  private _fillFilelds() {
     this._categoryNames = [];
     this.categories.forEach(i => {
       this._categoryNames.push(i.name);
@@ -106,6 +105,13 @@ export class StorageService implements OnInit {
   }
 
   getCategory(id: string): ICategory {
+    if (this._categories.length === 0) {
+      return {
+        id: id,
+        name: '',
+        products: [],
+      };
+    }
     return this._categories.find(c => c.id === id);
   }
 
@@ -116,6 +122,22 @@ export class StorageService implements OnInit {
     } else {
       return [];
     }
+  }
+
+  getProduct(categoryId: string, productId: string): IProduct {
+    if (this._categories.length === 0) {
+      return {
+        id: productId,
+        name: '',
+        count: 0,
+        imgPath: '',
+        lastUpdate: new Date('Junuary 01, 2017'),
+        description: ''
+      };
+    }
+    return this._categories
+      .find(c => c.id === categoryId).products
+      .find(p => p.id === productId);
   }
 
   // TODO: request to the backend

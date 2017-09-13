@@ -1,12 +1,9 @@
-<div class="card">
+<div class="card text-center" [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
   <img class="card-img-top" [src]="product.imgPath" alt="Card image cap">
-  <div class="card-body text-center">
-    <h5 class="card-title">{{ product.name }} - {{ product.count }}</h5>
-    <button md-icon-button color="primary" (click)="openDialog(ADD)">
-      <i class="fa fa-plus-circle fa-2x"></i>
-    </button>
-    <button md-icon-button color="warn" [disabled]="product.count === 0" (click)="openDialog(REMOVE)">
-      <i class="fa fa-minus-circle fa-2x"></i>
-    </button>
+  <div class="card-body">
+    <h5 class="card-title">{{ product.name }}</h5>
+  </div>
+  <div class="card-footer text-muted">
+    Последнее обновление {{ product.lastUpdate | date: 'shortDate' }}
   </div>
 </div>

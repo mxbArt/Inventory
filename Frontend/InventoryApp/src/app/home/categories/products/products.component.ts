@@ -25,8 +25,7 @@ export class ProductsComponent implements OnInit {
   stateCtrl: FormControl;
   filteredValue: any;
 
-  constructor(private route: ActivatedRoute, private storageService: StorageService,
-              public dialog: MdDialog) {
+  constructor(private route: ActivatedRoute, private storageService: StorageService) {
     // autocomplete
     this.stateCtrl = new FormControl();
     this.filteredValue = this.stateCtrl.valueChanges
@@ -72,25 +71,4 @@ export class ProductsComponent implements OnInit {
                : this.values;
   }
 
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ItemAddDialogComponent, {
-      width: '300px',
-      data: {
-        name: 'Новый продукт'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const product: IProduct = {
-          id: Math.random().toString(),
-          name: result.name,
-          imgPath: result.imgPath,
-          count: 0
-        };
-        this.storageService.addProductToCategory(product, this.currentCategoryId);
-      }
-    });
-  }
 }
