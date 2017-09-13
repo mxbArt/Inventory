@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoriesComponent } from './home/categories/categories.component';
 import { StatisticsComponent } from './home/statistics/statistics.component';
 import { ProductsComponent } from './home/categories/products/products.component';
+import { ProductDetailsComponent } from './home/categories/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,8 @@ const routes: Routes = [
       {
         path: '', component: HomeComponent, children: [
           { path: 'categories', component: CategoriesComponent },
+          { path: 'categories/:id', component: ProductsComponent},
+          { path: 'products/:id', component: ProductDetailsComponent },
           { path: 'statictics', component: StatisticsComponent },
         ]
       },

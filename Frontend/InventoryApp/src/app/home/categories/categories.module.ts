@@ -18,6 +18,7 @@ import { CategoryListComponent } from './category-list/category-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { ChangeAmountDialogComponent } from './products/product-item/change-amount-dialog/change-amount-dialog.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { ChangeAmountDialogComponent } from './products/product-item/change-amou
     ProductsComponent,
     ProductItemComponent,
     ChangeAmountDialogComponent,
+    ProductDetailsComponent,
   ],
   entryComponents: [
     ItemAddDialogComponent,
