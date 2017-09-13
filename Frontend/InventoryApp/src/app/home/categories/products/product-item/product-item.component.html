@@ -1,9 +1,9 @@
-<div class="card text-center" [routerLink]="['/products/' + product.id]">
+<div class="card text-center" [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
   <img class="card-img-top" [src]="product.imgPath" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>
   </div>
   <div class="card-footer text-muted">
-    Последнее обновление 11.09.2017
+    Последнее обновление {{ product.lastUpdate | date: 'shortDate' }}
   </div>
 </div>

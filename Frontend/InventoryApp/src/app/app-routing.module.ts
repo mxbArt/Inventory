@@ -19,7 +19,7 @@ const routes: Routes = [
         path: '', component: HomeComponent, children: [
           { path: 'categories', component: CategoriesComponent },
           { path: 'categories/:id', component: ProductsComponent},
-          { path: 'products/:id', component: ProductDetailsComponent },
+          { path: 'categories/:categoryId/products/:productId', component: ProductDetailsComponent },
           { path: 'statictics', component: StatisticsComponent },
         ]
       },

@@ -1,6 +1,5 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { MdDialog } from '@angular/material';
-import { ItemAddDialogComponent } from './../item-add-dialog/item-add-dialog.component';
 // Services
 import { StorageService } from '../../../core/storage.service';
 // Models
@@ -15,7 +14,7 @@ export class CategoryListComponent implements OnInit {
 
   categories: ICategory[];
 
-  constructor(private storageService: StorageService, public dialog: MdDialog) { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
     this.storageService.categoryChanged.subscribe(
@@ -23,26 +22,5 @@ export class CategoryListComponent implements OnInit {
         this.categories = this.storageService.categories;
       }
     );
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(ItemAddDialogComponent, {
-      width: '300px',
-      data: {
-        name: 'Новая категория'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const category: ICategory = {
-          id: '',
-          name: result.name,
-          imgPath: result.imgPath,
-          products: []
-        };
-        this.storageService.addCategory(category);
-      }
-    });
   }
 }
