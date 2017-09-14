@@ -44,11 +44,18 @@ app.use(bodyParser.json())
 app.use(morgan('combined'))
 
 app.use(cookieParser());
-// app.use(session({
-//     secret: "89ksmnfa9fhaspfmk",
-//     store: new mongoDBStore({ uri: mongoURL }),
-//     cookie: { httpOnly: true, maxAge: null }
-// }));
+
+function getStore() {
+    console.log("getstore");
+    if (mongoURL == null) // for test
+        mongoURL = 'mongodb://userOON:av30aM6uovK8dstj@172.30.111.5:27017/sampledb';
+    return new mongoDBStore({ uri: mongoURL });
+}
+app.use(session({
+    secret: "89ksmnfa9fhaspfmk",
+    store: getStore(),
+    cookie: { httpOnly: true, maxAge: null }
+}));
 
 app.options("*", cors());
 app.use(function(req, res, next) {
