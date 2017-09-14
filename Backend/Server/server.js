@@ -111,25 +111,7 @@ app.get('/data/migration', function(req, res) {
 
 
 app.get('/', function(req, res,  next) {
-    if (!db) {
-        initDb(function(err) {
-            if (err)
-                console.log(err);
-        });
-    }
-    if (db) {
-        var col = db.collection('categories');
-        col.find().toArray(function(err, docs) {
-            if (err) {
-                console.log(err);
-                return res.sendStatus(500);
-            }
-            res.json(200, docs);
-        });
-    } else {
-        res.sendStatus(500);
-    }
-    res.sendStatus(200);
+    res.send('Hello!)');
 });
 
 app.route('/login')
