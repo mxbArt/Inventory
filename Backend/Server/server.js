@@ -188,8 +188,8 @@ app.route('/categories/:id')
     .delete(categoriesController.delete); // Удаление категории id
 
 app.get('/pagecount', function(req, res) {
-    if (req.session.authorized)
-        console.log(req.session.authorized);
+    // if (req.session.authorized)
+    //     console.log(req.session.authorized);
     res.send('Test!!!');
 });
 
