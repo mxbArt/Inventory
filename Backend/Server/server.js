@@ -44,11 +44,11 @@ app.use(bodyParser.json())
 app.use(morgan('combined'))
 
 app.use(cookieParser());
-app.use(session({
-    secret: "89ksmnfa9fhaspfmk",
-    store: new mongoDBStore({ uri: mongoURL }),
-    cookie: { httpOnly: true, maxAge: null }
-}));
+// app.use(session({
+//     secret: "89ksmnfa9fhaspfmk",
+//     store: new mongoDBStore({ uri: mongoURL }),
+//     cookie: { httpOnly: true, maxAge: null }
+// }));
 
 app.options("*", cors());
 app.use(function(req, res, next) {
