@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 // Guards
-import { AuthGuard } from './shared/guards/auth-guard.service';
+import { AuthGuard } from './infrastructure/guards/auth-guard.service';
 // Modules
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
