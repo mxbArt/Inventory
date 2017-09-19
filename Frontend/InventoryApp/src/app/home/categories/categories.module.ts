@@ -13,11 +13,8 @@ import { WaybillService } from './waybill/waybill.service';
 import { CategoryItemComponent } from './categories-home/category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
 import { WaybillComponent } from './waybill/waybill.component';
-import { ItemAddDialogComponent } from './item-add-dialog/item-add-dialog.component';
-import { CategoryListComponent } from './category-list/category-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
-import { ChangeAmountDialogComponent } from './products/product-item/change-amount-dialog/change-amount-dialog.component';
 import { CategoriesHomeComponent } from './categories-home/categories-home.component';
 
 @NgModule({
@@ -43,17 +40,11 @@ import { CategoriesHomeComponent } from './categories-home/categories-home.compo
     CategoryItemComponent,
     CategoriesComponent,
     WaybillComponent,
-    ItemAddDialogComponent,
-    CategoryListComponent,
     ProductsComponent,
     ProductItemComponent,
-    ChangeAmountDialogComponent,
     CategoriesHomeComponent
   ],
-  entryComponents: [
-    ItemAddDialogComponent,
-    ChangeAmountDialogComponent
-  ],
+  entryComponents: [  ],
   providers: [
     WaybillService
   ]

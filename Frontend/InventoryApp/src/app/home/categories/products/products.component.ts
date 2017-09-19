@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { ItemAddDialogComponent } from '../item-add-dialog/item-add-dialog.component';
 // Angular material
 import { MdDialog } from '@angular/material';
 // Models
@@ -72,25 +71,4 @@ export class ProductsComponent implements OnInit {
                : this.values;
   }
 
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ItemAddDialogComponent, {
-      width: '300px',
-      data: {
-        name: 'Новый продукт'
-      }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const product: IProduct = {
-          id: Math.random().toString(),
-          name: result.name,
-          imgPath: result.imgPath,
-          count: 0
-        };
-        this.storageService.addProductToCategory(product, this.currentCategoryId);
-      }
-    });
-  }
 }
