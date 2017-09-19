@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-9 col-lg-9 col-md-7 col-1 background-image">
+    <div class="background-image">
     </div>
     <!-- Login -->
-    <div class="col-xs-3 col-lg-3 col-md-5 col-11 login-wrapper">
+    <div class="login-wrapper">
       <div class="fake-logo">
         <h1>Inventory</h1>
         <h5>Добро пожаловать! Авторизуйтесь и продолжайте работу с комфортом!</h5>
@@ -39,11 +39,10 @@
         </table>
 
         <!-- // Inputs -->
-        <button md-button class="auth-btn" type="submit"
-                [disabled]="!loginForm.valid" [ngClass]="{'btn-disabled': !loginForm.valid}">
-          Войти
-        </button>
-        <h5>Нету аккаунта?   <a routerLink="/register">Зарегистрируйтесь</a></h5>
+        <button md-raised-button color="primary" class="big-btn" type="submit" [disabled]="!loginForm.valid">Войти</button>
+        <div class="to-registration">
+          <h5>Нету аккаунта?   <a routerLink="/register">Зарегистрируйтесь</a></h5>
+        </div>
       </form>
     </div>
     <!-- // Login -->
