@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 // Guards
-import { AuthGuard } from './shared/guards/auth-guard.service';
+import { AuthGuard } from './infrastructure/guards/auth-guard.service';
 // Components
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';

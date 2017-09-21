@@ -21,6 +21,9 @@ import { DataRequestService } from './core/data-request.service';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+// Redux
+import { NgRedux, NgReduxModule } from 'ng2-redux';
+import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
 
 @NgModule({
   imports: [
@@ -37,6 +40,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
     // Routing
     AppRoutingModule,
+
+    // Redux
+    NgReduxModule,
 
     // Angular materials
     MdButtonModule,
@@ -56,4 +62,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  }
+}
