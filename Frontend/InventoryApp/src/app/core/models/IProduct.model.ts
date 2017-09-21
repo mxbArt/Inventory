@@ -1,6 +1,9 @@
 export interface IProduct {
-  id: string;
+  _id: string;
   name: string;
   count: number;
+  description?: string;
+  measurement?: string;
+  lastUpdate: Date;
   imgPath: string;
 }

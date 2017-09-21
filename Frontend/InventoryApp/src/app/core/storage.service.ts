@@ -11,7 +11,6 @@ import { Subject } from 'rxjs/Subject';
 import { ILogItem } from './models/ILogItem';
 // fake data
 import fakeLogs from '../fake-data/fake-logs-data';
-import fakeCategories from '../fake-data/fake-data';
 import { ProductsActions } from './enums/product-actions.enum';
 
 @Injectable()
@@ -39,17 +38,18 @@ export class StorageService implements OnInit {
   logsChanged: BehaviorSubject<ILogItem[]> = new BehaviorSubject<ILogItem[]>([]);
 
   constructor(private dataRequestService: DataRequestService) {
-    //DataRequest Service subscriptions
+    // DataRequest Service subscriptions
     this.dataRequestService.getCategoryList().subscribe(
       (categoryList) => {
-        this._categories = categoryList;//.sort((c1, c2) => c1.name.localeCompare(c2.name));
+        this._categories = categoryList; // .sort((c1, c2) => c1.name.localeCompare(c2.name));
         this._createCategoryNamesList();
         this.categoryChanged.next(this.categories);
         this.productsChanged.next();
 
+        console.log(this._categories);
         // temp
         this._logs = fakeLogs;
-        //this._setFieldsToLogItems();
+        // this._setFieldsToLogItems();
         this.logsChanged.next(this.logs);
       }
     );
@@ -81,10 +81,10 @@ export class StorageService implements OnInit {
 
   // Sets data to the productName field in ILogItem model
   private _setFieldsToLogItems() {
-    //for (let i = 0; i < this._logs.length; i++) {
-    //  let item = this._logs[i];
-    //  item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
-    //}
+    // for (let i = 0; i < this._logs.length; i++) {
+    //   let item = this._logs[i];
+    //   item.productName = this.getProducts(item.categoryId).find(p => p.id == item.productId).name;
+    // }
   }
 
   // TODO: request to the backend
@@ -106,7 +106,7 @@ export class StorageService implements OnInit {
   }
 
   getCategory(id: string): ICategory {
-    return this._categories.find(c => c.id === id);
+    return this._categories.find(c => c._id === id);
   }
 
   getProducts(categoryId: string): IProduct[] {
@@ -121,7 +121,7 @@ export class StorageService implements OnInit {
   // TODO: request to the backend
   processWaybill(waybillItems: IWaybillItem[]) {
     waybillItems.forEach(item => {
-      this._categories.find(c => c.id === item.categoryId)
+      this._categories.find(c => c._id === item.categoryId)
         .products.find(p => p.name === item.productName).count += item.count;
 
       fakeLogs.push({
@@ -138,7 +138,7 @@ export class StorageService implements OnInit {
 
   // TODO: request to the backend
   addProductToCategory(product: IProduct, categoryId: string) {
-    this._categories.find(c => c.id === categoryId).products.push(product);
+    this._categories.find(c => c._id === categoryId).products.push(product);
     this.productsChanged.next();
   }
 }

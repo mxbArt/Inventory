@@ -4,9 +4,6 @@ import { MdDialog } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 // Models
 import { IProduct } from '../../../../core/models/IProduct.model';
-import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
-// Services
-import { WaybillService } from '../../waybill/waybill.service';
 
 @Component({
   selector: 'app-product-item',

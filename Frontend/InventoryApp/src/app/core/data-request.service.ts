@@ -24,29 +24,10 @@ export class DataRequestService {
     return this.http.get(this.serverUrl + 'categories', this.options)
       .map(
       (response: Response) => {
-        console.log(response.json())
-        let categories: ICategory[] = [];
-        response.json().forEach(item => {
-          let products: IProduct[] = [];
+        // console output
+        console.log(response.json());
 
-          item.products.forEach(p => {
-            products.push({
-              id: p._id,
-              name: p.name,
-              imgPath: p.imgPath,
-              count: p.count
-            });
-          });
-
-          categories.push({
-            id: item._id,
-            name: item.name,
-            imgPath: item.imgPath,
-            products: products
-          });
-        });
-
-        //const categoryList: ICategory[] = response.json();
+        const categories: ICategory[] = response.json();
         return categories;
       }
       );
