@@ -12,18 +12,21 @@ export class WaybillService {
   private _waybills: IWaybillItem[] = [
     {
       categoryId: '59b44c644a9f14001868d2f2',
+      categoryName: 'Фрукты',
       productId: '59b44c644a9f14001868d2ce',
       productName: 'Апельсин',
       count: 40
     },
     {
       categoryId: '59b44c644a9f14001868d2f2',
+      categoryName: 'Фрукты',
       productId: '59b44c644a9f14001868d2cf',
       productName: 'Виноград',
       count: -10
     },
     {
       categoryId: '59b44c644a9f14001868d2f2',
+      categoryName: 'Фрукты',
       productId: '59b44c644a9f14001868d2d1',
       productName: 'Ананас',
       count: 10

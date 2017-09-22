@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
-  <div class="logo-wrapper">
-    <a class="navbar-brand" routerLink=".">Here must be logo</a>
+  <div class="logo-wrapper" routerLink="/">
+    <a class="navbar-brand" routerLink=".">Inventory Application</a>
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
     aria-expanded="false" aria-label="Toggle navigation">
@@ -14,6 +14,12 @@
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/statictics']">Статистика</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link">Накладная</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link">Управление</a>
       </li>
     </ul>
   </div>

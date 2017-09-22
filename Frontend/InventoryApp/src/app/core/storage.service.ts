@@ -71,8 +71,8 @@ export class StorageService implements OnInit {
   ngOnInit() {
   }
 
-  // Creates list of category names.
-  private _createCategoryNamesList() {
+  // Sets data to storage service properties
+  private _fillFilelds() {
     this._categoryNames = [];
     this.categories.forEach(i => {
       this._categoryNames.push(i.name);
@@ -116,6 +116,22 @@ export class StorageService implements OnInit {
     } else {
       return [];
     }
+  }
+
+  getProduct(categoryId: string, productId: string): IProduct {
+    if (this._categories.length === 0) {
+      return {
+        id: productId,
+        name: '',
+        count: 0,
+        imgPath: '',
+        lastUpdate: new Date('Junuary 01, 2017'),
+        description: ''
+      };
+    }
+    return this._categories
+      .find(c => c.id === categoryId).products
+      .find(p => p.id === productId);
   }
 
   // TODO: request to the backend

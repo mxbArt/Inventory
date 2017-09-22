@@ -1,9 +1,9 @@
 $main_color: #1e88e5;
-$second_color: #ffffff;
 
 nav {
   min-height: 4.5rem;
   padding: 0 1rem;
+  background-color: #272C33 !important;
 
   .logo-wrapper {
     background: rgba(0, 0, 0, 0.2);
@@ -17,18 +17,25 @@ nav {
       display: table-cell;
       vertical-align: middle;
       text-align: center;
-      color: $second_color;
+      color: #ffffff;
       font-size: 1.5rem;
+      font-weight: 500;
     }
   }
 
   .nav-item {
-    padding: .5rem 1rem;
-    margin: .1rem 0;
+    padding: .5rem .5rem;
+    margin: .1rem .5rem;
+  }
+  .nav-item:hover {
+    border-bottom: 2px solid #398BF7;
+    a {
+      color: #398BF7;
+    }
   }
 
   .nav-link {
-    color: $second_color;
+    color: #ffffff;
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -37,10 +44,13 @@ nav {
 
   }
   .active {
-    background: rgba(0, 0, 0, 0.2);
+    //background-color: #ffffff; //rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid #398BF7;
     a {
-      color: $main_color;
-      //padding: 1rem;
+      color: #398BF7; //#3F51B5;
+    }
+    a:hover {
+      color: #398BF7;
     }
   }
 }

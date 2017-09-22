@@ -37,8 +37,7 @@ export class RegistrationComponent implements OnInit {
 
       if (this.authService.register(registerData)) {
         this.router.navigate(['/login']);
-      }
-      else {
+      } else {
         this.openSnackBar('Введенный вами адрес электронной почты уже занят!', 'Закрыть');
       }
     }
