@@ -11,6 +11,10 @@ import 'rxjs/add/observable/merge';
 import 'rxjs/add/operator/map';
 // Models
 import { IWaybillItem } from '../../../core/models/IWaybillItem.model';
+// Redux
+import { NgRedux, select } from 'ng2-redux';
+import { IAppState } from '../../../core/redux/store';
+import { ReduxActions } from '../../../core/redux/ReduxActions';
 
 @Component({
   selector: 'app-waybill',
@@ -24,10 +28,10 @@ export class WaybillComponent implements OnInit {
 
   @ViewChild(MdPaginator) paginator: MdPaginator;
 
-  constructor(private waybillService: WaybillService) { }
+  constructor(private waybillService: WaybillService, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-    this.dataSource = new ExampleDataSource(this.waybillService, this.paginator);
+    this.dataSource = new ExampleDataSource(this.ngRedux, this.paginator);
   }
 
   deleteItem(item: IWaybillItem) {
@@ -35,7 +39,9 @@ export class WaybillComponent implements OnInit {
   }
 
   clearWaybils() {
-    this.waybillService.clearWaybills();
+    this.ngRedux.dispatch({ type: ReduxActions.WAYBILL_CLEAR });
+    console.log(this.ngRedux.getState().waybill);
+    //this.waybillService.clearWaybills();
   }
 
   submitWaybill() {
@@ -51,19 +57,24 @@ export class WaybillComponent implements OnInit {
 * should be rendered.
 */
 export class ExampleDataSource extends DataSource<any> {
-  constructor(private waybillService: WaybillService, private _paginator: MdPaginator) {
+  // data: IWaybillItem[];
+
+  constructor(private ngRedux: NgRedux<IAppState>, private _paginator: MdPaginator) {
     super();
   }
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<IWaybillItem[]> {
     const displayDataChanges = [
-      this.waybillService.waybilsChange,
       this._paginator.page,
     ];
 
+    // this.ngRedux.subscribe(() => {
+    //   this.data = this.ngRedux.getState().waybill;
+    // });
+
     return Observable.merge(...displayDataChanges).map(() => {
-      const data = this.waybillService.waybills.slice();
+      const data: IWaybillItem[] = this.ngRedux.getState().waybill;
       // Grab the page's slice of data.
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       return data.splice(startIndex, this._paginator.pageSize);

@@ -10,6 +10,7 @@ import { CategoriesComponent } from './home/categories/categories.component';
 import { StatisticsComponent } from './home/statistics/statistics.component';
 import { ProductsComponent } from './home/categories/products/products.component';
 import { CategoriesHomeComponent } from './home/categories/categories-home/categories-home.component';
+import { ProductsDetailsComponent } from './home/categories/products/products-details/products-details.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
           { path: 'categories', component: CategoriesComponent, children: [
             { path: '', component: CategoriesHomeComponent },
             { path: ':categoryId', component: ProductsComponent },
+            { path: ':categoryId/products/:productId', component: ProductsDetailsComponent },
           ] },
           { path: 'statictics', component: StatisticsComponent },
         ]
