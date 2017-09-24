@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-
 // Models
 import { IProduct } from '../../../core/models/IProduct.model';
-// Services
-import { StorageService } from '../../../core/storage.service';
+// Redux
+import { NgRedux, select } from 'ng2-redux';
+import { IAppState } from '../../../core/redux/store';
 
 @Component({
   selector: 'app-products',
@@ -15,30 +14,39 @@ import { StorageService } from '../../../core/storage.service';
 export class ProductsComponent implements OnInit {
 
   currentCategoryId: string;
-  pruducts: IProduct[] = [];
+  products: IProduct[];
 
-  constructor(private route: ActivatedRoute, private storageService: StorageService) {  }
+  constructor(private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>) {  }
 
   ngOnInit() {
-    // Storage service subscription
-    this.storageService.productsChanged.subscribe(
-      () => {
-        this._receiveProducts(this.route.snapshot.params['id']);
-      }
-    );
+    // redux state subscription
+    this.ngRedux.subscribe(() => {
+      console.log('products component: redux state changed');
+      console.log(this.ngRedux.getState());
+
+      this._loadProducts();
+    });
 
     // route params subscription
     this.route.params.subscribe(
       (params: Params) => {
-        this._receiveProducts(params['id']);
+        console.log('products component: route changed');
+        this.currentCategoryId = params['categoryId'];
+        console.log(`currect category: ${this.currentCategoryId}`);
+
+        console.log('redux state:');
+        console.log(this.ngRedux.getState());
+
+        this._loadProducts();
       }
     );
   }
 
-  private _receiveProducts(categoryId) {
-    if (categoryId) {
-      this.currentCategoryId = categoryId;
-      this.pruducts = this.storageService.getProducts(this.currentCategoryId);
-    }
+  // gets products from redux state
+  private _loadProducts() {
+      const state: IAppState = this.ngRedux.getState();
+      if (state.categories.length !== 0) {
+        this.products = this.ngRedux.getState().categories.find(c => c._id === this.currentCategoryId).products;
+      }
   }
 }

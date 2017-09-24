@@ -4,7 +4,7 @@ import { ICategory } from './models/ICategory.model';
 import { IWaybillItem } from './models/IWaybillItem.model';
 import { IProduct } from './models/IProduct.model';
 // Services
-import { DataRequestService } from './data-request.service';
+import { RequestService } from './request.service';
 // rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Subject } from 'rxjs/Subject';
@@ -16,15 +16,10 @@ import { ProductsActions } from './enums/product-actions.enum';
 @Injectable()
 export class StorageService implements OnInit {
   private _categories: ICategory[] = [];
-  private _categoryNames: string[]  = [];
   private _logs: ILogItem[] = [];
 
   get categories(): ICategory[] {
     return this._categories;
-  }
-
-  get categoryNames(): string[] {
-    return this._categoryNames;
   }
 
   get logs(): ILogItem[] {
@@ -33,50 +28,11 @@ export class StorageService implements OnInit {
   }
 
   // Events
-  categoryChanged: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
-  productsChanged: Subject<IProduct[]> = new Subject<IProduct[]>();
   logsChanged: BehaviorSubject<ILogItem[]> = new BehaviorSubject<ILogItem[]>([]);
 
-  constructor(private dataRequestService: DataRequestService) {
-    // DataRequest Service subscriptions
-    this.dataRequestService.getCategoryList().subscribe(
-      (categoryList) => {
-        this._categories = categoryList; // .sort((c1, c2) => c1.name.localeCompare(c2.name));
-        this._createCategoryNamesList();
-        this.categoryChanged.next(this.categories);
-        this.productsChanged.next();
-
-        console.log(this._categories);
-        // temp
-        this._logs = fakeLogs;
-        // this._setFieldsToLogItems();
-        this.logsChanged.next(this.logs);
-      }
-    );
-
-        // this._categories = fakeCategories.sort((c1, c2) => c1.name.localeCompare(c2.name));
-        // this._createCategoryNamesList();
-        // this.categoryChanged.next(this.categories);
-        // this.productsChanged.next();
-
-        // this._categories.forEach((c) => {
-        //   for (let i = 0; i < c.products.length; i++) {
-        //     c.products[i].id = i.toString();
-        //   }
-        // });
-
-
-  }
+  constructor(private dataRequestService: RequestService) {  }
 
   ngOnInit() {
-  }
-
-  // Creates list of category names.
-  private _createCategoryNamesList() {
-    this._categoryNames = [];
-    this.categories.forEach(i => {
-      this._categoryNames.push(i.name);
-    });
   }
 
   // Sets data to the productName field in ILogItem model
@@ -105,19 +61,6 @@ export class StorageService implements OnInit {
     // this.categoryChanged.next(this.categories);
   }
 
-  getCategory(id: string): ICategory {
-    return this._categories.find(c => c._id === id);
-  }
-
-  getProducts(categoryId: string): IProduct[] {
-    if (this._categories.length !== 0) {
-      const category = this.getCategory(categoryId);
-      return category ? category.products : [];
-    } else {
-      return [];
-    }
-  }
-
   // TODO: request to the backend
   processWaybill(waybillItems: IWaybillItem[]) {
     waybillItems.forEach(item => {
@@ -139,6 +82,6 @@ export class StorageService implements OnInit {
   // TODO: request to the backend
   addProductToCategory(product: IProduct, categoryId: string) {
     this._categories.find(c => c._id === categoryId).products.push(product);
-    this.productsChanged.next();
+    // this.productsChanged.next();
   }
 }

@@ -16,7 +16,7 @@ import { MdButtonModule, MdInputModule, MdAutocompleteModule } from '@angular/ma
 // Services
 import { AuthService } from './authentication/auth.service';
 import { StorageService } from './core/storage.service';
-import { DataRequestService } from './core/data-request.service';
+import { RequestService } from './core/request.service';
 // Components
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -58,7 +58,7 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
     AuthService,
     AuthGuard,
     StorageService,
-    DataRequestService
+    RequestService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 // Models
 import { ICategory } from '../../../core/models/ICategory.model';
-// Services
-import { StorageService } from '../../../core/storage.service';
+// Redux
+import { NgRedux, select } from 'ng2-redux';
+import { IAppState } from '../../../core/redux/store';
 
 @Component({
   selector: 'app-categories-home',
@@ -11,16 +12,10 @@ import { StorageService } from '../../../core/storage.service';
 })
 export class CategoriesHomeComponent implements OnInit {
 
-  categories: ICategory[] = [];
+  @select((s: IAppState) => s.categories) categories: ICategory[];
 
-  constructor(private storageService: StorageService) { }
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
-    // storage service subscription
-    this.storageService.categoryChanged.subscribe(
-      (categories) => {
-        this.categories = categories;
-      }
-    );
   }
 }
