@@ -2,7 +2,6 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MdPaginator } from '@angular/material';
 // Services
-import { StorageService } from './../../../core/storage.service';
 import { WaybillService } from './waybill.service';
 // rxjs
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

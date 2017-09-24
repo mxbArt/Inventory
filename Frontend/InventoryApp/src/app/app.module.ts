@@ -6,7 +6,6 @@ import { HttpModule } from '@angular/http';
 // Guards
 import { AuthGuard } from './infrastructure/guards/auth-guard.service';
 // Modules
-import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeModule } from './home/home.module';
@@ -15,7 +14,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdInputModule, MdAutocompleteModule } from '@angular/material';
 // Services
 import { AuthService } from './authentication/auth.service';
-import { StorageService } from './core/storage.service';
 import { RequestService } from './core/request.service';
 // Components
 import { AppComponent } from './app.component';
@@ -31,19 +29,14 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpModule,
-
     // Custom modules
-    CoreModule,
     SharedModule,
     AuthenticationModule,
     HomeModule,
-
     // Routing
     AppRoutingModule,
-
     // Redux
     NgReduxModule,
-
     // Angular materials
     MdButtonModule,
     MdInputModule,
@@ -57,7 +50,6 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
   providers: [
     AuthService,
     AuthGuard,
-    StorageService,
     RequestService
   ],
   bootstrap: [AppComponent]
