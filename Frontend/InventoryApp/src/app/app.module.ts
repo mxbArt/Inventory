@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -20,7 +20,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 // Redux
-import { NgRedux, NgReduxModule } from 'ng2-redux';
+import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
 import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
 
 @NgModule({
@@ -55,7 +55,8 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+    const enhancers = isDevMode ? [devTools.enhancer()] : [];
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);
   }
 }
