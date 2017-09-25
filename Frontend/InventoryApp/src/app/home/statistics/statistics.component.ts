@@ -96,7 +96,7 @@ export class ExampleDataSource extends DataSource<any> {
     const displayDataChanges = [
       this.storageService.logsChanged,
       this._paginator.page,
-      this._sort.mdSortChange,
+      // this._sort.mdSortChange,
 
       this._filterChange,
 

@@ -10,7 +10,7 @@ import { MdInputModule, MdAutocompleteModule, MdButtonModule, MdDialogModule, Md
 // Services
 import { WaybillService } from './waybill/waybill.service';
 // Components
-import { CategoryItemComponent } from './category-item/category-item.component';
+import { CategoryItemComponent } from './categories-home/category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
 import { WaybillComponent } from './waybill/waybill.component';
 import { ProductsComponent } from './products/products.component';
