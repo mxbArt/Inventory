@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 // Guards
 import { AuthGuard } from './infrastructure/guards/auth-guard.service';
 // Modules
-import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeModule } from './home/home.module';
@@ -15,14 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdInputModule, MdAutocompleteModule } from '@angular/material';
 // Services
 import { AuthService } from './authentication/auth.service';
-import { StorageService } from './core/storage.service';
-import { DataRequestService } from './core/data-request.service';
+import { RequestService } from './core/request.service';
 // Components
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 // Redux
-import { NgRedux, NgReduxModule } from 'ng2-redux';
+import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
 import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
 
 @NgModule({
@@ -31,19 +29,14 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpModule,
-
     // Custom modules
-    CoreModule,
     SharedModule,
     AuthenticationModule,
     HomeModule,
-
     // Routing
     AppRoutingModule,
-
     // Redux
     NgReduxModule,
-
     // Angular materials
     MdButtonModule,
     MdInputModule,
@@ -57,13 +50,13 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
   providers: [
     AuthService,
     AuthGuard,
-    StorageService,
-    DataRequestService
+    RequestService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+  constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+    const enhancers = isDevMode ? [devTools.enhancer()] : [];
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);
   }
 }

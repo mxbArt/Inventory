@@ -6,7 +6,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { Ng2Webstorage } from 'ngx-webstorage';
 
 import { NotificationService } from './notification.service';
-import { StorageService } from './storage.service';
 
 @NgModule({
   imports: [

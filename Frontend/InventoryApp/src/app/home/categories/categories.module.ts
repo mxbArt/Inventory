@@ -16,6 +16,7 @@ import { WaybillComponent } from './waybill/waybill.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductItemComponent } from './products/product-item/product-item.component';
 import { CategoriesHomeComponent } from './categories-home/categories-home.component';
+import { ProductsDetailsComponent } from './products/products-details/products-details.component';
 
 @NgModule({
   imports: [
@@ -42,7 +43,8 @@ import { CategoriesHomeComponent } from './categories-home/categories-home.compo
     WaybillComponent,
     ProductsComponent,
     ProductItemComponent,
-    CategoriesHomeComponent
+    CategoriesHomeComponent,
+    ProductsDetailsComponent
   ],
   entryComponents: [  ],
   providers: [

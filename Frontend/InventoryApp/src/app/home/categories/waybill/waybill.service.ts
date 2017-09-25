@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 // Models
 import { IWaybillItem } from '../../../core/models/IWaybillItem.model';
-// Serivces
-import { StorageService } from '../../../core/storage.service';
 
 @Injectable()
 export class WaybillService {
@@ -36,7 +34,7 @@ export class WaybillService {
 
   waybilsChange: BehaviorSubject<IWaybillItem[]> = new BehaviorSubject<IWaybillItem[]>([]);
 
-  constructor(private storageService: StorageService) {}
+  constructor() {}
 
   removeItem(item: IWaybillItem) {
     this._waybills.splice(this._waybills.indexOf(item), 1);
@@ -53,8 +51,9 @@ export class WaybillService {
     this.waybilsChange.next(this.waybills);
   }
 
+  // TODO
   submit() {
-    this.storageService.processWaybill(this._waybills.slice());
+    console.log('submitted!!');
     this.clearWaybills();
   }
 }
