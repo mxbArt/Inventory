@@ -7,8 +7,6 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { FilterPipe } from '../../infrastructure/filter.pipe';
 // Angular materials
 import { MdInputModule, MdAutocompleteModule, MdButtonModule, MdDialogModule, MdTableModule, MdPaginatorModule } from '@angular/material';
-// Services
-import { WaybillService } from './waybill/waybill.service';
 // Components
 import { CategoryItemComponent } from './categories-home/category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
@@ -48,7 +46,6 @@ import { ProductsDetailsComponent } from './products/products-details/products-d
   ],
   entryComponents: [  ],
   providers: [
-    WaybillService
   ]
 })
 export class CategoriesModule { }

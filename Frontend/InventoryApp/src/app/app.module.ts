@@ -57,6 +57,6 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
     const enhancers = isDevMode ? [devTools.enhancer()] : [];
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, [], enhancers);
+    ngRedux.configureStore(rootReducer, INITIAL_STATE/*, [], enhancers*/);
   }
 }

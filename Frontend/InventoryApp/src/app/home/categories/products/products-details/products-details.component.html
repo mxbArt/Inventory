@@ -25,8 +25,8 @@
   <!-- Add / Remove btns -->
   <div class="row">
     <div class="col-12 text-center">
-      <button md-raised-button color="primary" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; action = 'add'">Добавить</button>
-      <button md-raised-button color="warn" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; action = 'remove'">Удалить</button>
+      <button md-raised-button color="primary" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; sign = 1">Добавить</button>
+      <button md-raised-button color="warn" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; sign = -1">Удалить</button>
     </div>
   </div>
   <!-- // Add / Remove btns -->

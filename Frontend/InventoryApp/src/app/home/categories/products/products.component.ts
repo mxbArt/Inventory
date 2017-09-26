@@ -21,22 +21,13 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     // redux state subscription
     this.ngRedux.subscribe(() => {
-      console.log('products component: redux state changed');
-      console.log(this.ngRedux.getState());
-
       this._loadProducts();
     });
 
     // route params subscription
     this.route.params.subscribe(
       (params: Params) => {
-        console.log('products component: route changed');
         this.currentCategoryId = params['categoryId'];
-        console.log(`currect category: ${this.currentCategoryId}`);
-
-        console.log('redux state:');
-        console.log(this.ngRedux.getState());
-
         this._loadProducts();
       }
     );

@@ -7,7 +7,8 @@ import { ICategory } from '../../../../core/models/ICategory.model';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../../../../core/redux/store';
 import { FormControl, Validators } from '@angular/forms';
-import { WaybillService } from '../../waybill/waybill.service';
+import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
+import { ReduxActions } from '../../../../core/redux/ReduxActions';
 
 @Component({
   selector: 'app-products-details',
@@ -30,10 +31,9 @@ export class ProductsDetailsComponent implements OnInit {
 
   amountControl: FormControl;
   editMode = false;
-  action = '';
+  sign = 1;
 
-  constructor(private route: ActivatedRoute, private waybillService: WaybillService,
-    private ngRedux: NgRedux<IAppState>) { }
+  constructor(private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
     // redux state subscription
@@ -59,24 +59,15 @@ export class ProductsDetailsComponent implements OnInit {
   }
 
   submit() {
-    this.editMode = false;
-    if (this.action === 'add') {
-      this.waybillService.addItem({
-        categoryId: this.category._id,
-        // categoryName: this.category.name,
-        productId: this.product._id,
-        productName: this.product.name,
-        count: this.amountControl.value
-      });
-    } else {
-      this.waybillService.addItem({
-        categoryId: this.category._id,
-        // categoryName: this.category.name,
-        productId: this.product._id,
-        productName: this.product.name,
-        count: -this.amountControl.value
-      });
-    }
+    let waybillItem: IWaybillItem = {
+      categoryId: this.category._id,
+      productId: this.product._id,
+      productName: this.product.name,
+      count: +this.amountControl.value * this.sign
+    };
+
+    this.ngRedux.dispatch({ type: ReduxActions.WAYBILL_ADD_ITEM, item: waybillItem });
+    this.reset();
   }
 
   reset() {
