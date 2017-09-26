@@ -11,6 +11,9 @@ import { StatisticsComponent } from './home/statistics/statistics.component';
 import { ProductsComponent } from './home/categories/products/products.component';
 import { CategoriesHomeComponent } from './home/categories/categories-home/categories-home.component';
 import { ProductsDetailsComponent } from './home/categories/products/products-details/products-details.component';
+import { ManagementComponent } from './home/management/management.component';
+import { ManageCategoriesComponent } from './home/management/manage-categories/manage-categories.component';
+import { ManageProductsComponent } from './home/management/manage-products/manage-products.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,11 @@ const routes: Routes = [
             { path: ':categoryId/products/:productId', component: ProductsDetailsComponent },
           ] },
           { path: 'statictics', component: StatisticsComponent },
+          { path: 'management', component: ManagementComponent, children: [
+            { path: '', redirectTo: 'categories', pathMatch: 'full' },
+            { path: 'categories', component: ManageCategoriesComponent },
+            { path: 'products', component: ManageProductsComponent }
+          ] }
         ]
       },
       { path: 'about', component: AboutComponent },

@@ -16,7 +16,9 @@ import {
   MdPaginatorModule,
   MdSortModule,
   MdDatepickerModule,
-  MdNativeDateModule
+  MdNativeDateModule,
+  MdExpansionModule,
+  MdListModule
 } from '@angular/material';
 // Custom datepicker
 import { MyDateRangePickerModule } from 'mydaterangepicker';
@@ -26,6 +28,9 @@ import { StatisticsService } from './statistics/statistics.service';
 import { HomeComponent } from './home.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { HeaderComponent } from '../shared/header/header.component';
+import { ManagementComponent } from './management/management.component';
+import { ManageCategoriesComponent } from './management/manage-categories/manage-categories.component';
+import { ManageProductsComponent } from './management/manage-products/manage-products.component';
 
 @NgModule({
   imports: [
@@ -47,11 +52,16 @@ import { HeaderComponent } from '../shared/header/header.component';
     MdTableModule,
     MdPaginatorModule,
     MdSortModule,
-    MdDatepickerModule
+    MdDatepickerModule,
+    MdExpansionModule,
+    MdListModule
   ],
   declarations: [
     HomeComponent,
     StatisticsComponent,
+    ManagementComponent,
+    ManageCategoriesComponent,
+    ManageProductsComponent,
   ],
   providers: [
     StatisticsService
