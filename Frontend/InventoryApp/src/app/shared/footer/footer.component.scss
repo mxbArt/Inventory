@@ -3,24 +3,19 @@ footer {
   bottom: 0;
   width: 100%;
 
-  height: 4.5rem;
-  background-color: #272C33;
+  height: 2rem;
+  background-color: black;
   color: #ffffff;
-
   table {
     vertical-align: middle;
     height: 100%;
     width: 100%;
   }
-
-  h5 {
-    font-weight: 300;
+  p {
+    //font-weight: 300;
     margin-bottom: 0;
-    strong {
-      font-weight: 600;
-    }
+    text-transform: uppercase;
   }
-
   .left-col {
     padding-left: 1rem;
     width: 70%;

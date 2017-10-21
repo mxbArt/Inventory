@@ -19,8 +19,6 @@ import { ILogItem } from '../../core/models/ILogItem';
 // Custom date picker
 import { IMyDrpOptions, IMyDateRangeModel } from 'mydaterangepicker';
 
-import fakeLogs from '../../fake-data/fake-logs-data';
-
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
