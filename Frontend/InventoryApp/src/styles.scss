@@ -27,15 +27,13 @@ html {
 }
 
 body {
-  background-color: $custom_black;//#F3F3F4;
+  background-color: $custom_black;
   position: relative;
   min-height: 100%;
 }
 
 .component-header {
-  //padding-left: 1.3rem;
   padding-bottom: 1rem;
-  //border-bottom: 1px solid;
   font-weight: $font-weight;
 }
 

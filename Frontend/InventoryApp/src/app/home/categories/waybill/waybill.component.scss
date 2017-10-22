@@ -4,7 +4,7 @@ $font_size: 1rem;
 $font_color: #fff;
 
 .wrapper{
-  background-color: $custom_light_gray; //#3a3a3a; //#233237;//white;
+  background-color: $custom_light_gray;
   padding: 1rem;
   min-height: 100%;
   tr, .component-header {
@@ -39,11 +39,11 @@ $font_color: #fff;
   .item-delete {
     display: table-cell;
     vertical-align: middle;
-    color: $custom_red; //red;
+    color: $custom_red;
     -webkit-transition: all 0.4s;
   }
   .item-delete:hover {
-    color: #fff;//black;
+    color: #fff;
     cursor: pointer;
   }
   .font-default {
