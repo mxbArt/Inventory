@@ -13,14 +13,21 @@
 @import "~font-awesome/css/font-awesome.min.css";
 
 $custom_black: #171717;
+$custom_gray: #1E1E1E;
+$custom_light_gray: #232323;
+$custom_red: #984B43;
+$custom_green: #233237;
+$font-weight: 700;
+
 $main_color: #2A5297;//#3F51B5;
+
 
 html {
   height: 100%;
 }
 
 body {
-  background-color: #F3F3F4;
+  background-color: $custom_black;//#F3F3F4;
   position: relative;
   min-height: 100%;
   //background-color: rgba(241, 241, 241, 0.98);
@@ -29,7 +36,8 @@ body {
 .component-header {
   padding-left: 1.3rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid;
+  //border-bottom: 1px solid;
+  font-weight: $font-weight;
 }
 
 button:focus, md-list-item:focus {
