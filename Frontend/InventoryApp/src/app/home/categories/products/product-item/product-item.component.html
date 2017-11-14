@@ -1,5 +1,5 @@
 <div class="card text-center" [routerLink]="['/categories/' + categoryId + '/products/' + product._id]">
-  <img class="card-img-top" [src]="product.imgPath" alt="Card image cap">
+  <img [src]="product.imgPath" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{ product.name }}</h5>
   </div>

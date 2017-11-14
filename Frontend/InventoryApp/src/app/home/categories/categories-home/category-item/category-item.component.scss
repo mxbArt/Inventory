@@ -4,20 +4,23 @@
   margin: 1rem 0;
   outline: none;
   cursor: pointer;
+  border: 1px solid $custom_gray;
   border-radius: 0;
-  border-color: $gray_border;
   -webkit-transition: all 0.4s;
   img {
     height: 275px;
+    filter: brightness(90%);
   }
   .card-title {
     font-weight: $font_weight;
     text-transform: uppercase;
-      margin-bottom: 0;
+    margin-bottom: 0;
   }
 }
 .card:hover {
-  margin: 0.5rem -0.5rem;
+  color: $gold;
+  border: 1px solid $gray_border;
+  background: $custom_black;
 }
 @media (max-width: 1920px) {
   .card {

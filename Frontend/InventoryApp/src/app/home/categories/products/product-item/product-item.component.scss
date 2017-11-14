@@ -1,9 +1,25 @@
+@import 'src/styles.scss';
+
 .card {
   margin: 1rem 0;
   outline: none;
   cursor: pointer;
+  border: 1px solid $custom_black;
+  border-radius: 0;
+  height: fit-content;
+  -webkit-transition: all 0.4s;
   img {
-    max-height: 275px;
+    height: 275px;
+    filter: brightness(90%);
+  }
+}
+.card:hover {
+  color: $gold;
+  border: 1px solid $gray_border;
+  background: $custom_black;
+  .text-muted {
+    border-color: $gold;
+    color: $gold !important;
   }
 }
 

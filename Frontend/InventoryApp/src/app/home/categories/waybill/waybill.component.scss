@@ -4,9 +4,8 @@ $font_size: 1rem;
 $font_color: #fff;
 
 .wrapper{
-  background-color: $custom_light_gray;
   padding: 1rem;
-  min-height: 100%;
+  height: inherit;
   tr, .component-header {
     color: $font_color;
     text-transform: uppercase;

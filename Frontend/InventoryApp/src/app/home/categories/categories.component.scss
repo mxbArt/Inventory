@@ -1,11 +1,13 @@
 @import 'src/styles.scss';
 
 .wrapper {
-  overflow: auto;
-  height: 87.7vh;
-  background-color: $custom_light_gray;
+  overflow-y:  auto;
+  // height: 87%;
+  height: 100%;
 }
 
 .waybill {
   padding: 0;
+  height: 100%;
+  overflow-y: auto;
 }
