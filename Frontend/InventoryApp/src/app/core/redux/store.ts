@@ -89,7 +89,12 @@ function submitWaybill(state: IAppState, action): IAppState {
 function addItemToWaybill(state: IAppState, action): IAppState {
   let waybill = state.waybill;
   if (waybill.find(i => i.productId === action.item.productId)) {
-    waybill.find(i => i.productId === action.item.productId).count += action.item.count;
+    let itemCount = waybill.find(i => i.productId === action.item.productId).count;
+    itemCount += action.item.count;
+    // if item count == 0, remove item from waybill
+    if (itemCount === 0) {
+      waybill.splice(waybill.findIndex(i => i.productId === action.item.productId), 1);
+    }
   } else {
     waybill.push(action.item);
   }
