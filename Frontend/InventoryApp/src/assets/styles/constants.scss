@@ -1,0 +1,15 @@
+// This file contains all css parameters, that are used in different parts of the app.
+@import "palette.scss";
+
+// colors
+$light_black: map-get($map: $light_black_palette, $key: 500);
+$black: map-get($map: $black_palette, $key: 500);
+$dark_gray: map-get($map: $black_palette, $key: 400);
+$red: map-get($map: $red_palette, $key: 500);
+$dark_green: map-get($map: $green_palette, $key: 500);
+$gold: map-get($map: $gold_palette, $key: 500);
+$dark_gold: map-get($map: $gold_palette, $key: 700);
+$dark_blue: map-get($map: $blue_palette, $key: 500);
+
+// font
+$font-weight: 700;

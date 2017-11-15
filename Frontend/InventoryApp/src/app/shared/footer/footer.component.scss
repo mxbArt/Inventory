@@ -1,6 +1,6 @@
-@import 'src/styles.scss';
+@import "src/assets/styles/constants.scss";
 
-$footer_text_color: #fff;
+$text_color: #fff;
 
 footer {
   position: absolute;
@@ -8,9 +8,9 @@ footer {
   width: 100%;
 
   height: 2rem;
-  background-color: $custom_black;
-  color: $footer_text_color;
-  border-top: 1px solid $gray_border;
+  background-color: $black;
+  color: $text_color;
+  border-top: 1px solid $dark_gray;
   table {
     vertical-align: middle;
     height: 100%;

@@ -1,10 +1,10 @@
-@import 'src/styles.scss';
+@import "src/assets/styles/constants.scss";
 
 .card {
   margin: 1rem 0;
   outline: none;
   cursor: pointer;
-  border: 1px solid $custom_black;
+  border: 1px solid $black;
   border-radius: 0;
   height: fit-content;
   -webkit-transition: all 0.4s;
@@ -15,11 +15,11 @@
 }
 .card:hover {
   color: $gold;
-  border: 1px solid $gray_border;
-  background: $custom_black;
+  border: 1px solid $dark_gray;
+  background: $black;
   .text-muted {
-    border-color: $gold;
-    color: $gold !important;
+    border-color: $dark_gold;
+    color: $dark_gold !important;
   }
 }
 

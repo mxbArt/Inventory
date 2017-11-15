@@ -1,12 +1,12 @@
-@import 'src/styles.scss';
+@import "src/assets/styles/constants.scss";
 
 .container-fluid {
-  min-height: 100vh;
+  min-height: 100%; // 100vh
 }
 
 .background-image {
   width: 70%;
-  min-height: 100vh;
+  min-height: 100%; // 100vh
   background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5) ), url("../../assets/images/auth-background-img.jpg");
   background-size: cover;
   background-position: center;
@@ -59,7 +59,7 @@
   }
 
   a {
-    color: $main_color;
+    color: $dark_gold;
   }
 }
 

@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import "src/assets/styles/constants.scss";
 
 $background_color: white;
 
@@ -16,7 +16,7 @@ nav {
     font-size: 1.5rem;
   }
   .nav-item {
-    font-weight: $font-weight;
+    font-weight: $font_weight;
     font-size: 1rem;
     text-transform: uppercase;
   }
@@ -26,7 +26,7 @@ nav {
     -webkit-transition: all 0.4s;
   }
   .nav-link:hover {
-    color: $gold;
-    border-color: $gold;
+    color: $dark_gold;
+    border-color: $dark_gold;
   }
 }

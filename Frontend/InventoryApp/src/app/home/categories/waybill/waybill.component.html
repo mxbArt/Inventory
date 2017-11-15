@@ -20,7 +20,7 @@
   <!-- // Waybill -->
   <div class="col-10 justify-content-end ml-auto">
     <div class="row justify-content-end">
-      <button md-raised-button color="primary" class="waybill-btn" [disabled]="(waybillLength | async) === 0" (click)="submitWaybill()">Подтвердить</button>
+      <button md-raised-button color="accent" class="waybill-btn" [disabled]="(waybillLength | async) === 0" (click)="submitWaybill()">Подтвердить</button>
       <button md-raised-button color="warn" class="waybill-btn" [disabled]="(waybillLength | async) === 0" (click)="clearWaybils()">Отменить</button>
     </div>
   </div>

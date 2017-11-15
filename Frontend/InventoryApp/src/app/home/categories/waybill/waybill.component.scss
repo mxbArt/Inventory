@@ -1,6 +1,5 @@
-@import 'src/styles.scss';
+@import "src/assets/styles/constants.scss";
 
-$font_size: 1rem;
 $font_color: #fff;
 
 .wrapper{
@@ -11,11 +10,11 @@ $font_color: #fff;
     text-transform: uppercase;
   }
   th {
-    color: black;
+    color: $black;
     font-weight: $font_weight;
   }
   .table-thead-default {
-    background-color: #fff;
+    background-color: $font_color;
   }
   .table-action{
     width: 5%;
@@ -23,36 +22,37 @@ $font_color: #fff;
   .table-count{
     width: 20%;
     text-align: center;
-    font-weight: $font-weight;
+    font-weight: $font_weight;
   }
   tbody {
     tr:hover {
-      background-color: $custom_black;
+      background-color: $black;
       -webkit-transition: all 0.4s;
     }
   }
   .waybill-btn {
-    margin: 0.5rem 1rem 0 0;
-    font-size: $font-size;
+    color: $font_color;
+    outline: none;
+    margin: 0.5rem 0 0 1rem;
   }
   .item-delete {
     display: table-cell;
     vertical-align: middle;
-    color: $custom_red;
+    color: $red;
     -webkit-transition: all 0.4s;
   }
   .item-delete:hover {
-    color: #fff;
+    color: $font_color;
     cursor: pointer;
   }
   .font-default {
     color: $font_color;
   }
   .font-green {
-    color: $custom_green;
+    color: $dark_green;
   }
   .font-red {
-    color: $custom_red;
+    color: $red;
   }
 }
 
