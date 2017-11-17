@@ -21,7 +21,8 @@ export class ProductsDetailsComponent implements OnInit {
     name: '',
     count: 0,
     lastUpdate: null,
-    imgPath: ''
+    imgPath: '',
+    description: ''
   };
   category: ICategory = {
     _id: '',
@@ -46,7 +47,6 @@ export class ProductsDetailsComponent implements OnInit {
         this._loadProduct(params);
       }
     );
-
     this.amountControl = new FormControl('', [Validators.required, Validators.min(1)]);
   }
 

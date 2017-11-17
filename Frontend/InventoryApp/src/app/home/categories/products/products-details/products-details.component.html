@@ -1,54 +1,74 @@
-<div class="container wrapper">
+<div class="wrapper">
+  <div class="row">
+    <div class="col-md-8">
+      <h3>{{ product.name }}</h3>
+    </div>
+    <div class="col-md-4">
+        <i [routerLink]="['../../']" class="fa fa-times fa-2x close"></i>
+    </div>
+  </div>
   <div class="row">
     <!-- // Product image -->
     <div class="col-lg-5 product-image">
-      <img [src]="product.imgPath" alt="product-img">
+      <img class="product-img" [src]="product.imgPath" alt="product-img">
+      <!-- Add / Remove btns -->
+      <div class="col-12 text-center count-btns">
+        <button md-raised-button color="primary" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; sign = 1">Добавить</button>
+        <button md-raised-button color="warn" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; sign = -1">Удалить</button>
+      </div>
+      <!-- // Add / Remove btns -->
+      <!-- Add / Remove form -->
+      <div *ngIf="editMode" class="text-center edit-form">
+          <md-input-container>
+            <input mdInput type="number" placeholder="Количество товара" [formControl]="amountControl" #amCtrl>
+            <md-error *ngIf="amountControl.hasError('min')">
+              Значение, должно быть больше 0!
+            </md-error>
+            <md-error *ngIf="amountControl.hasError('required')">
+              Значение обязательно!
+            </md-error>
+          </md-input-container>
+          <div>
+            <button md-icon-button [disabled]="!amountControl.valid" (click)="submit()">
+              <i class="fa fa-check-circle-o fa-3x"></i>
+            </button>
+            <button md-icon-button color="warn" (click)="reset()">
+              <i class="fa fa-times-circle-o fa-3x"></i>
+            </button>
+          </div>
+      </div>
+      <!-- // Add / Remove form -->
     </div>
     <!-- // Product image -->
-    <div class="col-lg-7">
-      <h1>{{ product.name }}</h1>
-      <i [routerLink]="['../../']" class="fa fa-long-arrow-left fa-3x close"></i>
-      <div class="product-description">
-        <p>{{ product.description }}</p>
+    <div class="col-lg-7 product-info">
+      <h4>Информация</h4>
+      <ul>
+        <li>
+          <i class="fa fa-tags fa-fw"></i> Категория: {{ category.name }}</li>
+        <li>
+          <i class="fa fa-balance-scale fa-fw"></i> Единицы измерения: {{ product.measurement }}</li>
+        <li>
+          <i class="fa fa-cubes fa-fw"></i> Количество на складе: {{ product.count }}</li>
+        <li>
+          <i class="fa fa-calendar fa-fw"></i> Последнее обновление: {{ product.lastUpdate | date: 'shortDate' }} </li>
+      </ul>
+      <!-- For test purposes -->
+      <div *ngIf="product.description == ''">
+        <h4>Описание</h4>
+        <p>{{ product.description }} Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+          totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+          Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
+          adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+          Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
+          consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur,
+          vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+        </p>
       </div>
       <!-- Product info -->
-      <h3>Информация</h3>
-      <ul class="product-info">
-        <li><i class="fa fa-tags"></i> Категория: {{ category.name }}</li>
-        <li><i class="fa fa-balance-scale"></i> Единицы измерения: {{ product.measurement }}</li>
-        <li><i class="fa fa-cubes"></i> Количество на складе: {{ product.count }}</li>
-        <li><i class="fa fa-calendar"></i> Последнее обновление: {{ product.lastUpdate | date: 'shortDate' }} </li>
-      </ul>
+
       <!-- // Product info -->
     </div>
   </div>
-  <!-- Add / Remove btns -->
-  <div class="row">
-    <div class="col-12 text-center">
-      <button md-raised-button color="primary" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; sign = 1">Добавить</button>
-      <button md-raised-button color="warn" type="button" class="big-btn" [disabled]="editMode" (click)="editMode = true; sign = -1">Удалить</button>
-    </div>
-  </div>
-  <!-- // Add / Remove btns -->
-  <!-- Add / Remove form -->
-  <div class="row" *ngIf="editMode">
-    <div class="col-12 text-center">
-      <md-input-container>
-        <input mdInput type="number" placeholder="Количество товара" [formControl]="amountControl" #amCtrl>
-        <md-error *ngIf="amountControl.hasError('min')">
-          Значение, должно быть больше 0!
-        </md-error>
-        <md-error *ngIf="amountControl.hasError('required')">
-          Значение обязательно!
-        </md-error>
-      </md-input-container>
-      <button md-icon-button [disabled]="!amountControl.valid" (click)="submit()">
-          <i class="fa fa-check-circle-o fa-3x"></i>
-      </button>
-      <button md-icon-button (click)="reset()">
-          <i class="fa fa-times-circle-o fa-3x"></i>
-      </button>
-    </div>
-  </div>
-  <!-- // Add / Remove form -->
+
 </div>
