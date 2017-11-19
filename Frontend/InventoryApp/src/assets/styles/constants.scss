@@ -13,3 +13,11 @@ $dark_blue: map-get($map: $blue_palette, $key: 500);
 
 // font
 $font-weight: 700;
+
+// mixins
+@mixin subheader($color) {
+  font-size: 1.25rem;
+  padding-bottom: .5rem;
+  color: $color;
+  text-transform: uppercase;
+}

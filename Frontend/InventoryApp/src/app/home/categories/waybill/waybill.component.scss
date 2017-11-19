@@ -5,7 +5,10 @@ $font_color: #fff;
 .wrapper{
   padding: 1rem;
   height: inherit;
-  tr, .component-header {
+  .waybill-subheader {
+    @include subheader($font_color);
+  }
+  tr{
     color: $font_color;
     text-transform: uppercase;
   }

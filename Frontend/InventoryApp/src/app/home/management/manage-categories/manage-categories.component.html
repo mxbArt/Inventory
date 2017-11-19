@@ -1,3 +1,19 @@
-<p>
-  manage-categories works!
-</p>
+<div class="management-work-area">
+  <h5>Управление категориями</h5>
+  <table class="table">
+      <thead class="table-thead-default">
+        <tr>
+          <th>#</th>
+          <th>Продукт</th>
+          <th class="table-count">Количество</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of waybill | async">
+          <th scope="row" (click)="deleteItem(item)" class="item-delete table-action"><i class="fa fa-minus "></i></th>
+          <td class="table-product">{{ item.productName }}</td>
+          <td class="table-count" [ngClass]="item.count > 0 ? 'font-default' : 'font-red'">{{ item.count }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>

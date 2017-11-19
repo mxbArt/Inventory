@@ -9,10 +9,9 @@ $font_color: #fff;
 
 .wrapper {
   padding: 1rem;
+  border-top: 3px solid $black;
   .management-category {
-    padding-bottom: .5rem;
-    color: $font_color;
-    text-transform: uppercase;
+    @include subheader($font_color);
   }
   ul {
     list-style: none;

@@ -1,0 +1,36 @@
+@import "src/assets/styles/constants.scss";
+
+.management-work-area {
+  height: 100%;
+  background-color: #fff;
+  border-top: 3px solid $black;
+  padding: 1rem;
+  h5 {
+    @include subheader($black);
+  }
+  tr{
+    color: $black;
+    text-transform: uppercase;
+  }
+  th {
+    color: #fff;
+    font-weight: $font_weight;
+  }
+  .table-thead-default {
+    background-color: $black;
+  }
+  .table-action{
+    width: 5%;
+  }
+  .table-count{
+    width: 20%;
+    text-align: center;
+    font-weight: $font_weight;
+  }
+  tbody {
+    tr:hover {
+      background-color: $black;
+      -webkit-transition: all 0.4s;
+    }
+  }
+}
