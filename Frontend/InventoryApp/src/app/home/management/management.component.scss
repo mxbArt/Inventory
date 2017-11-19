@@ -1,7 +1,37 @@
-md-list-item:hover{
-  background-color: rgba(0, 0, 0, 0.15);
-  cursor: pointer;
+@import "src/assets/styles/constants.scss";
+
+@mixin li-active-hover() {
+  background-color: $gold;
+  color: $black;
+  border: none;
+}
+$font_color: #fff;
+
+.wrapper {
+  padding: 1rem;
+  .management-category {
+    padding-bottom: .5rem;
+    color: $font_color;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    text-transform: uppercase;
+    font-size: 1rem;
+    color: $font_color;
+    padding-left: .5rem;
+    .management-category-item {
+      padding: .25rem 0.5rem;
+      transition: all 0.4s;
+      -webkit-transition: all 0.4s;
+      cursor: pointer;
+    }
+    .management-category-item:hover{
+      @include li-active-hover();
+    }
+  }
 }
 .active {
-  background-color: rgba(0, 0, 0, 0.15);
+  @include li-active-hover();
 }
+

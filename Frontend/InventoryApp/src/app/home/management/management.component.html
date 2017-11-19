@@ -1,24 +1,17 @@
 <div class="row">
-  <div class="col-md-3">
-    <md-accordion class="example-headers-align">
-      <md-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
-        <md-expansion-panel-header>
-          <md-panel-title>
-            Справочники
-          </md-panel-title>
-        </md-expansion-panel-header>
-
-
-        <md-list>
-          <md-list-item routerLink="/management/categories" routerLinkActive="active">Категории</md-list-item>
-          <md-list-item routerLink="/management/products" routerLinkActive="active">Продукты</md-list-item>
-        </md-list>
-      </md-expansion-panel>
-
-    </md-accordion>
+  <div class="col-md-2 wrapper">
+    <h5 class="management-category">Справочники</h5>
+    <ul>
+      <li class="management-category-item"
+          routerLink="/management/categories"
+          routerLinkActive="active">Категории</li>
+      <li class="management-category-item"
+          routerLink="/management/products"
+          routerLinkActive="active">Товары</li>
+    </ul>
   </div>
 
-  <div class="col-md-9">
+  <div class="col-md-10">
     <router-outlet></router-outlet>
   </div>
 </div>
