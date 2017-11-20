@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace InventoryApp
+namespace InventoryApp.WebApi
 {
     public static class WebApiConfig
     {
