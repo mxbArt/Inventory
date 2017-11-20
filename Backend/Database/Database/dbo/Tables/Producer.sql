@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[Producer]
-(
-	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT newid(), 
-    [Name] NVARCHAR(100) NOT NULL
-)
