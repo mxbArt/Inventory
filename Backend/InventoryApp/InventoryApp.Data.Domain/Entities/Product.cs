@@ -2,7 +2,7 @@
 
 namespace InventoryApp.Data.Domain.Entities
 {
-    public class Product
+    public partial class Product
     {
         public Guid Id { get; set; }
         public Guid CategoryId { get; set; }
@@ -12,5 +12,7 @@ namespace InventoryApp.Data.Domain.Entities
         public string Description { get; set; }
         public string Measurment { get; set; }
         public string ImgPath { get; set; }
+
+        public Category Category { get; set; }
     }
 }

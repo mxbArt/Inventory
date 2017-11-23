@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.WebApi", "Inve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.Data.Domain", "InventoryApp.Data.Domain\InventoryApp.Data.Domain.csproj", "{001B231B-FA3D-483F-A0B3-895A299B3CFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryApp.Data.Logic", "InventoryApp.Data.Logic\InventoryApp.Data.Logic.csproj", "{039091A3-F369-4DD2-8831-D3D679120592}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{001B231B-FA3D-483F-A0B3-895A299B3CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{001B231B-FA3D-483F-A0B3-895A299B3CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{001B231B-FA3D-483F-A0B3-895A299B3CFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{039091A3-F369-4DD2-8831-D3D679120592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{039091A3-F369-4DD2-8831-D3D679120592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{039091A3-F369-4DD2-8831-D3D679120592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{039091A3-F369-4DD2-8831-D3D679120592}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{42611B38-2130-4B39-8BFC-289708D114DB} = {6DD9A1E6-2929-4025-9085-F1A84D7CC322}
 		{2B3FBDF3-0C49-4941-9C12-3799BABE91C4} = {38F9F604-80B2-4196-B9CC-ABDB5C4A3020}
 		{001B231B-FA3D-483F-A0B3-895A299B3CFB} = {265DAE53-8F8B-42C7-A842-9C84B4BB2769}
+		{039091A3-F369-4DD2-8831-D3D679120592} = {265DAE53-8F8B-42C7-A842-9C84B4BB2769}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E3B69878-4F55-45BF-8786-D45A0765B9C2}
