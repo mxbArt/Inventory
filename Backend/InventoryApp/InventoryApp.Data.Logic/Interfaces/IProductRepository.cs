@@ -8,8 +8,6 @@ namespace InventoryApp.Data.Logic.Interfaces
     {
         IEnumerable<Product> GetAll();
 
-        IEnumerable<Product> GetByCategory(Guid categoryId);
-        
         Product GetById(Guid id);
 
         void Insert(Product newProduct);

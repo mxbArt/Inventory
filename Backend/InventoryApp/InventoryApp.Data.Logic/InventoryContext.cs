@@ -10,6 +10,7 @@ namespace InventoryApp.Data.Logic
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
 
+        // todo: move connection string to the app configuration.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

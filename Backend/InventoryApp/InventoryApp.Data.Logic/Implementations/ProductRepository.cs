@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using InventoryApp.Data.Domain.Entities;
 using InventoryApp.Data.Logic.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryApp.Data.Logic.Implementations
 {
     public class ProductRepository : IProductRepository
     {
+        private DbSet<Product> _products;
+
+        public ProductRepository()
+        {
+            _products = (new InventoryContext()).Product;
+        }
+
         public IEnumerable<Product> GetAll()
         {
-            throw new NotImplementedException();
+            return _products.ToList();
         }
-
-        public IEnumerable<Product> GetByCategory(Guid categoryId)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public Product GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _products.Find(id);
         }
 
         public void Insert(Product newProduct)
         {
-            throw new NotImplementedException();
+            _products.Add(newProduct);
         }
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            _products.Remove(GetById(id));
         }
 
+        // todo: test method.
         public void Update(Product updatedProduct)
         {
-            throw new NotImplementedException();
+            _products.Update(updatedProduct);
         }
     }
 }
