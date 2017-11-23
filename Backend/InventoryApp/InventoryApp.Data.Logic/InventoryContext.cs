@@ -46,7 +46,7 @@ namespace InventoryApp.Data.Logic
                     .HasMaxLength(100);
 
                 entity.HasOne(d => d.Category)
-                    .WithMany(p => p.Product)
+                    .WithMany(p => p.Products)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Product_ToCategory");

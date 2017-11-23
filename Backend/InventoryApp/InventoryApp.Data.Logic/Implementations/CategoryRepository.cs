@@ -10,12 +10,12 @@ namespace InventoryApp.Data.Logic.Implementations
     public class CategoryRepository : ICategoryRepository
     {
         //private InventoryContext _context;
-        private DbSet<Category> _categories;
+        private readonly DbSet<Category> _categories;
 
         public CategoryRepository()
         {
             //_context = new InventoryContext();
-            _categories = (new InventoryContext()).Category;
+            _categories = (new InventoryContext()).Category; //dbContext.Set<Category>();
         }
 
         public IEnumerable<Category> GetAll()
@@ -25,7 +25,9 @@ namespace InventoryApp.Data.Logic.Implementations
 
         public Category GetById(Guid id)
         {
-            return _categories.Find(id); 
+            return _categories
+                .Include("Products")
+                .Single(c => c.Id == id);
         }
 
         public void Insert(Category newCategory)

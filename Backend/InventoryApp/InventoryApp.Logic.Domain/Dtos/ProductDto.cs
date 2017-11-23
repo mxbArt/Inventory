@@ -12,6 +12,6 @@ namespace InventoryApp.Logic.Domain.Dtos
         public string Measurment { get; set; }
         public string ImgPath { get; set; }
 
-        public CategoryDto Category { get; set; }
+        public Guid CategoryId { get; set; }
     }
 }
