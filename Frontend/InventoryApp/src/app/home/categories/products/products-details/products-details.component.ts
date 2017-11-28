@@ -17,7 +17,7 @@ import { ReduxActions } from '../../../../core/redux/ReduxActions';
 })
 export class ProductsDetailsComponent implements OnInit {
   product: IProduct = {
-    _id: '',
+    id: '',
     name: '',
     count: 0,
     lastUpdate: null,
@@ -25,7 +25,7 @@ export class ProductsDetailsComponent implements OnInit {
     description: ''
   };
   category: ICategory = {
-    _id: '',
+    id: '',
     name: '',
     products: []
   };
@@ -53,15 +53,15 @@ export class ProductsDetailsComponent implements OnInit {
   private _loadProduct(params: Params) {
     const state: IAppState = this.ngRedux.getState();
     if (state.categories.length !== 0) {
-      this.category = state.categories.find(c => c._id === params['categoryId']);
-      this.product = this.category.products.find(p => p._id === params['productId']);
+      this.category = state.categories.find(c => c.id === params['categoryId']);
+      this.product = this.category.products.find(p => p.id === params['productId']);
     }
   }
 
   submit() {
     let waybillItem: IWaybillItem = {
-      categoryId: this.category._id,
-      productId: this.product._id,
+      categoryId: this.category.id,
+      productId: this.product.id,
       productName: this.product.name,
       count: +this.amountControl.value * this.sign
     };

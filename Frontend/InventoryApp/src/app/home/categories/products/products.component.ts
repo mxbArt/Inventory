@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
   private _loadProducts() {
       const state: IAppState = this.ngRedux.getState();
       if (state.categories.length !== 0) {
-        this.products = this.ngRedux.getState().categories.find(c => c._id === this.currentCategoryId).products;
+        this.products = this.ngRedux.getState().categories.find(c => c.id === this.currentCategoryId).products;
       }
   }
 }

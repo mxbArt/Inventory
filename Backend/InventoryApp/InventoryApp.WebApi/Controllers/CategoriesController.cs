@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace InventoryApp.WebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("api/categories")]
+    [Route("categories")]
     public class CategoriesController : Controller
     {
         private readonly ICategoryFacade _categoryFacade;

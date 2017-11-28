@@ -18,7 +18,9 @@ namespace InventoryApp.Data.Logic.Implementations
 
         public IEnumerable<Category> GetAll()
         {
-            return _categories.ToList();
+            return _categories
+                .Include("Products")
+                .ToList();
         }
 
         public Category GetById(Guid id)

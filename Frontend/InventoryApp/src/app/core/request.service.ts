@@ -13,7 +13,8 @@ import { ReduxActions } from './redux/ReduxActions';
 @Injectable()
 export class RequestService {
   private readonly options: RequestOptions;
-  private readonly serverUrl: string = 'http://app-stocktaking.a3c1.starter-us-west-1.openshiftapps.com/';
+  private readonly serverUrl: string = 'http://localhost:56140/';
+  // 'http://app-stocktaking.a3c1.starter-us-west-1.openshiftapps.com/';
 
   constructor(private http: Http, private ngRedux: NgRedux<IAppState>) {
     // headers

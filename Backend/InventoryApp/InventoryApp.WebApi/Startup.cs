@@ -49,7 +49,17 @@ namespace InventoryApp.WebApi
             services.AddScoped<IProductRepository, ProductRepository>();
             // Unit of work
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            
+
+            // Add service and create Policy with options
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials());
+            });
+
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -68,6 +78,9 @@ namespace InventoryApp.WebApi
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger();
+
+            // Cors
+            app.UseCors("AllowSpecificOrigin");
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>

@@ -76,8 +76,8 @@ function removeItemFromWaybill(state: IAppState, action): IAppState {
 function submitWaybill(state: IAppState, action): IAppState {
   let categories = state.categories;
   state.waybill.forEach((i) => {
-    categories.find(c => c._id === i.categoryId)
-      .products.find(p => p._id === i.productId)
+    categories.find(c => c.id === i.categoryId)
+      .products.find(p => p.id === i.productId)
         .count += i.count;
   });
   return tassign(state, {
