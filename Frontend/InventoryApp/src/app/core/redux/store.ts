@@ -13,20 +13,20 @@ export const INITIAL_STATE: IAppState = {
   categories: [],
   waybill: [
     {
-      categoryId: '59c15d69c6533c00189df70d',
-      productId: '59c15d69c6533c00189df6e9',
+      categoryId: '29598317-3d6f-4417-b63b-4bf86097e48e',
+      productId: '3d762cc5-e4fc-47db-b01a-d5fa48cdd64c',
       productName: 'Апельсин',
       count: 40
     },
     {
-      categoryId: '59c15d69c6533c00189df70d',
-      productId: '59c15d69c6533c00189df6ea',
+      categoryId: '29598317-3d6f-4417-b63b-4bf86097e48e',
+      productId: 'c9a990d7-c2ce-452b-b87e-10f988fe2e04',
       productName: 'Виноград',
       count: -10
     },
     {
-      categoryId: '59c15d69c6533c00189df70d',
-      productId: '59c15d69c6533c00189df6eb',
+      categoryId: '29598317-3d6f-4417-b63b-4bf86097e48e',
+      productId: '53715fea-7a10-41e5-94cf-fdaecfcf661c',
       productName: 'Мандарин',
       count: 10
     },
@@ -87,17 +87,22 @@ function submitWaybill(state: IAppState, action): IAppState {
 }
 
 function addItemToWaybill(state: IAppState, action): IAppState {
+  console.log(action.item);
   let waybill = state.waybill;
   if (waybill.find(i => i.productId === action.item.productId)) {
-    let itemCount = waybill.find(i => i.productId === action.item.productId).count;
+    let currentItem = waybill.find(i => i.productId === action.item.productId);
+    let itemCount = currentItem.count;
     itemCount += action.item.count;
     // if item count == 0, remove item from waybill
     if (itemCount === 0) {
       waybill.splice(waybill.findIndex(i => i.productId === action.item.productId), 1);
+    } else {
+      currentItem.count = itemCount;
     }
   } else {
     waybill.push(action.item);
   }
+  console.log(waybill);
   return tassign(state, {
     waybill: waybill
   });
