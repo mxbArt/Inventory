@@ -10,15 +10,11 @@ namespace InventoryApp.Data.Logic
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<User> User { get; set; }
 
-        // todo: move connection string to the app configuration.
+        public InventoryContext(DbContextOptions<InventoryContext> options) : base(options)
+        { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-FRJO5C9\MSSQLSERVER2016;Database=Inventory;Trusted_Connection=True;");
-            }
-        }
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

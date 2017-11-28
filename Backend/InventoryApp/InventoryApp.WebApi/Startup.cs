@@ -17,6 +17,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using InventoryApp.Logic.Core.Configuration;
 using InventoryApp.Logic.Core.Facades;
 using InventoryApp.Logic.Core.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryApp.WebApi
 {
@@ -33,9 +34,9 @@ namespace InventoryApp.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            // todo: implement ef context via di. 
-            // todo: move db connection to configuration file.
-            //services.AddDbContext<InventoryContext>();
+            // DbContext dependecies
+            services.AddDbContext<InventoryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            services.AddScoped<DbContext, InventoryContext>();
 
             // AutoMapper dependency
             services.AddAutoMapper(AutoMapperConfiguration.Configure);
@@ -46,6 +47,8 @@ namespace InventoryApp.WebApi
             // Repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            // Unit of work
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>

@@ -9,11 +9,11 @@ namespace InventoryApp.Data.Logic.Implementations
 {
     public class ProductRepository : IProductRepository
     {
-        private DbSet<Product> _products;
+        private readonly DbSet<Product> _products;
 
-        public ProductRepository()
+        public ProductRepository(DbContext context)
         {
-            _products = (new InventoryContext()).Product;
+            _products = context.Set<Product>();
         }
 
         public IEnumerable<Product> GetAll()

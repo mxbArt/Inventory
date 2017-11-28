@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using InventoryApp.Logic.Core.Facades;
 using InventoryApp.Logic.Core.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApp.WebApi.Controllers
@@ -26,12 +21,13 @@ namespace InventoryApp.WebApi.Controllers
             return Ok(_categoryFacade.GetCategories());
         }
 
+
         [HttpGet("{id}")]
         public IActionResult GetProducts(Guid id)
         {
             if (id != Guid.Empty)
             {
-                var tmp = _categoryFacade.GetCategoryProducts(id);
+                var tmp = _categoryFacade.GetCategoryWithProducts(id);
                 return Ok(tmp);
             }
             return BadRequest("Wrong category id");

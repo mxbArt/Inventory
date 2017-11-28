@@ -11,23 +11,23 @@ namespace InventoryApp.Logic.Core.Facades
 {
     public class CategoryFacade : ICategoryFacade
     {
-        private readonly ICategoryRepository _categories;
+        private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
 
-        public CategoryFacade(IMapper mapper, ICategoryRepository categoryRepository)
+        public CategoryFacade(IMapper mapper, IUnitOfWork uow)
         {
             _mapper = mapper;
-            _categories = categoryRepository;
+            _uow = uow;
         }
 
         public IEnumerable<CategoryDto> GetCategories()
         {
-            return _mapper.Map<List<Category>, List<CategoryDto>>(_categories.GetAll().ToList());
+            return _mapper.Map<List<Category>, List<CategoryDto>>(_uow.CategoryRepository.GetAll().ToList());
         }
 
-        public CategoryDto GetCategoryProducts(Guid categoryId)
+        public CategoryDto GetCategoryWithProducts(Guid categoryId)
         {
-            return _mapper.Map<Category, CategoryDto>(_categories.GetById(categoryId));
+            return _mapper.Map<Category, CategoryDto>(_uow.CategoryRepository.GetById(categoryId));
         }
     }
 }

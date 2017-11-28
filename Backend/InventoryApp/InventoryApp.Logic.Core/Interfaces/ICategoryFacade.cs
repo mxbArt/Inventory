@@ -8,6 +8,6 @@ namespace InventoryApp.Logic.Core.Interfaces
     {
         IEnumerable<CategoryDto> GetCategories();
 
-        CategoryDto GetCategoryProducts(Guid categoryId);
+        CategoryDto GetCategoryWithProducts(Guid categoryId);
     }
 }

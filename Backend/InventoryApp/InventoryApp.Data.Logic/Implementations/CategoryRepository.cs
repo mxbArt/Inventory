@@ -9,13 +9,11 @@ namespace InventoryApp.Data.Logic.Implementations
 {
     public class CategoryRepository : ICategoryRepository
     {
-        //private InventoryContext _context;
         private readonly DbSet<Category> _categories;
 
-        public CategoryRepository()
+        public CategoryRepository(DbContext context)
         {
-            //_context = new InventoryContext();
-            _categories = (new InventoryContext()).Category; //dbContext.Set<Category>();
+            _categories = context.Set<Category>();
         }
 
         public IEnumerable<Category> GetAll()

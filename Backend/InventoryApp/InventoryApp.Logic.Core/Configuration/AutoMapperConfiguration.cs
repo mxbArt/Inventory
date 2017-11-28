@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using InventoryApp.Data.Domain.Entities;
 using InventoryApp.Logic.Domain.Dtos;
 
