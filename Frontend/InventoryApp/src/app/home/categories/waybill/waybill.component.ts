@@ -5,6 +5,7 @@ import { IWaybillItem } from '../../../core/models/IWaybillItem.model';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../../../core/redux/store';
 import { ReduxActions } from '../../../core/redux/ReduxActions';
+import { RequestService } from '../../../core/request.service';
 
 @Component({
   selector: 'app-waybill',
@@ -15,7 +16,7 @@ export class WaybillComponent implements OnInit {
   @select((s: IAppState) => s.waybill) waybill: IWaybillItem[];
   @select((s: IAppState) => s.waybill.length) waybillLength: number;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService) { }
 
   ngOnInit() {
   }
@@ -29,7 +30,8 @@ export class WaybillComponent implements OnInit {
   }
 
   submitWaybill() {
-    this.ngRedux.dispatch({ type: ReduxActions.WAYBILL_SUBMIT });
+    this.requestService.processWaybill();
+    // this.ngRedux.dispatch({ type: ReduxActions.WAYBILL_SUBMIT });
   }
 }
 

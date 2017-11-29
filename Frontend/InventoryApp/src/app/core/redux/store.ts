@@ -3,6 +3,7 @@ import { tassign } from 'tassign';
 // Models
 import { ICategory } from '../models/ICategory.model';
 import { IWaybillItem } from '../models/IWaybillItem.model';
+import { RequestService } from '../request.service';
 
 export interface IAppState {
   categories: ICategory[];
@@ -45,7 +46,7 @@ export function rootReducer(state: IAppState, action): IAppState {
       return clearWaybill(state, action);
     case ReduxActions.WAYBILL_REMOVE_ITEM:
       return removeItemFromWaybill(state, action);
-    case ReduxActions.WAYBILL_SUBMIT:
+    case ReduxActions.WAYBILL_SUBMITED:
       return submitWaybill(state, action);
     case ReduxActions.WAYBILL_ADD_ITEM:
       return addItemToWaybill(state, action);
@@ -74,20 +75,12 @@ function removeItemFromWaybill(state: IAppState, action): IAppState {
 }
 
 function submitWaybill(state: IAppState, action): IAppState {
-  let categories = state.categories;
-  state.waybill.forEach((i) => {
-    categories.find(c => c.id === i.categoryId)
-      .products.find(p => p.id === i.productId)
-        .count += i.count;
-  });
   return tassign(state, {
-    categories: categories,
     waybill: []
   });
 }
 
 function addItemToWaybill(state: IAppState, action): IAppState {
-  console.log(action.item);
   let waybill = state.waybill;
   if (waybill.find(i => i.productId === action.item.productId)) {
     let currentItem = waybill.find(i => i.productId === action.item.productId);
@@ -102,7 +95,6 @@ function addItemToWaybill(state: IAppState, action): IAppState {
   } else {
     waybill.push(action.item);
   }
-  console.log(waybill);
   return tassign(state, {
     waybill: waybill
   });

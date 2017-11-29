@@ -47,29 +47,39 @@ export class RequestService {
       });
   }
 
-  getCategoryList(): Observable<ICategory[]> {
-    return this.http.get(this.serverUrl + 'categories', this.options)
-      .map(
-      (response: Response) => {
-        // console output
-        console.log(response.json());
-
-        const categories: ICategory[] = response.json();
-        return categories;
-      }
-      );
-  }
-
-  createCategory(category: ICategory) {
-    const body = JSON.stringify(category);
-    return this.http.post(this.serverUrl + 'categories', body, this.options)
-      .map(
-      (response: Response) => {
-        return response.json();
+  processWaybill(): void {
+    this.http.post(this.serverUrl + 'product/processWaybill', this.ngRedux.getState().waybill, this.options)
+      .subscribe((response: Response) => {
+        this.loadCategories();
+        this.ngRedux.dispatch({
+          type: ReduxActions.WAYBILL_SUBMITED
+        });
       });
   }
 
-  deleteCategory(categoryId: string) {
-    return this.http.delete(this.serverUrl + `categories/${categoryId}`, this.options);
-  }
+  // getCategoryList(): Observable<ICategory[]> {
+  //   return this.http.get(this.serverUrl + 'categories', this.options)
+  //     .map(
+  //     (response: Response) => {
+  //       // console output
+  //       console.log(response.json());
+
+  //       const categories: ICategory[] = response.json();
+  //       return categories;
+  //     }
+  //     );
+  // }
+
+  // createCategory(category: ICategory) {
+  //   const body = JSON.stringify(category);
+  //   return this.http.post(this.serverUrl + 'categories', body, this.options)
+  //     .map(
+  //     (response: Response) => {
+  //       return response.json();
+  //     });
+  // }
+
+  // deleteCategory(categoryId: string) {
+  //   return this.http.delete(this.serverUrl + `categories/${categoryId}`, this.options);
+  // }
 }
