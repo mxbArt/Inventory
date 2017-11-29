@@ -2,6 +2,14 @@
 
 $background_color: white;
 
+@mixin menu-active() {
+  color: $dark_gold !important;
+  border-color: $dark_gold !important;
+}
+
+.active {
+  @include menu-active();
+}
 .navbar {
   padding-left: 0.3rem;
   padding-right: 1.5rem;
@@ -24,9 +32,11 @@ nav {
     color: black;
     border-bottom: 3px solid $background_color;
     -webkit-transition: all 0.4s;
+    padding: 2px 0;
+    margin: 0 8px;
   }
   .nav-link:hover {
-    color: $dark_gold;
-    border-color: $dark_gold;
+    @include menu-active();
   }
 }
+

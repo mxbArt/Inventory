@@ -20,6 +20,7 @@ namespace InventoryApp.Data.Logic.Implementations
         {
             return _categories
                 .Include("Products")
+                .OrderBy(x => x.Name)
                 .ToList();
         }
 
