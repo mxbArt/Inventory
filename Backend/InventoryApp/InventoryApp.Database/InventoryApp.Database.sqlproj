@@ -66,14 +66,17 @@
     <Build Include="dbo\Tables\Product.sql" />
     <Build Include="dbo\Tables\User.sql" />
     <Build Include="dbo\Tables\Role.sql" />
+    <Build Include="dbo\Tables\ProductLog.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\CategoryMerge.sql" />
     <None Include="Scripts\ProductMerge.sql" />
     <None Include="InventoryApp.Database.publish.xml" />
-    <None Include="AppHarbor.InventoryApp.Database.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="InventoryApp.Database.refactorlog" />
   </ItemGroup>
 </Project>

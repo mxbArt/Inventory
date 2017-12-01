@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace InventoryApp.Data.Domain.Entities
 {
     public partial class Product
     {
+        public Product()
+        {
+            ProductLog = new HashSet<ProductLog>();
+        }
+
         public Guid Id { get; set; }
         public Guid CategoryId { get; set; }
         public string Name { get; set; }
@@ -14,5 +20,6 @@ namespace InventoryApp.Data.Domain.Entities
         public string ImgPath { get; set; }
 
         public Category Category { get; set; }
+        public ICollection<ProductLog> ProductLog { get; set; }
     }
 }
