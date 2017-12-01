@@ -3,16 +3,18 @@
   <table class="table">
       <thead class="table-thead-default">
         <tr>
-          <th>#</th>
-          <th>Продукт</th>
-          <th class="table-count">Количество</th>
+          <!-- <th>ID</th> -->
+          <th class="column-name">Название</th>
+          <th class="column-img">Изображение</th>
+          <!-- <th class="table-count">Количество</th> -->
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of waybill | async">
-          <th scope="row" (click)="deleteItem(item)" class="item-delete table-action"><i class="fa fa-minus "></i></th>
-          <td class="table-product">{{ item.productName }}</td>
-          <td class="table-count" [ngClass]="item.count > 0 ? 'font-default' : 'font-red'">{{ item.count }}</td>
+        <tr *ngFor="let item of categories | async">
+          <!-- <th scope="row" class="item-delete table-action"><i class="fa fa-minus "></i></th> -->
+          <!-- <td class="column-id">{{ item.id }}</td> -->
+          <td class="column-name">{{ item.name }}</td>
+          <td class="column-img">{{ item.imgPath }}</td>
         </tr>
       </tbody>
     </table>

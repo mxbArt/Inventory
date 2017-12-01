@@ -19,18 +19,17 @@
   .table-thead-default {
     background-color: $black;
   }
-  .table-action{
-    width: 5%;
+  .column-name {
+    width: 30%;
   }
-  .table-count{
-    width: 20%;
-    text-align: center;
-    font-weight: $font_weight;
+  .column-img {
+    width: 70%;
   }
-  tbody {
-    tr:hover {
-      background-color: $black;
-      -webkit-transition: all 0.4s;
-    }
-  }
+  // tbody {
+    //   tr:hover {
+      //     background-color: $black;
+      //     -webkit-transition: all 0.4s;
+      //     color: #fff;
+      //   }
+      // }
 }
