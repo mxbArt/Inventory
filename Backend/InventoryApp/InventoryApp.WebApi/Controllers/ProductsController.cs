@@ -10,25 +10,23 @@ using Microsoft.AspNetCore.Mvc;
 namespace InventoryApp.WebApi.Controllers
 {
     [Produces("application/json")]
-    [Route("product")]
-    public class ProductController : Controller
+    [Route("api/products")]
+    public class ProductsController : Controller
     {
         private readonly IProductFacade _productFacade;
 
-        public ProductController(IProductFacade productFacade)
+        public ProductsController(IProductFacade productFacade)
         {
             _productFacade = productFacade;
         }
 
-        [HttpPost("processWaybill")]
+        [HttpPut()]
         public IActionResult ProcessWaybill([FromBody]List<WaybillItem> waybill)
         {
-            if (waybill != null && waybill.Count != 0)
-            {
-                _productFacade.ProcessWaybill(waybill);
-                return Ok();
-            }
-            return BadRequest("Request contains no data");
+            if (waybill == null || waybill.Count == 0) return BadRequest("Request contains no data");
+
+            _productFacade.ProcessWaybill(waybill);
+            return Ok();
         }
     }
 }

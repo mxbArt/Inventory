@@ -13,7 +13,7 @@ import { ReduxActions } from './redux/ReduxActions';
 @Injectable()
 export class RequestService {
   private readonly options: RequestOptions;
-  private readonly serverUrl: string = 'http://localhost:56140/';
+  private readonly serverUrl: string = 'http://localhost:56140/api/';
   // 'http://app-stocktaking.a3c1.starter-us-west-1.openshiftapps.com/';
 
   constructor(private http: Http, private ngRedux: NgRedux<IAppState>) {
@@ -48,7 +48,7 @@ export class RequestService {
   }
 
   processWaybill(): void {
-    this.http.post(this.serverUrl + 'product/processWaybill', this.ngRedux.getState().waybill, this.options)
+    this.http.put(this.serverUrl + 'products', this.ngRedux.getState().waybill, this.options)
       .subscribe((response: Response) => {
         this.loadCategories();
         this.ngRedux.dispatch({
