@@ -9,6 +9,6 @@ namespace InventoryApp.Logic.Core.Interfaces
     {
         ProductDto GetProduct(Guid productId);
 
-        void ProcessWaybill(List<WaybillItem> waybill);
+        void ProcessWaybill(List<WaybillItemModel> waybill);
     }
 }

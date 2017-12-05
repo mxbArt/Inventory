@@ -25,7 +25,7 @@ namespace InventoryApp.Logic.Core.Facades
             return _mapper.Map<Product, ProductDto>(_uow.ProductRepository.GetById(productId));
         }
 
-        public void ProcessWaybill(List<WaybillItem> waybill)
+        public void ProcessWaybill(List<WaybillItemModel> waybill)
         {
             foreach (var item in waybill)
             {

@@ -1,8 +1,9 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryApp.Logic.Domain.Models
 {
-    public class WaybillItem
+    public class WaybillItemModel
     {
         public Guid CategoryId { get; set; }
         public Guid ProductId { get; set; }

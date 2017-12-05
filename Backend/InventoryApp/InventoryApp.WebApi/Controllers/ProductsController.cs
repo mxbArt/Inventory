@@ -21,7 +21,7 @@ namespace InventoryApp.WebApi.Controllers
         }
 
         [HttpPut()]
-        public IActionResult ProcessWaybill([FromBody]List<WaybillItem> waybill)
+        public IActionResult ProcessWaybill([FromBody]List<WaybillItemModel> waybill)
         {
             if (waybill == null || waybill.Count == 0) return BadRequest("Request contains no data");
 
