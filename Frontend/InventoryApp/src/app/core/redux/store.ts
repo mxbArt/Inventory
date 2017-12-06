@@ -4,9 +4,11 @@ import { tassign } from 'tassign';
 import { ICategory } from '../models/ICategory.model';
 import { IWaybillItem } from '../models/IWaybillItem.model';
 import { RequestService } from '../request.service';
+import { IProduct } from '../models/IProduct.model';
 
 export interface IAppState {
   categories: ICategory[];
+  products: IProduct[];
   waybill: IWaybillItem[];
 
   appInEditMode: boolean;
@@ -15,6 +17,7 @@ export interface IAppState {
 export const INITIAL_STATE: IAppState = {
   appInEditMode: true,
   categories: [],
+  products: [],
   waybill: [
     {
       categoryId: '29598317-3d6f-4417-b63b-4bf86097e48e',
@@ -40,9 +43,9 @@ export const INITIAL_STATE: IAppState = {
 export function rootReducer(state: IAppState, action): IAppState {
   switch (action.type) {
     // categories load
-    case ReduxActions.LOAD_CATEGORIES_SUCCESS:
-      return categoriesLoaded(state, action);
-    case ReduxActions.LOAD_CATEGORIES_ERROR:
+    case ReduxActions.DATA_LOAD_SUCCESS:
+      return dataLoaded(state, action);
+    case ReduxActions.DATA_LOAD_ERROR:
       console.log(action.error);
       return;
     // waybill
@@ -67,16 +70,17 @@ export function rootReducer(state: IAppState, action): IAppState {
 
 function discardCategory(state: IAppState, action) {
   const categories = state.categories;
-  // console.log(action.oldCategory);
   categories[categories.findIndex(c => c.id === action.oldCategory.id)] = action.oldCategory;
   return tassign(state, {
     categories: categories
   });
 }
-
+// todo
 function discardProduct(state: IAppState, action) {
+  const products = state.products;
+  products[products.findIndex(p => p.id === action.oldProduct.id)] = action.oldProduct;
   return tassign(state, {
-
+    products: products
   });
 }
 
@@ -86,9 +90,21 @@ function changeMode(state: IAppState, action) {
   });
 }
 
-function categoriesLoaded(state: IAppState, action): IAppState {
+function dataLoaded(state: IAppState, action): IAppState {
+  const categories: ICategory[] = [];
+  const products: IProduct[] = [];
+
+  action.data.forEach(el => {
+    el.products.forEach(p => {
+      products.push(p);
+    });
+    categories.push({id: el.id, name: el.name, imgPath: el.imgPath});
+  });
+  products.sort((x1, x2) => x1.name.localeCompare(x2.name));
+
   return tassign(state, {
-    categories: action.categories.slice()
+    categories: categories.slice(),
+    products: products.slice()
   });
 }
 
@@ -99,7 +115,7 @@ function clearWaybill(state: IAppState, action): IAppState {
 }
 
 function removeItemFromWaybill(state: IAppState, action): IAppState {
-  let items = state.waybill;
+  const items = state.waybill;
   items.splice(state.waybill.indexOf(action.item), 1);
   return tassign(state, {
     waybill: items

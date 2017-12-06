@@ -31,30 +31,31 @@ export class RequestService {
     );
   }
 
-  loadCategories(): void {
-    this.http.get(this.serverUrl + 'categories', this.options)
-      .subscribe((response: Response) => {
-        this.ngRedux.dispatch({
-          type: ReduxActions.LOAD_CATEGORIES_SUCCESS,
-          categories: response.json()
-        });
-      },
-      (error) => {
-        this.ngRedux.dispatch({
-          type: ReduxActions.LOAD_CATEGORIES_ERROR,
-          error: error
-        });
-      });
+  loadData() {
+    return {
+      categories: this._loadCategories(),
+      products: this._loadProducts()
+    };
+  }
+
+  private _loadCategories(): Observable<any> {
+    return this.http.get(this.serverUrl + 'categories?includeProducts=true', this.options);
+  }
+  private _loadProducts(): Observable<any> {
+    return this.http.get(this.serverUrl + 'products', this.options);
   }
 
   getCategory(id: string): Observable<any> {
     return this.http.get(this.serverUrl + `categories/${id}`, this.options);
   }
+  getProduct(id: string): Observable<any> {
+    return this.http.get(this.serverUrl + `products/${id}`, this.options);
+  }
 
   processWaybill(): void {
     this.http.put(this.serverUrl + 'products', this.ngRedux.getState().waybill, this.options)
       .subscribe((response: Response) => {
-        this.loadCategories();
+        this.loadData();
         this.ngRedux.dispatch({
           type: ReduxActions.WAYBILL_SUBMITED
         });

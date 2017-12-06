@@ -1,7 +1,7 @@
 <!-- Standart mode -->
 <div *ngIf="!(editMode | async); else editableProductItem"
      class="card card-hoverable"
-     [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
+     [routerLink]="['/categories/' + product.categoryId + '/products/' + product.id]">
   <img [src]="product.imgPath" alt="Image was not found" (error)="handleImgError($event)">
   <div class="card-body text-center">
     <p class="card-title">{{ product.name }}</p>
@@ -13,7 +13,7 @@
 <!-- Editable mode -->
 <ng-template #editableProductItem>
   <div class="card">
-    <button [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
+    <button [routerLink]="['/categories/' + product.categoryId + '/products/' + product.id]">
       Go Next
     </button>
     <span contenteditable="true"

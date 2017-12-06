@@ -9,6 +9,8 @@ import { NgRedux } from 'ng2-redux/lib/components/ng-redux';
 import { IAppState } from '../../../../core/redux/store';
 import { select } from 'ng2-redux';
 import { environment } from '../../../../../environments/environment';
+import { RequestService } from '../../../../core/request.service';
+import { ReduxActions } from '../../../../core/redux/ReduxActions';
 
 @Component({
   selector: 'app-product-item',
@@ -17,17 +19,13 @@ import { environment } from '../../../../../environments/environment';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: IProduct;
-  @Input() categoryId: string;
   @select((s: IAppState) => s.appInEditMode) editMode: Observable<boolean>;
 
-  private _savedCopy: IProduct;
   imgErrorPath = environment.imgNotFoundPath;
 
-  constructor(private ngRedux: NgRedux<IAppState>) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService) { }
 
-  ngOnInit() {
-    this._savedCopy = Object.assign({}, this.product);
-  }
+  ngOnInit() {  }
 
   handleImgError(event) {
     event.target.src = this.imgErrorPath;
@@ -35,11 +33,14 @@ export class ProductItemComponent implements OnInit {
 
   logToConsole() {
     console.log(this.product);
-    console.log(this._savedCopy);
   }
 
   discardChanges() {
-    this.product = this._savedCopy;
+    this.requestService.getProduct(this.product.id).subscribe(
+      (data) => {
+        this.ngRedux.dispatch({ type: ReduxActions.APP_DISCARD_PRODUCT, oldProduct: data.json()});
+      }
+    );
   }
 
 }

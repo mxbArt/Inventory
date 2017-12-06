@@ -22,12 +22,12 @@ export class ProductsDetailsComponent implements OnInit {
     count: 0,
     lastUpdate: null,
     imgPath: '',
-    description: ''
+    description: '',
+    categoryId: ''
   };
   category: ICategory = {
     id: '',
     name: '',
-    products: []
   };
 
   amountControl: FormControl;
@@ -54,7 +54,8 @@ export class ProductsDetailsComponent implements OnInit {
     const state: IAppState = this.ngRedux.getState();
     if (state.categories.length !== 0) {
       this.category = state.categories.find(c => c.id === params['categoryId']);
-      this.product = this.category.products.find(p => p.id === params['productId']);
+      this.product = state.products.find(p => p.id === params['productId']);
+      // this.product = this.category.products.find(p => p.id === params['productId']);
     }
   }
 

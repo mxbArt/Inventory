@@ -1,5 +1,4 @@
 export interface IProduct {
-  //_id: string;
   id: string;
   name: string;
   count: number;
@@ -7,4 +6,5 @@ export interface IProduct {
   measurement?: string;
   lastUpdate: Date;
   imgPath: string;
+  categoryId: string;
 }
