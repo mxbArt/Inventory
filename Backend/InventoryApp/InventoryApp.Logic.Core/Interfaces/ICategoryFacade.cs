@@ -6,8 +6,8 @@ namespace InventoryApp.Logic.Core.Interfaces
 {
     public interface ICategoryFacade
     {
-        IEnumerable<CategoryDto> GetCategories();
+        IEnumerable<CategoryDto> GetCategories(bool includeProducts = false);
 
-        CategoryDto GetCategoryWithProducts(Guid categoryId);
+        CategoryDto GetCategory(Guid categoryId, bool includeProducts = false);
     }
 }

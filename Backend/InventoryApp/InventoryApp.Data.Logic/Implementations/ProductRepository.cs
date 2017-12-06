@@ -18,12 +18,12 @@ namespace InventoryApp.Data.Logic.Implementations
 
         public IEnumerable<Product> GetAll()
         {
-            return _products.ToList();
+            return _products.Include("Category");
         }
         
         public Product GetById(Guid id)
         {
-            return _products.Find(id);
+            return _products.Include("Category").Single(x => x.Id == id);
         }
 
         public void Insert(Product newProduct)

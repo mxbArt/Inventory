@@ -1,5 +1,6 @@
 ﻿using System;
 using InventoryApp.Logic.Core.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryApp.WebApi.Controllers
@@ -16,21 +17,31 @@ namespace InventoryApp.WebApi.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult Get(bool includeProducts)
         {
-            return Ok(_categoryFacade.GetCategories());
+            return Ok(_categoryFacade.GetCategories(includeProducts));
         }
 
 
         [HttpGet("{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(Guid id, bool includeProducts)
         {
-            if (id != Guid.Empty)
+            if (id == Guid.Empty) return BadRequest($"Category with id {id} was not found.");
+
+            try
             {
-                var tmp = _categoryFacade.GetCategoryWithProducts(id);
-                return Ok(tmp);
+                var category = _categoryFacade.GetCategory(id, includeProducts);
+                return Ok(category);
             }
-            return BadRequest($"Category with {id} was not found.");
+            catch (InvalidOperationException)
+            {
+                return BadRequest($"Category with id {id} does not exists");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
         }
     }
 }

@@ -20,14 +20,14 @@ namespace InventoryApp.Logic.Core.Facades
             _uow = uow;
         }
 
-        public IEnumerable<CategoryDto> GetCategories()
+        public IEnumerable<CategoryDto> GetCategories(bool includeProducts = false)
         {
-            return _mapper.Map<List<Category>, List<CategoryDto>>(_uow.CategoryRepository.GetAll().ToList());
+            return _mapper.Map<List<Category>, List<CategoryDto>>(_uow.CategoryRepository.GetAll(includeProducts).ToList());
         }
 
-        public CategoryDto GetCategoryWithProducts(Guid categoryId)
+        public CategoryDto GetCategory(Guid categoryId, bool includeProducts = false)
         {
-            return _mapper.Map<Category, CategoryDto>(_uow.CategoryRepository.GetById(categoryId));
+            return _mapper.Map<Category, CategoryDto>(_uow.CategoryRepository.GetById(categoryId, includeProducts));
         }
     }
 }

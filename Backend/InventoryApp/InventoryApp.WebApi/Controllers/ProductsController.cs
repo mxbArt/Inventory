@@ -20,7 +20,33 @@ namespace InventoryApp.WebApi.Controllers
             _productFacade = productFacade;
         }
 
-        [HttpPut()]
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_productFacade.GetProducts());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(Guid id)
+        {
+            if (id == Guid.Empty) return BadRequest($"Product with id {id} does not exists");
+
+            try
+            {
+                return Ok(_productFacade.GetProduct(id));
+            }
+            catch (InvalidOperationException)
+            {
+                return BadRequest($"Product with id {id} does not exists");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        [HttpPut]
         public IActionResult ProcessWaybill([FromBody]List<WaybillItemModel> waybill)
         {
             if (waybill == null || waybill.Count == 0) return BadRequest("Request contains no data");

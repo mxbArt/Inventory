@@ -16,18 +16,31 @@ namespace InventoryApp.Data.Logic.Implementations
             _categories = context.Set<Category>();
         }
 
-        public IEnumerable<Category> GetAll()
+        public IEnumerable<Category> GetAll(bool includeProducts)
         {
-            return _categories
-                .Include("Products")
-                .OrderBy(x => x.Name)
-                .ToList();
+            IEnumerable<Category> categories;
+            if (includeProducts)
+            {
+                categories = _categories
+                    .Include("Products");
+            }
+            else
+            {
+                categories = _categories;
+            }
+
+            return categories
+                .OrderBy(x => x.Name);
         }
 
-        public Category GetById(Guid id)
+        public Category GetById(Guid id, bool includeProducts)
         {
+            if (includeProducts)
+            {
+                return _categories.Include("Products").Single(c => c.Id == id);
+            }
+
             return _categories
-                .Include("Products")
                 .Single(c => c.Id == id);
         }
 
@@ -38,7 +51,7 @@ namespace InventoryApp.Data.Logic.Implementations
 
         public void Delete(Guid id)
         {
-            _categories.Remove(GetById(id));
+            _categories.Remove(_categories.Single(c => c.Id == id));
         }
 
         // todo: test method.

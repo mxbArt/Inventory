@@ -7,6 +7,8 @@ namespace InventoryApp.Logic.Core.Interfaces
 {
     public interface IProductFacade
     {
+        IEnumerable<ProductDto> GetProducts();
+        
         ProductDto GetProduct(Guid productId);
 
         void ProcessWaybill(List<WaybillItemModel> waybill);

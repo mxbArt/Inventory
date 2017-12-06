@@ -6,9 +6,9 @@ namespace InventoryApp.Data.Logic.Interfaces
 {
     public interface ICategoryRepository
     {
-        IEnumerable<Category> GetAll();
+        IEnumerable<Category> GetAll(bool includeProducts);
 
-        Category GetById(Guid id);
+        Category GetById(Guid id, bool includeProducts);
 
         void Insert(Category newCategory);
 

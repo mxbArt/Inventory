@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using InventoryApp.Data.Domain.Entities;
 using InventoryApp.Data.Logic.Interfaces;
@@ -19,7 +20,12 @@ namespace InventoryApp.Logic.Core.Facades
             _mapper = mapper;
             _uow = uow;
         }
-        
+
+        public IEnumerable<ProductDto> GetProducts()
+        {
+            return _mapper.Map<IEnumerable<Product>, IEnumerable<ProductDto>>(_uow.ProductRepository.GetAll());
+        }
+
         public ProductDto GetProduct(Guid productId)
         {
             return _mapper.Map<Product, ProductDto>(_uow.ProductRepository.GetById(productId));
