@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux, select } from 'ng2-redux';
+import { IAppState } from '../../core/redux/store';
+import { ReduxActions } from '../../core/redux/ReduxActions';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @select((s: IAppState) => s.appInEditMode) inEditMode: boolean;
 
-  ngOnInit() {
+  constructor(private ngRedux: NgRedux<IAppState>) { }
+
+  ngOnInit() {  }
+
+  changeMode() {
+    this.ngRedux.dispatch({ type: ReduxActions.APP_CHANGEMODE });
   }
 
 }

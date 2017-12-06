@@ -21,3 +21,25 @@ $font-weight: 700;
   color: $color;
   text-transform: uppercase;
 }
+@mixin editable-p() {
+  overflow:hidden;
+  white-space: nowrap;
+}
+@mixin inventory-card() {
+  margin: 1rem 0;
+  outline: none;
+  border: 1px solid $black;
+  border-radius: 0;
+  height: fit-content;
+  -webkit-transition: all 0.4s;
+  img {
+    height: 275px;
+    filter: brightness(90%);
+  }
+  .card-title {
+    font-weight: $font_weight;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    font-size: 1rem;
+  }
+}

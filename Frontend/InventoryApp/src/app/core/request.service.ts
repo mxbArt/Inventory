@@ -47,6 +47,10 @@ export class RequestService {
       });
   }
 
+  getCategory(id: string): Observable<any> {
+    return this.http.get(this.serverUrl + `categories/${id}`, this.options);
+  }
+
   processWaybill(): void {
     this.http.put(this.serverUrl + 'products', this.ngRedux.getState().waybill, this.options)
       .subscribe((response: Response) => {

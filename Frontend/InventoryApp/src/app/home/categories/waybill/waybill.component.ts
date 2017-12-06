@@ -18,8 +18,7 @@ export class WaybillComponent implements OnInit {
 
   constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {  }
 
   deleteItem(item: IWaybillItem) {
     this.ngRedux.dispatch({ type: ReduxActions.WAYBILL_REMOVE_ITEM, item: item });

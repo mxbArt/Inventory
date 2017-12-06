@@ -1,6 +1,27 @@
-<div class="card" [routerLink]="['/categories/' + category.id]">
-  <img [src]="category.imgPath" alt="Card image cap">
+<!-- Standart mode -->
+<div *ngIf="!(editMode | async); else editableCategoryItem"
+     class="card card-hoverable"
+     [routerLink]="['/categories/' + category.id]">
+  <img [src]="category.imgPath" alt="Card image cap" (error)="handleImgError($event)">
   <div class="card-body text-center">
     <p class="card-title">{{ category.name }}</p>
   </div>
 </div>
+<!-- Editable mode -->
+<ng-template #editableCategoryItem>
+  <div class="card">
+    <button [routerLink]="['/categories/' + category.id]">Go Next</button>
+    <span contenteditable="true"
+       [(contenteditableModel)]="category.imgPath"
+       class="editable-p">{{ category.imgPath }}</span>
+    <img [src]="category.imgPath" alt="Card image cap" (error)="handleImgError($event)">
+    <div class="card-body text-center">
+      <p class="card-title"
+         contenteditable="true"
+        [(contenteditableModel)]="category.name">{{ category.name }}</p>
+    </div>
+    <button (click)="logToConsole()">Console Log</button>
+    <button (click)="getStorage()">Get Storage</button>
+    <button (click)="discardChanges()">Discard Changes</button>
+  </div>
+</ng-template>

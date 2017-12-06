@@ -4,8 +4,10 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // Pipes
 import { FilterPipe } from '../../infrastructure/filter.pipe';
+// Directives
+import { ContenteditableModelDirective } from '../../infrastructure/directives/contenteditableModel.directive';
 // Angular materials
-import { MdInputModule, MdAutocompleteModule, MdButtonModule, MdDialogModule, MdTableModule, MdPaginatorModule } from '@angular/material';
+import { MdInputModule, MdAutocompleteModule, MdButtonModule, MdTableModule, MdPaginatorModule } from '@angular/material';
 // Components
 import { CategoryItemComponent } from './categories-home/category-item/category-item.component';
 import { CategoriesComponent } from './categories.component';
@@ -26,13 +28,14 @@ import { ProductsDetailsComponent } from './products/products-details/products-d
     MdInputModule,
     MdAutocompleteModule,
     MdButtonModule,
-    MdDialogModule,
     MdTableModule,
     MdPaginatorModule,
   ],
   declarations: [
     // Pipes
     FilterPipe,
+    // Direrectives
+    ContenteditableModelDirective,
     // Components
     CategoryItemComponent,
     CategoriesComponent,

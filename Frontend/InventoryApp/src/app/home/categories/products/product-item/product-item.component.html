@@ -1,9 +1,34 @@
-<div class="card text-center" [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
-  <img [src]="product.imgPath" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ product.name }}</h5>
+<!-- Standart mode -->
+<div *ngIf="!(editMode | async); else editableProductItem"
+     class="card card-hoverable"
+     [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
+  <img [src]="product.imgPath" alt="Image was not found" (error)="handleImgError($event)">
+  <div class="card-body text-center">
+    <p class="card-title">{{ product.name }}</p>
   </div>
-  <div class="card-footer text-muted">
+  <div class="card-footer text-muted text-center">
     Последнее обновление {{ product.lastUpdate | date: 'shortDate' }}
   </div>
 </div>
+<!-- Editable mode -->
+<ng-template #editableProductItem>
+  <div class="card">
+    <button [routerLink]="['/categories/' + categoryId + '/products/' + product.id]">
+      Go Next
+    </button>
+    <span contenteditable="true"
+          [(contenteditableModel)]="product.imgPath"
+          class="editable-p">{{ product.imgPath }}</span>
+    <img [src]="product.imgPath" alt="Card image cap" (error)="handleImgError($event)">
+    <div class="card-body text-center">
+      <p class="card-title"
+         contenteditable="true"
+         [(contenteditableModel)]="product.name">{{ product.name }}</p>
+    </div>
+    <div class="card-footer text-muted text-center">
+      Последнее обновление {{ product.lastUpdate | date: 'shortDate' }}
+    </div>
+    <button (click)="logToConsole()">Console Log</button>
+    <button (click)="discardChanges()">Discard Changes</button>
+  </div>
+</ng-template>

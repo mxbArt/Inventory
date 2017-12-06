@@ -1,19 +1,12 @@
 @import "src/assets/styles/constants.scss";
 
 .card {
-  margin: 1rem 0;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid $black;
-  border-radius: 0;
-  height: fit-content;
-  -webkit-transition: all 0.4s;
-  img {
-    height: 275px;
-    filter: brightness(90%);
-  }
+  @include inventory-card();
 }
-.card:hover {
+.card-hoverable {
+  cursor: pointer;
+}
+.card-hoverable:hover {
   color: $gold;
   border: 1px solid $dark_gray;
   background: $black;
@@ -21,6 +14,10 @@
     border-color: $dark_gold;
     color: $dark_gold !important;
   }
+}
+
+.editable-p {
+  @include editable-p();
 }
 
 @media (max-width: 1920px) {

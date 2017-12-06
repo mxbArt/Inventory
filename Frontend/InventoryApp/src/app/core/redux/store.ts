@@ -8,9 +8,12 @@ import { RequestService } from '../request.service';
 export interface IAppState {
   categories: ICategory[];
   waybill: IWaybillItem[];
+
+  appInEditMode: boolean;
 }
 
 export const INITIAL_STATE: IAppState = {
+  appInEditMode: true,
   categories: [],
   waybill: [
     {
@@ -42,6 +45,7 @@ export function rootReducer(state: IAppState, action): IAppState {
     case ReduxActions.LOAD_CATEGORIES_ERROR:
       console.log(action.error);
       return;
+    // waybill
     case ReduxActions.WAYBILL_CLEAR:
       return clearWaybill(state, action);
     case ReduxActions.WAYBILL_REMOVE_ITEM:
@@ -50,13 +54,41 @@ export function rootReducer(state: IAppState, action): IAppState {
       return submitWaybill(state, action);
     case ReduxActions.WAYBILL_ADD_ITEM:
       return addItemToWaybill(state, action);
+// test app_mode
+    case ReduxActions.APP_CHANGEMODE:
+      return changeMode(state, action);
+    case ReduxActions.APP_DISCARD_CATEGORY:
+      return discardCategory(state, action);
+    case ReduxActions.APP_DISCARD_PRODUCT:
+      return discardProduct(state, action);
   }
   return state;
 }
 
+function discardCategory(state: IAppState, action) {
+  const categories = state.categories;
+  // console.log(action.oldCategory);
+  categories[categories.findIndex(c => c.id === action.oldCategory.id)] = action.oldCategory;
+  return tassign(state, {
+    categories: categories
+  });
+}
+
+function discardProduct(state: IAppState, action) {
+  return tassign(state, {
+
+  });
+}
+
+function changeMode(state: IAppState, action) {
+  return tassign(state, {
+    appInEditMode: !state.appInEditMode
+  });
+}
+
 function categoriesLoaded(state: IAppState, action): IAppState {
   return tassign(state, {
-    categories: action.categories
+    categories: action.categories.slice()
   });
 }
 
