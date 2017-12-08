@@ -6,7 +6,7 @@
     [Count] INT NOT NULL, 
     [LastUpdate] DATETIME NOT NULL, 
     [Description] NVARCHAR(MAX) NULL, 
-    [Measurment] NVARCHAR(50) NOT NULL, 
+    [Measurement] NVARCHAR(50) NOT NULL, 
     [ImgPath] NVARCHAR(MAX) NULL, 
     CONSTRAINT [FK_Product_ToCategory] FOREIGN KEY ([CategoryId]) REFERENCES [Category]([Id])
 )

@@ -34,7 +34,7 @@ namespace InventoryApp.Data.Logic
 
                 entity.Property(e => e.LastUpdate).HasColumnType("datetime");
 
-                entity.Property(e => e.Measurment)
+                entity.Property(e => e.Measurement)
                     .IsRequired()
                     .HasMaxLength(50);
 

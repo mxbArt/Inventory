@@ -9,6 +9,8 @@ import { IAppState } from '../../../../core/redux/store';
 import { FormControl, Validators } from '@angular/forms';
 import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
 import { ReduxActions } from '../../../../core/redux/ReduxActions';
+import { Observable } from 'rxjs/Observable';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-products-details',
@@ -31,8 +33,12 @@ export class ProductsDetailsComponent implements OnInit {
   };
 
   amountControl: FormControl;
-  editMode = false;
+  formVisible = false;
   sign = 1;
+
+  @select((s: IAppState) => s.appInEditMode) readonly editMode: Observable<boolean>;
+  @select((s: IAppState) => s.categories) readonly categories: Observable<ICategory>;
+  imgErrorPath = environment.imgNotFoundPath;
 
   constructor(private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>) { }
 
@@ -55,11 +61,10 @@ export class ProductsDetailsComponent implements OnInit {
     if (state.categories.length !== 0) {
       this.category = state.categories.find(c => c.id === params['categoryId']);
       this.product = state.products.find(p => p.id === params['productId']);
-      // this.product = this.category.products.find(p => p.id === params['productId']);
     }
   }
 
-  submit() {
+  formSubmit() {
     let waybillItem: IWaybillItem = {
       categoryId: this.category.id,
       productId: this.product.id,
@@ -68,11 +73,19 @@ export class ProductsDetailsComponent implements OnInit {
     };
 
     this.ngRedux.dispatch({ type: ReduxActions.WAYBILL_ADD_ITEM, item: waybillItem });
-    this.reset();
+    this.formReset();
   }
 
-  reset() {
-    this.editMode = false;
+  formReset() {
+    this.formVisible = false;
     this.amountControl.reset();
+  }
+
+  handleImgError(event) {
+    event.target.src = this.imgErrorPath;
+  }
+
+  onCategoryChange(event) {
+    this.product.categoryId = event.target.value;
   }
 }

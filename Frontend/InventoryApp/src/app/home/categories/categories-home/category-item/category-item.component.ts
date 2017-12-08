@@ -39,8 +39,14 @@ export class CategoryItemComponent implements OnInit {
 
   discardChanges() {
     this.requestService.getCategory(this.category.id).subscribe((data) => {
-      this.ngRedux.dispatch({ type: ReduxActions.APP_DISCARD_CATEGORY, oldCategory: data.json()});
+      const category: ICategory = data.json();
+      this.ngRedux.dispatch({ type: ReduxActions.APP_DISCARD_CATEGORY, oldCategory:
+        {
+          id: category.id,
+          name: category.name,
+          imgPath: category.imgPath
+        }
+      });
     });
-    // this.ngRedux.dispatch({ type: ReduxActions.APP_DISCARD_CATEGORY, oldCategory: this.category.id });
   }
 }
