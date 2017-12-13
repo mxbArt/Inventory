@@ -15,7 +15,10 @@
     color: $dark_gold !important;
   }
 }
-
+.go-next {
+  border-radius: 0;
+  outline: none;
+}
 .editable-p {
   @include editable-p();
 }

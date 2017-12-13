@@ -14,6 +14,10 @@
 .editable-p {
   @include editable-p();
 }
+.go-next {
+  border-radius: 0;
+  outline: none;
+}
 @media (max-width: 1920px) {
   .card {
     img {

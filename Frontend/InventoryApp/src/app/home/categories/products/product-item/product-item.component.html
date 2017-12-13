@@ -13,9 +13,6 @@
 <!-- Editable mode -->
 <ng-template #editableProductItem>
   <div class="card">
-    <button [routerLink]="['/categories/' + product.categoryId + '/products/' + product.id]">
-      Go Next
-    </button>
     <span contenteditable="true"
           [(contenteditableModel)]="product.imgPath"
           class="editable-p">{{ product.imgPath }}</span>
@@ -28,7 +25,11 @@
     <div class="card-footer text-muted text-center">
       Последнее обновление {{ product.lastUpdate | date: 'shortDate' }}
     </div>
-    <button (click)="logToConsole()">Console Log</button>
-    <button (click)="discardChanges()">Discard Changes</button>
+    <button md-raised-button color="primary"
+    type="button"
+    class="go-next"
+    [routerLink]="['/categories/' + product.categoryId + '/products/' + product.id]">Полная информация</button>
+    <!-- <button (click)="logToConsole()">Console Log</button>
+    <button (click)="discardChanges()">Discard Changes</button> -->
   </div>
 </ng-template>
