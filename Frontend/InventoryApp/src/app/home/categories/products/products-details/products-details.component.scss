@@ -41,6 +41,12 @@
 .editableProductDescription {
   width: 100%;
 }
+.item-action {
+  border-radius: 0;
+  outline: none;
+  width: 100%;
+  text-transform: uppercase;
+}
 md-input-container{
   width: 51%;
   input {

@@ -78,13 +78,16 @@
 
 
 
-
 <!-- Editable mode -->
 <ng-template #editableProductDetails>
   <div class="wrapper">
     <div class="row">
       <div class="col-md-8">
-        <h3 contenteditable="true" [(contenteditableModel)]="product.name">{{ product.name }}</h3>
+        <h3 contenteditable="true"
+            (keydown)="markModel()"
+            [(contenteditableModel)]="product.name">
+            {{ product.name }}
+        </h3>
       </div>
       <div class="col-md-4">
         <i [routerLink]="['../../']" class="fa fa-times fa-2x close"></i>
@@ -92,6 +95,7 @@
     </div>
     <span contenteditable="true"
           [(contenteditableModel)]="product.imgPath"
+          (keydown)="markModel()"
           class="editable-p">{{ product.imgPath }}</span>
     <!-- Add / Remove btns -->
     <div class="row" style="margin-top:0.5rem;">
@@ -117,7 +121,8 @@
             <i class="fa fa-balance-scale fa-fw"></i> Единицы измерения:
               <span contenteditable="true"
                     [(contenteditableModel)]="product.measurement"
-                    class="editable-p">
+                    class="editable-p"
+                    (keydown)="markModel()">
                 {{ product.measurement }}
               </span>
             </li>
@@ -126,10 +131,16 @@
           <li>
             <i class="fa fa-calendar fa-fw"></i> Последнее обновление: {{ product.lastUpdate | date: 'shortDate' }} </li>
         </ul>
-        <div>
-          <h4>Описание</h4>
-          <textarea class="editableProductDescription" rows="7" [(ngModel)]="product.description"></textarea>
-        </div>
+        <h4>Описание</h4>
+        <textarea class="editableProductDescription"
+                  (keydown)="markModel()"
+                  rows="7"
+                  [(ngModel)]="product.description"></textarea>
+
+        <button md-raised-button color="warn"
+                [disabled]="!product.edited"
+                class="item-action"
+                (click)="discardChanges()">Discard Changes</button>
       </div>
     </div>
   </div>

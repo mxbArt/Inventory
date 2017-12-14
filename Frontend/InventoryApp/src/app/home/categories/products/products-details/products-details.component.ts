@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { environment } from '../../../../../environments/environment';
+import { FormControl, Validators } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 // Models
 import { IProduct } from '../../../../core/models/IProduct.model';
 import { ICategory } from '../../../../core/models/ICategory.model';
+import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
+// Services
+import { RequestService } from '../../../../core/request.service';
 // Redux
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../../../../core/redux/store';
-import { FormControl, Validators } from '@angular/forms';
-import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
 import { ReduxActions } from '../../../../core/redux/ReduxActions';
-import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-products-details',
@@ -27,10 +29,6 @@ export class ProductsDetailsComponent implements OnInit {
     description: '',
     categoryId: ''
   };
-  category: ICategory = {
-    id: '',
-    name: '',
-  };
 
   amountControl: FormControl;
   formVisible = false;
@@ -40,7 +38,8 @@ export class ProductsDetailsComponent implements OnInit {
   @select((s: IAppState) => s.categories) readonly categories: Observable<ICategory>;
   imgErrorPath = environment.imgNotFoundPath;
 
-  constructor(private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>) { }
+  constructor(private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>,
+              private requestService: RequestService) { }
 
   ngOnInit() {
     // redux state subscription
@@ -59,14 +58,13 @@ export class ProductsDetailsComponent implements OnInit {
   private _loadProduct(params: Params) {
     const state: IAppState = this.ngRedux.getState();
     if (state.categories.length !== 0) {
-      this.category = state.categories.find(c => c.id === params['categoryId']);
       this.product = state.products.find(p => p.id === params['productId']);
     }
   }
 
   formSubmit() {
-    let waybillItem: IWaybillItem = {
-      categoryId: this.category.id,
+    const waybillItem: IWaybillItem = {
+      categoryId: this.product.categoryId,
       productId: this.product.id,
       productName: this.product.name,
       count: +this.amountControl.value * this.sign
@@ -85,7 +83,23 @@ export class ProductsDetailsComponent implements OnInit {
     event.target.src = this.imgErrorPath;
   }
 
+  markModel() {
+    if (this.product.edited !== true) {
+      this.product.edited = true;
+      // console.log(`product with id ${this.product.id} marked as edited`);
+    }
+  }
+
+  discardChanges() {
+    this.requestService.getProduct(this.product.id).subscribe(
+      (data) => {
+        this.ngRedux.dispatch({ type: ReduxActions.APP_DISCARD_PRODUCT, oldProduct: data.json()});
+      }
+    );
+  }
+
   onCategoryChange(event) {
     this.product.categoryId = event.target.value;
+    this.markModel();
   }
 }
