@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
     this.ngRedux.dispatch({ type: ReduxActions.APP_CHANGEMODE });
   }
 
+  getState() {
+    console.log(this.ngRedux.getState());
+  }
+
 }

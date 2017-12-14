@@ -14,9 +14,10 @@
 .editable-p {
   @include editable-p();
 }
-.go-next {
+.item-action {
   border-radius: 0;
   outline: none;
+  width: 100%;
 }
 @media (max-width: 1920px) {
   .card {

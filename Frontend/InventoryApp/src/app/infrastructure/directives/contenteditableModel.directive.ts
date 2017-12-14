@@ -33,7 +33,8 @@ export class ContenteditableModelDirective implements OnChanges {
 
   @HostListener('blur')
   public onBlur() {
-    let value = this.elRef.nativeElement.innerText;
+    let value: string = this.elRef.nativeElement.innerText.toLowerCase();
+    value = value.charAt(0).toUpperCase() + value.slice(1);
     this._lastViewModel = value;
     this.update.emit(value);
   }

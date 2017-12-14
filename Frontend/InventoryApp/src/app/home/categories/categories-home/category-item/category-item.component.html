@@ -12,19 +12,22 @@
   <div class="card">
     <span contenteditable="true"
        [(contenteditableModel)]="category.imgPath"
+       (keydown)="markModel()"
        class="editable-p">{{ category.imgPath }}</span>
     <img [src]="category.imgPath" alt="Card image cap" (error)="handleImgError($event)">
     <div class="card-body text-center">
       <p class="card-title"
-         contenteditable="true"
-        [(contenteditableModel)]="category.name">{{ category.name }}</p>
+         (keydown)="markModel()"
+         [(contenteditableModel)]="category.name"
+         contenteditable="true">{{ category.name }}</p>
     </div>
     <button md-raised-button color="primary"
             type="button"
-            class="go-next"
+            class="item-action"
             [routerLink]="['/categories/' + category.id]">К продуктам</button>
-    <!-- <button (click)="logToConsole()">Console Log</button>
-    <button (click)="getStorage()">Get Storage</button>
-    <button (click)="discardChanges()">Discard Changes</button> -->
+    <button md-raised-button color="warn"
+            [disabled]="!this.category.edited"
+            class="item-action"
+            (click)="discardChanges()">Discard Changes</button>
   </div>
 </ng-template>

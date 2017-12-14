@@ -17,7 +17,7 @@ import { ManageProductsComponent } from './home/management/manage-products/manag
 
 const routes: Routes = [
   {
-    path: '', /*canActivate: [AuthGuard],*/ children: [
+    path: '', /*canActivate: [AuthGuard],*/  children: [
       { path: '', pathMatch: 'full', redirectTo: 'categories' },
       {
         path: '', component: HomeComponent, children: [

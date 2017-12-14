@@ -7,4 +7,6 @@ export interface IProduct {
   lastUpdate: Date;
   imgPath: string;
   categoryId: string;
+
+  edited?: boolean;
 }

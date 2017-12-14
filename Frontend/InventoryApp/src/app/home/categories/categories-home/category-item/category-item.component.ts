@@ -29,12 +29,11 @@ export class CategoryItemComponent implements OnInit {
     event.target.src = this.imgErrorPath;
   }
 
-  logToConsole() {
-    console.log(this.category);
-  }
-
-  getStorage() {
-    console.log(this.ngRedux.getState());
+  markModel() {
+    if (this.category.edited !== true) {
+      this.category.edited = true;
+      console.log(`category with id ${this.category.id} marked as edited`);
+    }
   }
 
   discardChanges() {
@@ -44,7 +43,8 @@ export class CategoryItemComponent implements OnInit {
         {
           id: category.id,
           name: category.name,
-          imgPath: category.imgPath
+          imgPath: category.imgPath,
+          // edited: false
         }
       });
     });
