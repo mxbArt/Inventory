@@ -11,6 +11,7 @@ import { select } from 'ng2-redux';
 import { environment } from '../../../../../environments/environment';
 import { RequestService } from '../../../../core/request.service';
 import { ReduxActions } from '../../../../core/redux/ReduxActions';
+import { NotificationService } from '../../../../core/notification.service';
 
 @Component({
   selector: 'app-product-item',
@@ -23,12 +24,14 @@ export class ProductItemComponent implements OnInit {
 
   imgErrorPath = environment.imgNotFoundPath;
 
-  constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService,
+              private notificationService: NotificationService) { }
 
   ngOnInit() {  }
 
   handleImgError(event) {
     event.target.src = this.imgErrorPath;
+    this.notificationService.error(`Image for product ${this.product.name} could not load`);
   }
 
   markModel() {

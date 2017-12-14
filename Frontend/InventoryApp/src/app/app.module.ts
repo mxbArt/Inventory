@@ -22,6 +22,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 // Redux
 import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
 import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
+import { ToastrModule } from 'ngx-toastr';
+import { NotificationService } from './core/notification.service';
 
 @NgModule({
   imports: [
@@ -37,6 +39,8 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
     AppRoutingModule,
     // Redux
     NgReduxModule,
+    // Toaster
+    ToastrModule.forRoot(),
     // Angular materials
     MdButtonModule,
     MdInputModule,
@@ -50,7 +54,8 @@ import { rootReducer, IAppState, INITIAL_STATE } from './core/redux/store';
   providers: [
     AuthService,
     AuthGuard,
-    RequestService
+    RequestService,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

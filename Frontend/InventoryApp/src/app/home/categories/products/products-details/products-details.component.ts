@@ -9,6 +9,7 @@ import { ICategory } from '../../../../core/models/ICategory.model';
 import { IWaybillItem } from '../../../../core/models/IWaybillItem.model';
 // Services
 import { RequestService } from '../../../../core/request.service';
+import { NotificationService } from '../../../../core/notification.service';
 // Redux
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../../../../core/redux/store';
@@ -39,7 +40,7 @@ export class ProductsDetailsComponent implements OnInit {
   imgErrorPath = environment.imgNotFoundPath;
 
   constructor(private route: ActivatedRoute, private ngRedux: NgRedux<IAppState>,
-              private requestService: RequestService) { }
+              private requestService: RequestService, private notificationService: NotificationService) { }
 
   ngOnInit() {
     // redux state subscription
@@ -81,6 +82,7 @@ export class ProductsDetailsComponent implements OnInit {
 
   handleImgError(event) {
     event.target.src = this.imgErrorPath;
+    this.notificationService.error(`Image for product ${this.product.name} could not load`);
   }
 
   markModel() {

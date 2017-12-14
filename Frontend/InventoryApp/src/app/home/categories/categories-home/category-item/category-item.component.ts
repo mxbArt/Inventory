@@ -8,6 +8,7 @@ import { select, NgRedux } from 'ng2-redux';
 import { environment } from '../../../../../environments/environment';
 import { ReduxActions } from '../../../../core/redux/ReduxActions';
 import { RequestService } from '../../../../core/request.service';
+import { NotificationService } from '../../../../core/notification.service';
 
 @Component({
   selector: 'app-category-item',
@@ -20,13 +21,15 @@ export class CategoryItemComponent implements OnInit {
 
   imgErrorPath = environment.imgNotFoundPath;
 
-  constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService) { }
+  constructor(private ngRedux: NgRedux<IAppState>, private requestService: RequestService,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
   }
 
   handleImgError(event) {
     event.target.src = this.imgErrorPath;
+    this.notificationService.error(`Image for category ${this.category.name} could not load`);
   }
 
   markModel() {
