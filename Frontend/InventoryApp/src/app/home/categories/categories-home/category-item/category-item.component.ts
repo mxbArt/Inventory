@@ -32,7 +32,7 @@ export class CategoryItemComponent implements OnInit {
   markModel() {
     if (this.category.edited !== true) {
       this.category.edited = true;
-      console.log(`category with id ${this.category.id} marked as edited`);
+      // console.log(`category with id ${this.category.id} marked as edited`);
     }
   }
 

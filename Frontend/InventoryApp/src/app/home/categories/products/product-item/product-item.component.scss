@@ -15,14 +15,15 @@
     color: $dark_gold !important;
   }
 }
-.go-next {
-  border-radius: 0;
-  outline: none;
-}
 .editable-p {
   @include editable-p();
 }
-
+.item-action {
+  border-radius: 0;
+  outline: none;
+  width: 100%;
+  text-transform: uppercase;
+}
 @media (max-width: 1920px) {
   .card {
     img {

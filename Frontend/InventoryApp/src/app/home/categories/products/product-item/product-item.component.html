@@ -15,21 +15,27 @@
   <div class="card">
     <span contenteditable="true"
           [(contenteditableModel)]="product.imgPath"
+          (keydown)="markModel()"
           class="editable-p">{{ product.imgPath }}</span>
     <img [src]="product.imgPath" alt="Card image cap" (error)="handleImgError($event)">
     <div class="card-body text-center">
       <p class="card-title"
          contenteditable="true"
+         (keydown)="markModel()"
          [(contenteditableModel)]="product.name">{{ product.name }}</p>
     </div>
     <div class="card-footer text-muted text-center">
       Последнее обновление {{ product.lastUpdate | date: 'shortDate' }}
     </div>
     <button md-raised-button color="primary"
-    type="button"
-    class="go-next"
-    [routerLink]="['/categories/' + product.categoryId + '/products/' + product.id]">Полная информация</button>
-    <!-- <button (click)="logToConsole()">Console Log</button>
-    <button (click)="discardChanges()">Discard Changes</button> -->
+            type="button"
+            class="item-action"
+            [routerLink]="['/categories/' + product.categoryId + '/products/' + product.id]">
+            Полная информация
+    </button>
+    <button md-raised-button color="warn"
+            [disabled]="!product.edited"
+            class="item-action"
+            (click)="discardChanges()">Discard Changes</button>
   </div>
 </ng-template>

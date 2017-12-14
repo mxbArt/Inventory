@@ -26,7 +26,7 @@
             class="item-action"
             [routerLink]="['/categories/' + category.id]">К продуктам</button>
     <button md-raised-button color="warn"
-            [disabled]="!this.category.edited"
+            [disabled]="!category.edited"
             class="item-action"
             (click)="discardChanges()">Discard Changes</button>
   </div>

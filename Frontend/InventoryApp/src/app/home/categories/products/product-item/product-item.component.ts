@@ -31,8 +31,11 @@ export class ProductItemComponent implements OnInit {
     event.target.src = this.imgErrorPath;
   }
 
-  logToConsole() {
-    console.log(this.product);
+  markModel() {
+    if (this.product.edited !== true) {
+      this.product.edited = true;
+      // console.log(`product with id ${this.product.id} marked as edited`);
+    }
   }
 
   discardChanges() {
