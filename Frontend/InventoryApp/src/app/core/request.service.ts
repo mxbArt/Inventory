@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 // Models
 import { ICategory } from './models/ICategory.model';
 import { IProduct } from './models/IProduct.model';
+import { IUpdatedItems } from './models/IUpdatedItems.model';
 // Redux
 import { IAppState } from './redux/store';
 import { NgRedux } from 'ng2-redux';
@@ -60,6 +61,10 @@ export class RequestService {
           type: ReduxActions.WAYBILL_SUBMITED
         });
       });
+  }
+
+  updateModels(updatedItems: IUpdatedItems): Observable<any> {
+    return this.http.put(this.serverUrl + 'management/entities', updatedItems, this.options);
   }
 
   // getCategoryList(): Observable<ICategory[]> {

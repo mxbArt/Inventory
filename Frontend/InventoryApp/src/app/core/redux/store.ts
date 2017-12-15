@@ -75,7 +75,7 @@ function discardCategory(state: IAppState, action) {
     categories: categories
   });
 }
-// todo
+
 function discardProduct(state: IAppState, action) {
   const products = state.products;
   products[products.findIndex(p => p.id === action.oldProduct.id)] = action.oldProduct;

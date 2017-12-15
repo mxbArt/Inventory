@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InventoryApp.Logic.Core.Interfaces;
+using InventoryApp.Logic.Domain.Dtos;
 using InventoryApp.Logic.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,7 +47,7 @@ namespace InventoryApp.WebApi.Controllers
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
-        [HttpPut]
+        [HttpPut()]
         public IActionResult ProcessWaybill([FromBody]List<WaybillItemModel> waybill)
         {
             if (waybill == null || waybill.Count == 0) return BadRequest("Request contains no data");

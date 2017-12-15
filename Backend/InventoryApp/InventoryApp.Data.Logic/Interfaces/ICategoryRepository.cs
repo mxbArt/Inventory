@@ -15,5 +15,7 @@ namespace InventoryApp.Data.Logic.Interfaces
         void Delete(Guid id);
 
         void Update(Category updatedCategory);
+
+        void UpdateRange(IEnumerable<Category> updatedCategories);
     }
 }

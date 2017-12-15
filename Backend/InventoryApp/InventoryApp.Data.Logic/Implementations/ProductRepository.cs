@@ -41,5 +41,16 @@ namespace InventoryApp.Data.Logic.Implementations
         {
             _products.Update(updatedProduct);
         }
+
+        public void UpdateRange(IEnumerable<Product> updatedProducts)
+        {
+            foreach (var product in updatedProducts)
+            {
+                var oldProduct = _products.AsNoTracking().First(p => p.Id == product.Id);
+                product.Category = oldProduct.Category;
+                product.ProductLog = oldProduct.ProductLog;
+            }
+            _products.UpdateRange(updatedProducts);
+        }
     }
 }

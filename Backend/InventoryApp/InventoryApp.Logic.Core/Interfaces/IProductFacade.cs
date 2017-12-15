@@ -11,6 +11,6 @@ namespace InventoryApp.Logic.Core.Interfaces
         
         ProductDto GetProduct(Guid productId);
 
-        void ProcessWaybill(List<WaybillItemModel> waybill);
+        void ProcessWaybill(IEnumerable<WaybillItemModel> waybill);
     }
 }

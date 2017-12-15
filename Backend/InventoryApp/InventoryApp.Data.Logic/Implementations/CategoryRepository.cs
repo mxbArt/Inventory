@@ -59,5 +59,10 @@ namespace InventoryApp.Data.Logic.Implementations
         {
             _categories.Update(updatedCategory);
         }
+
+        public void UpdateRange(IEnumerable<Category> updatedCategories)
+        {
+            _categories.UpdateRange(updatedCategories);
+        }
     }
 }

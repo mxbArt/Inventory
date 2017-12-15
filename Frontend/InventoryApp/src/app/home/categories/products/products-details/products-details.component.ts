@@ -30,6 +30,7 @@ export class ProductsDetailsComponent implements OnInit {
     description: '',
     categoryId: ''
   };
+  productCategory: string;
 
   amountControl: FormControl;
   formVisible = false;
@@ -58,8 +59,9 @@ export class ProductsDetailsComponent implements OnInit {
 
   private _loadProduct(params: Params) {
     const state: IAppState = this.ngRedux.getState();
-    if (state.categories.length !== 0) {
+    if (state.products.length !== 0) {
       this.product = state.products.find(p => p.id === params['productId']);
+      this.productCategory = state.categories.find(c => c.id === this.product.categoryId).name;
     }
   }
 
@@ -82,7 +84,9 @@ export class ProductsDetailsComponent implements OnInit {
 
   handleImgError(event) {
     event.target.src = this.imgErrorPath;
-    this.notificationService.error(`Image for product ${this.product.name} could not load`);
+    if (this.product.imgPath !== ''){
+      this.notificationService.error(`Image for product ${this.product.name} could not load`);
+    }
   }
 
   markModel() {

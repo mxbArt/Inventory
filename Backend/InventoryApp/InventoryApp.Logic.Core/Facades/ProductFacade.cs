@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using InventoryApp.Data.Domain.Entities;
 using InventoryApp.Data.Logic.Interfaces;
@@ -31,7 +30,7 @@ namespace InventoryApp.Logic.Core.Facades
             return _mapper.Map<Product, ProductDto>(_uow.ProductRepository.GetById(productId));
         }
 
-        public void ProcessWaybill(List<WaybillItemModel> waybill)
+        public void ProcessWaybill(IEnumerable<WaybillItemModel> waybill)
         {
             foreach (var item in waybill)
             {
